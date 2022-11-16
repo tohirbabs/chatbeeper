@@ -1,0 +1,6 @@
+export { default as nicki } from './nicki.png'
+export { default as depp } from './depp.png'
+export { default as church } from './church.png'
+export { default as wakanda } from './wakanda.png'
+export { default as playboy } from './playboy.png'
+export { default as activity } from './activity.png'
