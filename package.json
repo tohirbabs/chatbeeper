@@ -54,6 +54,5 @@
   },
   "devDependencies": {
     "gh-pages": "^4.0.0"
-  },
-  "homepage": "http://chatbeeper.github.io/chatbeeper-frontend"
+  }
 }
