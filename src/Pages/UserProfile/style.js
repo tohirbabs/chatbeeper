@@ -7,20 +7,20 @@ export const box = {
 
 export const h1 = {
   fontWeight: 700,
-  fontSize: "28px",
+  fontSize: "1.5rem",
   textAlign: "center",
   color: "#386FA4",
   margin: "10px 0",
 };
 
 export const h2 = {
-  fontSize: "20px",
+  fontSize: "1.1rem",
   textAlign: "center",
   color: "#9E9E9E",
 };
 export const p = {
   textAlign: "center",
-  padding: "2rem 1rem",
+  padding: "1rem",
 };
 
 export const button = {

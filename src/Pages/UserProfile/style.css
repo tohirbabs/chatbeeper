@@ -19,10 +19,10 @@
 }
 
 .user_info {
-  margin: 1.5rem 0;
+  margin: 1rem 0;
   text-align: center;
   display: flex;
-  gap: 1.5rem;
+  gap: 1.2rem;
   color: white;
 }
 
@@ -31,7 +31,7 @@
   align-items: center;
   gap: 5px;
   color: #9e9e9e;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .link a {
@@ -40,27 +40,29 @@
 }
 
 .info > p:first-child {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .info > p:last-child {
   color: #9e9e9e;
+  font-size: 0.9rem;
 }
 
 .divider {
-  height: 3rem;
-  width: 2px;
+  height: 2.5rem;
+  width: 1px;
   background-color: #9e9e9e;
 }
 
 .sections {
   display: flex;
   gap: 1.5rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
 .section {
-  padding: 0.6rem 1.5rem;
+  padding: 0.5rem 1.4rem;
+  font-size: 0.9rem;
   border-radius: 3rem;
   border: 1px solid #9e9e9e;
   color: #9e9e9e;
@@ -75,7 +77,7 @@
   width: 100vw;
   height: 1px;
   background-color: #386fa4;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .user_action {
