@@ -2,7 +2,6 @@ export const box = {
   display: "grid",
   placeItems: "center",
   padding: "0 18px ",
-  transform: "translateY(-60px)",
 };
 
 export const h1 = {
