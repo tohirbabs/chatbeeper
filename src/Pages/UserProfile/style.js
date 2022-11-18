@@ -1,15 +1,26 @@
-export const container = {
-  height: "100vh",
-  display: "flex",
+export const box = {
+  display: "grid",
   placeItems: "center",
   padding: "0 18px ",
+  transform: "translateY(-60px)",
 };
 
 export const h1 = {
   fontWeight: 700,
+  fontSize: "28px",
+  textAlign: "center",
+  color: "#386FA4",
+  margin: "10px 0",
+};
+
+export const h2 = {
   fontSize: "20px",
   textAlign: "center",
-  marginTop: "4rem",
+  color: "#9E9E9E",
+};
+export const p = {
+  textAlign: "center",
+  padding: "2rem 1rem",
 };
 
 export const button = {

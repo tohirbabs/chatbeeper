@@ -9,6 +9,12 @@
       name="description"
       content="Web site created using create-react-app"
     />
+
+    <meta
+      name="google-signin-client_id"
+      content="YOUR_CLIENT_ID.apps.googleusercontent.com"
+    />
+
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
 
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
@@ -25,4 +31,28 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
+  <script
+    src="https://apis.google.com/js/platform.js?onload=init"
+    async
+    defer
+  ></script>
+  <script>
+    function onSuccess(googleUser) {
+      console.log("Logged in as: " + googleUser.getBasicProfile().getName());
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render("my-signin2", {
+        scope: "profile email",
+        width: 240,
+        height: 50,
+        longtitle: true,
+        theme: "dark",
+        onsuccess: onSuccess,
+        onfailure: onFailure,
+      });
+    }
+  </script>
 </html>

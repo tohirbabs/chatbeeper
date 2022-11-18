@@ -10,8 +10,8 @@ import {
   BusinessAccout,
   AccountCreation,
 } from "./Pages/Registration";
-import { BeepTest } from "./Pages/beep_test";
 import getDesignTokens from "./theme/theme";
+import UserProfile from "./Pages/UserProfile/UserProfile";
 
 function App() {
   const [mode, setMode] = React.useState("dark");
@@ -33,24 +33,20 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Paper>
-        <AnimatePresence exitBeforeEnter>
-          <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<Home />} />
-            <Route path="/welcome" element={<Onboarding />} />
-            <Route path="/create-account" element={<AccountCreation />} />
-            <Route
-              path="/create-personal-account"
-              element={<PersonalAccount />}
-            />
-            <Route
-              path="/create-business-account"
-              element={<BusinessAccout />}
-            />
-            <Route path="/beep-test" element={<BeepTest />} />
-          </Routes>
-        </AnimatePresence>
-      </Paper>
+
+      <AnimatePresence exitBeforeEnter>
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Home />} />
+          <Route path="/welcome" element={<Onboarding />} />
+          <Route path="/create-account" element={<AccountCreation />} />
+          <Route
+            path="/create-personal-account"
+            element={<PersonalAccount />}
+          />
+          <Route path="/create-business-account" element={<BusinessAccout />} />
+          <Route path="/profile" element={<UserProfile />} />
+        </Routes>
+      </AnimatePresence>
     </ThemeProvider>
   );
 }

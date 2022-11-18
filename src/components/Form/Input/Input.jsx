@@ -1,6 +1,6 @@
-import React from 'react';
-import TextField from '@mui/material/TextField';
-import { container } from './style';
+import React from "react";
+import TextField from "@mui/material/TextField";
+import { container } from "./style";
 export default function Input({
   name,
   type,

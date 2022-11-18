@@ -1,0 +1,101 @@
+.banner {
+  max-width: 100vw;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkmark {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.line-break {
+  width: 100vw;
+}
+
+.user_info {
+  margin: 1.5rem 0;
+  text-align: center;
+  display: flex;
+  gap: 1.5rem;
+  color: white;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #9e9e9e;
+  font-size: 1.1rem;
+}
+
+.link a {
+  color: #386fa4;
+  text-decoration: none;
+}
+
+.info > p:first-child {
+  font-size: 1.2rem;
+}
+
+.info > p:last-child {
+  color: #9e9e9e;
+}
+
+.divider {
+  height: 3rem;
+  width: 2px;
+  background-color: #9e9e9e;
+}
+
+.sections {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.section {
+  padding: 0.6rem 1.5rem;
+  border-radius: 3rem;
+  border: 1px solid #9e9e9e;
+  color: #9e9e9e;
+}
+
+.active_section {
+  color: #386fa4;
+  border-color: #386fa4;
+}
+
+.sect {
+  width: 100vw;
+  height: 1px;
+  background-color: #386fa4;
+  margin-top: 2rem;
+}
+
+.user_action {
+  margin: 1rem 0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.action {
+  padding: 0.6rem 1.5rem;
+  border-radius: 3rem;
+  border: 1px solid #386fa4;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.msg {
+  padding: 0.4rem;
+  border-radius: 3rem;
+  border: 1px solid #386fa4;
+}

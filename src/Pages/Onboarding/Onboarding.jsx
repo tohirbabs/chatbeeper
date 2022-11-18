@@ -11,7 +11,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { pageAnimation } from "../../animations";
 import { container, h1, button } from "./style";
 
-import welcome from "../../assets/welcome_light.png";
+import welcome from "../../assets/welcomer.png";
 
 export default function Onboarding() {
   const location = useNavigate();

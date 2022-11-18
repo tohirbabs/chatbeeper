@@ -15,15 +15,15 @@ export default function FormLayout({ children, currentForm, setCurrentForm }) {
   return (
     <motion.div
       variants={pageAnimation}
-      animate='animate'
-      initial='initial'
+      animate="animate"
+      initial="initial"
       transition={pageAnimation.transition}
     >
       <Container sx={container}>
         <Box sx={mainBox}>
           <ChatBeeperLogo />
 
-          <Typography variant='h1' sx={heading}>
+          <Typography variant="h1" sx={heading}>
             Create an account
           </Typography>
 
@@ -32,6 +32,7 @@ export default function FormLayout({ children, currentForm, setCurrentForm }) {
             setCurrentForm={setCurrentForm}
           />
           {children}
+          <div id="my-signin2"></div>
         </Box>
       </Container>
     </motion.div>
