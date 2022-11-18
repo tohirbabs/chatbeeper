@@ -41,7 +41,7 @@ export default function UserProfile() {
           Hi there, I'm a product design who loves solving real life problems
           with my superpower 😁
         </Typography>
-        <hr className="line-break" />
+        <div className="sect"></div>
         <div className="user_info">
           <div className="info">
             <p>8,200</p>
