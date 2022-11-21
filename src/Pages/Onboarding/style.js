@@ -1,6 +1,6 @@
 export const container = {
   height: "100vh",
-  display: "flex",
+  display: "grid",
   placeItems: "center",
   padding: "0 18px ",
 };

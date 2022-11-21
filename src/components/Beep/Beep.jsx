@@ -1,14 +1,14 @@
 import "./style.css";
 import Container from "@mui/material/Container";
-import { HiDotsVertical } from "react-icons/hi";
+import { HiDotsHorizontal, HiDotsVertical } from "react-icons/hi";
 
 import { motion } from "framer-motion";
 import { pageAnimation } from "../../animations";
 
 import { container } from "./style";
 
-import beepImg from "../../assets/beep/display_img.png";
-import avatar from "../../assets/beep/avatar.png";
+import beepImg from "../../assets/display-img.png";
+import avatar from "../../assets/mark-avatar.png";
 import checkmark from "../../assets/checkmark.png";
 import reply from "../../assets/reply-icon.png";
 import rebeep from "../../assets/rebeep-icon.png";
@@ -39,7 +39,7 @@ export default function Beep() {
             <p>1 hour ago</p>
           </div>
         </div>
-        <HiDotsVertical />
+        <HiDotsHorizontal />
       </div>
 
       <img src={beepImg} className="beep-img" alt="" />
