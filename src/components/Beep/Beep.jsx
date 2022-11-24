@@ -27,7 +27,7 @@ export default function Beep() {
     >
       <div className="header">
         <div className="beeper-info">
-          <img src={avatar} alt="" />
+          <img src={avatar} alt="" className="beep-avatar" />
           <div className="beeper_name">
             <p>
               <span>Mark Peter</span>
@@ -51,23 +51,23 @@ export default function Beep() {
       <div className="engage">
         <div className="engage_buttons">
           <div className="engagement">
-            <img src={reply} alt="" />
+            <img src={reply} alt="" width={20} />
             <p>230</p>
           </div>
           <div className="engagement">
-            <img src={rebeep} alt="" />
+            <img src={rebeep} alt="" width={20} />
             <p>230</p>
           </div>
           <div className="engagement">
-            <img src={dislike} alt="" />
+            <img src={dislike} alt="" width={20} />
             <p>230</p>
           </div>
           <div className="engagement">
-            <img src={like} alt="" />
+            <img src={like} alt="" width={20} />
             <p>230</p>
           </div>
         </div>
-        <img src={share} alt="" />
+        <img src={share} alt="" width={20} />
       </div>
     </motion.div>
   );

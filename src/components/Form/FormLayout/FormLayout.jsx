@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
-import { container, mainBox, heading } from './style';
-import MultiStep from './MultiStep';
-import ChatBeeperLogo from '../../Logo';
-import { pageAnimation } from '../../../animations';
+import { container, mainBox, heading } from "./style";
+import MultiStep from "./MultiStep";
+import ChatBeeperLogo from "../../Logo";
+import { pageAnimation } from "../../../animations";
 
 export default function FormLayout({ children, currentForm, setCurrentForm }) {
   return (
@@ -32,7 +32,6 @@ export default function FormLayout({ children, currentForm, setCurrentForm }) {
             setCurrentForm={setCurrentForm}
           />
           {children}
-          <div id="my-signin2"></div>
         </Box>
       </Container>
     </motion.div>

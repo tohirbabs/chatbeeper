@@ -13,7 +13,11 @@ import Beep from "../../components/Beep/Beep";
 import { Feed } from "../../components/Feed/Feed";
 import { FooterMenu } from "../../components/FooterMenu/FooterMenu";
 
+import { useCookies } from "react-cookie";
+
 export const Profile = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(["user-data"]);
+
   return (
     <div className="profile-content">
       <img src={banner} className="banner" alt="chatbeeper logo" />
@@ -21,9 +25,11 @@ export const Profile = () => {
       <div className="profile-container">
         <img src={avatar} alt="chatbeeper logo" />
         <div className="profile-detail">
-          <h1>Jane Doe</h1>
+          <h1>
+            {`${cookies.userData.firstname} ${cookies.userData.lastname}`}
+          </h1>
           <h2>
-            @janedoe_10
+            {`@${cookies.userData.username}`}
             <img src={checkmark} className="checkmark" alt="chatbeeper logo" />
           </h2>
           <p>

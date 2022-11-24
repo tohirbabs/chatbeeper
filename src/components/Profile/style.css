@@ -36,7 +36,7 @@
 
 .profile-container {
   position: relative;
-  bottom: 120px;
+  bottom: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,7 +44,7 @@
 }
 .feeder {
   position: relative;
-  bottom: 120px;
+  bottom: 100px;
 }
 
 .checkmark {
@@ -152,6 +152,7 @@
   font-weight: 700;
   font-size: 1.5rem;
   color: #386fa4;
+  text-transform: capitalize;
 }
 
 .profile-detail h2 {

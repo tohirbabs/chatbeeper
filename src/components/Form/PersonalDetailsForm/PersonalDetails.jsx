@@ -12,10 +12,14 @@ import { pageAnimation } from "../../../animations";
 import Input from "../Input/Input";
 import { form, formComp, button } from "./style";
 
+import { useCookies } from "react-cookie";
+
 export default function PersonalDetails({ setCurrentForm }) {
   const initialValues = useStore((state) => state.userReg.data);
   const updateValues = useStore((state) => state.updateRegValues);
 
+  const [cookies, setCookie, removeCookie] = useCookies(["user-data"]);
+  // console.log(cookies);
   // Formik
   const formik = useFormik({
     initialValues: initialValues,
@@ -26,6 +30,7 @@ export default function PersonalDetails({ setCurrentForm }) {
       phone: Yup.string().phone("Phone number not valid").required("Required"),
     }),
     onSubmit: (values) => {
+      setCookie("userData", { ...values }, { path: "/" });
       updateValues({ ...values });
       setCurrentForm(1);
     },
@@ -101,7 +106,6 @@ export default function PersonalDetails({ setCurrentForm }) {
       >
         Continue
       </Button>
-      +2
     </motion.form>
   );
 }

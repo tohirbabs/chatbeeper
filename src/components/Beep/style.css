@@ -65,11 +65,50 @@
   align-items: center;
   display: flex;
   gap: 0.4rem;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
+  line-height: normal;
+  cursor: pointer;
 }
 
 @media (max-width: 750px) {
+  .beep {
+    width: 90vw;
+    margin: 1rem auto;
+  }
+
+  .header {
+    padding: 0.5rem;
+  }
+
+  .header .beep-avatar {
+    width: 35px;
+  }
+
+  .beep > p {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .beep > p > span {
+    color: #9e9e9e;
+  }
   .beep-img {
-    max-width: calc(95vw - 2px);
+    width: calc(90vw - 2px);
+  }
+
+  .engage_buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  .engage_buttons p {
+    font-size: 0.6rem;
+  }
+
+  .beeper_name p {
+    font-size: 0.8rem;
+  }
+
+  .beeper_name p:last-child {
+    font-size: 0.7rem;
   }
 }

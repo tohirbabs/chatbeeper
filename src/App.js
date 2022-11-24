@@ -12,6 +12,9 @@ import {
 } from "./Pages/Registration";
 import getDesignTokens from "./theme/theme";
 import UserProfile from "./Pages/UserProfile/UserProfile";
+import UserFeed from "./Pages/UserFeed/UserFeed";
+import { CookiesProvider } from "react-cookie";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [mode, setMode] = React.useState("dark");
@@ -31,23 +34,29 @@ function App() {
 
   const location = useLocation();
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-
-      <AnimatePresence exitBeforeEnter>
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Home />} />
-          <Route path="/welcome" element={<Onboarding />} />
-          <Route path="/create-account" element={<AccountCreation />} />
-          <Route
-            path="/create-personal-account"
-            element={<PersonalAccount />}
-          />
-          <Route path="/create-business-account" element={<BusinessAccout />} />
-          <Route path="/profile" element={<UserProfile />} />
-        </Routes>
-      </AnimatePresence>
-    </ThemeProvider>
+    <CookiesProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Toaster />
+        <AnimatePresence exitBeforeEnter>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Home />} />
+            <Route path="/welcome" element={<Onboarding />} />
+            <Route path="/create-account" element={<AccountCreation />} />
+            <Route
+              path="/create-personal-account"
+              element={<PersonalAccount />}
+            />
+            <Route
+              path="/create-business-account"
+              element={<BusinessAccout />}
+            />
+            <Route path="/profile" element={<UserProfile />} />
+            <Route path="/home" element={<UserFeed />} />
+          </Routes>
+        </AnimatePresence>
+      </ThemeProvider>
+    </CookiesProvider>
   );
 }
 

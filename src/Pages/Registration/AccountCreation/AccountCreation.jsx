@@ -23,9 +23,7 @@ import {
 import { BriefcaseIcon } from "../../../assets/icons";
 import { Logo } from "../../../assets/logo";
 import { pageAnimation } from "../../../animations";
-
 import { ManIcon, WomanIcon } from "../../../assets/icons";
-
 import { useState } from "react";
 import AccountTypeSelect from "../../../components/Form/AccountTypeSelect";
 

@@ -1,55 +1,111 @@
-import React from 'react';
+import React, { useState } from "react";
 
-import { motion } from 'framer-motion';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import { motion } from "framer-motion";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
-import Box from '@mui/material/Box';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
+import Box from "@mui/material/Box";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
 
-import { FiAtSign } from 'react-icons/fi';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
-import Button from '@mui/material/Button';
+import { FiAtSign } from "react-icons/fi";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@mui/material/InputAdornment";
+import FormHelperText from "@mui/material/FormHelperText";
+import Button from "@mui/material/Button";
 
-import { useStore } from '../../../store';
-import { button, form, formComp } from '../PersonalDetailsForm/style';
-import { pageAnimation } from '../../../animations';
+import { useStore } from "../../../store";
+import { button, form, formComp } from "../PersonalDetailsForm/style";
+import { pageAnimation } from "../../../animations";
+import { useNavigate } from "react-router-dom";
+
+import { useCookies } from "react-cookie";
+import { POST } from "../../../utils/request";
+import { ThreeDots } from "react-loader-spinner";
+
+import toast from "react-hot-toast";
 
 export default function Username() {
   const initialValues = useStore((state) => state.userReg.data);
   const updateValues = useStore((state) => state.updateRegValues);
+  const location = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [err, setErr] = useState("");
+
+  const [cookies, setCookie, removeCookie] = useCookies(["user-data"]);
 
   const formik = useFormik({
     initialValues,
     validationSchema: Yup.object({
-      username: Yup.string().required('Required'),
+      username: Yup.string().required("Required"),
     }),
-    onSubmit: () => {},
+    // onSubmit: (values) => {
+    //   setCookie("user-data", { ...values }, { path: "/" });
+
+    //   // updateValues({ ...values });
+    //   // location(`/profile`);
+    // },
   });
+
+  const postSignup = async (values) => {
+    setIsLoading(true);
+
+    try {
+      const body = JSON.stringify({
+        dob: cookies.userData.dob,
+        email: cookies.userData.email,
+        firstname: cookies.userData.firstname,
+        gender: cookies.userData.gender,
+        lastname: cookies.userData.lastname,
+        password: cookies.userData.password,
+        phone: cookies.userData.phone,
+        username: cookies.userData.username,
+      });
+
+      const response = await POST("user", body);
+
+      if (response.ok) {
+        const result = await response.json();
+        location(`/home`);
+        console.log("result is: ", JSON.stringify(result));
+      }
+
+      response.json().then((text) => {
+        console.log(text);
+        toast.error(`${text.message}`, {
+          style: {
+            backgroundColor: "#386fa4",
+            color: "white",
+          },
+        });
+      });
+    } catch (err) {
+      setErr(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <motion.form
       variants={pageAnimation}
-      exit='exit'
-      animate='animate'
-      initial='initial'
+      exit="exit"
+      animate="animate"
+      initial="initial"
       transition={pageAnimation.transition}
       style={form}
     >
-      <Box sx={{ display: 'grid', gap: '1rem' }}>
-        <InputLabel htmlFor='username'>Choose your username</InputLabel>
-        <FormControl fullWidth variant='contained'>
+      <Box sx={{ display: "grid", gap: "1rem" }}>
+        <InputLabel htmlFor="username">Choose your username</InputLabel>
+        <FormControl fullWidth variant="contained">
           <OutlinedInput
-            id='username'
+            id="username"
             error={formik.errors.username && true}
             value={formik.values.username}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             startAdornment={
-              <InputAdornment position='start'>
+              <InputAdornment position="start">
                 <FiAtSign />
               </InputAdornment>
             }
@@ -61,8 +117,12 @@ export default function Username() {
         </FormControl>
 
         <Button
-          variant='contained'
-          type='submit'
+          variant="contained"
+          // type="submit"
+          onClick={() => {
+            postSignup();
+            setCookie("userData", formik.values, { path: "/" });
+          }}
           sx={button}
           disabled={
             Object.values(formik.errors).length !== 0 &&
@@ -71,7 +131,16 @@ export default function Username() {
               : false
           }
         >
-          Continue
+          {isLoading ? (
+            <ThreeDots
+              height="18"
+              width="100"
+              color="white"
+              ariaLabel="loading"
+            />
+          ) : (
+            "Create Account"
+          )}
         </Button>
       </Box>
     </motion.form>

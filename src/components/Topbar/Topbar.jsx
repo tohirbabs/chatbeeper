@@ -9,7 +9,11 @@ import { TourIcon } from "../../assets/icons/nav/TourIcon";
 import { BeepIcon } from "../../assets/icons/nav/BeepIcon";
 import { NotificationIcon } from "../../assets/icons/nav/NotificationIcon";
 
+import { useNavigate } from "react-router-dom";
+
 export const Topbar = () => {
+  const location = useNavigate();
+
   return (
     <div className="topbar">
       <div className="nav-logo">
@@ -43,7 +47,7 @@ export const Topbar = () => {
           </div>
           <p>Notifications</p>
         </div>
-        <div className="nav-item">
+        <div className="nav-item" onClick={() => location(`/profile`)}>
           <img alt="chatbeeper logo" src={avatar} width={25} height={25} />
 
           <p>Profile</p>
