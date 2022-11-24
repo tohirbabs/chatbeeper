@@ -59,7 +59,7 @@ export default function Username() {
         lastname: cookies.userData.lastname,
         password: cookies.userData.password,
         phone: cookies.userData.phone,
-        username: cookies.userData.username,
+        username: formik.values.username,
       });
 
       const response = await POST("user", body);
