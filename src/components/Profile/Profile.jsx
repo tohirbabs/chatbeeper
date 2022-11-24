@@ -14,9 +14,15 @@ import { Feed } from "../../components/Feed/Feed";
 import { FooterMenu } from "../../components/FooterMenu/FooterMenu";
 
 import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["user-data"]);
+  const location = useNavigate();
+
+  if (!cookies.userData.firstname) {
+    location("/ceate-account");
+  }
 
   return (
     <div className="profile-content">
