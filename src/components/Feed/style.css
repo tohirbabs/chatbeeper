@@ -44,7 +44,8 @@
     gap: 0.5rem;
     padding: 0.4rem;
     border-radius: 12px;
-    margin: 10px;
+    width: 95vw;
+    margin: 0.4rem 0;
   }
   .addbeep input {
     width: 55vw;
@@ -61,8 +62,9 @@
   }
 
   .feed {
-    min-width: 95vw;
-    margin: "auto";
+    min-width: 98vw;
+    margin: auto;
     height: unset;
+    overflow-y: unset;
   }
 }

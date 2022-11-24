@@ -4,5 +4,6 @@
 @media (max-width: 750px) {
   .feed-body {
     margin: auto;
+    width: 100vw;
   }
 }
