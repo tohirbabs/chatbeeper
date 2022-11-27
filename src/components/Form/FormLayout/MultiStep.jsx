@@ -48,6 +48,7 @@ export default function MultiStep({ currentForm, setCurrentForm }) {
         sx={{
           ...circle,
           backgroundColor: currentForm >= 2 ? "primary.main" : "#D1E1EF",
+          padding: "5px",
         }}
       >
         {currentForm > 2 && <MdDone color="white" width={7} height={4.81} />}

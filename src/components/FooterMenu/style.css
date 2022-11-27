@@ -1,6 +1,27 @@
 .footer {
+  display: none;
 }
+
 .menu-item {
-  display: flex;
-  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.8rem;
+  width: 20%;
+}
+
+.menu-item:hover {
+  color: white;
+}
+
+@media (max-width: 750px) {
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1rem;
+    background-color: #0a151e;
+    position: sticky;
+    bottom: 0;
+  }
 }

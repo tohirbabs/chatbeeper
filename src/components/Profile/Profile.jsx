@@ -35,7 +35,7 @@ export const Profile = () => {
             {`${cookies.userData.firstname} ${cookies.userData.lastname}`}
           </h1>
           <h2>
-            {`@${cookies.userData.username}`}
+            <p>{`@${cookies.userData.username}`}</p>
             <img src={checkmark} className="checkmark" alt="chatbeeper logo" />
           </h2>
           <p>

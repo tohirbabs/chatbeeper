@@ -30,13 +30,13 @@
 .banner {
   width: 585px;
   position: relative;
-  bottom: 60px;
+  bottom: 100px;
   max-width: 100vw;
 }
 
 .profile-container {
   position: relative;
-  bottom: 100px;
+  bottom: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,7 +44,7 @@
 }
 .feeder {
   position: relative;
-  bottom: 100px;
+  bottom: 140px;
 }
 
 .checkmark {
@@ -159,12 +159,15 @@
   font-size: 1.1rem;
   color: #9e9e9e;
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 750px) {
   .profile-content {
     width: 100vw;
     min-width: 100vw;
+    overflow: unset;
   }
 
   .link {
@@ -189,5 +192,8 @@
     width: 100vw;
     bottom: 20px;
     max-width: 100vw;
+  }
+  .profile-detail {
+    margin: auto;
   }
 }

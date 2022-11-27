@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 
-import { Field } from 'formik';
+import { Field } from "formik";
 
-import { ManIcon, WomanIcon } from '../../assets/icons';
-import { gender } from './PersonalDetailsForm/style';
+import { ManIcon, WomanIcon } from "../../assets/icons";
+import { gender } from "./PersonalDetailsForm/style";
 
 export default function GenderSelect({
   value,
@@ -21,16 +21,16 @@ export default function GenderSelect({
       htmlFor={id}
       style={{
         ...gender.content,
-        backgroundColor: formikValue === value ? '#295B85' : 'inherit',
-        color: formikValue === value ? 'white' : 'black',
+        backgroundColor: formikValue === value ? "#295B85" : "inherit",
+        color: formikValue === value ? "white" : "rgba(255, 255, 255, 0.12)",
       }}
     >
       <Field
         id={id}
         style={gender.field}
         value={value}
-        name='gender'
-        type='radio'
+        name="gender"
+        type="radio"
       />
       <span>{label}</span> <img src={icon} alt={`${id} icon`} />
     </label>

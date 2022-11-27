@@ -22,16 +22,16 @@ export const multistepContainer = {
   width: "100%",
 };
 export const circle = {
-  minWidth: "16px",
-  minHeight: "16px",
+  minWidth: "22px",
+  minHeight: "22px",
   borderRadius: "50%",
   display: "grid",
   placeItems: "center",
-  padding: "2px",
+  padding: "4px",
   // cursor: 'pointer'
 };
 export const line = {
   width: "100%",
   maxWidth: "158px",
-  height: "2px",
+  height: "3px",
 };

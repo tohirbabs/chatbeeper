@@ -20,6 +20,7 @@ export default function UserFeed() {
         <Feed />
         <Rightbar />
       </div>
+      <FooterMenu />
     </>
   );
 }

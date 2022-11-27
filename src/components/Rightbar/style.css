@@ -30,11 +30,11 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   padding-bottom: 1rem;
-  width: 350px;
+  width: 322px;
 }
 
 .trending img {
-  width: 348px;
+  width: 320px;
 }
 
 .trending > p {
@@ -51,14 +51,16 @@
 
 .trend-class {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 1.5rem;
   margin: 1rem 0;
+  padding: 0 1rem;
 }
 
 .trend-class > p {
-  padding: 0.4rem 0.8rem;
+  padding: 0.3rem 0.6rem;
   border-radius: 2rem;
+  font-size: 0.9rem;
 }
 
 .trend-class > p:first-child {

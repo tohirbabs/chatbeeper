@@ -9,6 +9,7 @@ import { BriefcaseIcon } from "../../assets/icons/nav/BriefcaseIcon";
 import { BookmarkIcon } from "../../assets/icons/nav/BookmarkIcon";
 
 import chatbeeper from "../../assets/chatbeeper.png";
+import { NotificationIcon } from "../../assets/icons/nav/NotificationIcon";
 
 export const Sidebar = () => {
   return (
@@ -24,6 +25,10 @@ export const Sidebar = () => {
       <div className="side-nav">
         <TrendIcon />
         <p>Trending</p>
+      </div>
+      <div className="side-nav">
+        <NotificationIcon />
+        <p>Notifications</p>
       </div>
       <div className="side-nav">
         <BookmarkIcon />
@@ -45,7 +50,7 @@ export const Sidebar = () => {
         <LogoutIcon />
         <p>Logout</p>
       </div>
-      <img alt="chatbeeper logo" src={chatbeeper} width="170px" />
+      <img alt="chatbeeper logo" src={chatbeeper} width="150px" />
     </div>
   );
 };

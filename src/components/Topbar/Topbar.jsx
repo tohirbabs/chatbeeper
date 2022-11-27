@@ -19,38 +19,40 @@ export const Topbar = () => {
       <div className="nav-logo">
         <img alt="chatbeeper logo" src={Logo} width={40} height={40} />
       </div>
-      <div className="search">
-        <input type="search" name="" id="" placeholder="Search" />
-      </div>
-      <div className="nav">
-        <div className="nav-item">
-          <div className="nav-icon">
-            <HomeIcon />
-          </div>
-          <p>Home</p>
+      <div className="topbar-right">
+        <div className="search">
+          <input type="search" name="" id="" placeholder="Search" />
         </div>
-        <div className="nav-item">
-          <div className="nav-icon">
-            <TourIcon />
+        <div className="nav">
+          <div className="nav-item">
+            <div className="nav-icon">
+              <HomeIcon />
+            </div>
+            <p>Home</p>
           </div>
-          <p>Tour</p>
-        </div>
-        <div className="nav-item">
-          <div className="nav-icon">
-            <BeepIcon />
+          <div className="nav-item">
+            <div className="nav-icon">
+              <TourIcon />
+            </div>
+            <p>Tour</p>
           </div>
-          <p>Beep</p>
-        </div>
-        <div className="nav-item">
+          <div className="nav-item">
+            <div className="nav-icon">
+              <BeepIcon />
+            </div>
+            <p>Beep</p>
+          </div>
+          {/* <div className="nav-item">
           <div className="nav-icon">
             <NotificationIcon />
           </div>
           <p>Notifications</p>
-        </div>
-        <div className="nav-item" onClick={() => location(`/profile`)}>
-          <img alt="chatbeeper logo" src={avatar} width={25} height={25} />
+        </div> */}
+          <div className="nav-item" onClick={() => location(`/profile`)}>
+            <img alt="chatbeeper logo" src={avatar} width={25} height={25} />
 
-          <p>Profile</p>
+            <p>Profile</p>
+          </div>
         </div>
       </div>
     </div>
