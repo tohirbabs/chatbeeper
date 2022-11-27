@@ -38,6 +38,7 @@ export default function UserProfile() {
         <Profile />
         <Rightbar />
       </div>
+      <FooterMenu />
     </>
   );
 }
