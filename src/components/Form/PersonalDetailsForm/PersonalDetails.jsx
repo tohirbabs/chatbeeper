@@ -85,6 +85,7 @@ export default function PersonalDetails({ setCurrentForm }) {
           value={formik.values.phone}
           id="phone"
           label="Phone"
+          defaultCountry="NG"
           onChange={(value, i) => {
             formik.setFieldValue("phone", value);
           }}
