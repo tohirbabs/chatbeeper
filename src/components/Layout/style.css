@@ -1,0 +1,18 @@
+.layout main {
+  width: 1250px;
+  position: relative;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 3fr 13fr;
+}
+
+@media (max-width: 750px) {
+  .layout main {
+    width: 100vw;
+    position: relative;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

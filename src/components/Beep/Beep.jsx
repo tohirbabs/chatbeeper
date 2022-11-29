@@ -16,7 +16,7 @@ import dislike from "../../assets/dislike-icon.png";
 import like from "../../assets/like-icon.png";
 import share from "../../assets/share-icon.png";
 
-export default function Beep() {
+export default function Beep({ data }) {
   return (
     <motion.div
       variants={pageAnimation}
@@ -25,47 +25,46 @@ export default function Beep() {
       transition={pageAnimation.transition}
       className="beep"
     >
-      <div className="header">
-        <div className="beeper-info">
-          <img src={avatar} alt="" className="beep-avatar" />
-          <div className="beeper_name">
+      <header className="beep__header">
+        <div className="beeper__info">
+          <img src={data.userDp} alt="" className="beeper__avatar" />
+          <div className="beeper__name">
             <p>
-              <span>Mark Peter</span>
+              <span>{data.userName}</span>
               <span>
-                <span>@markpetr</span>
+                <span>{data.userHandle}</span>
                 <img src={checkmark} className="check" alt="chatbeeper logo" />
               </span>
             </p>
-            <p>1 hour ago</p>
+            <p>{data.beepAge}</p>
           </div>
         </div>
         <HiDotsHorizontal />
-      </div>
+      </header>
 
-      <img src={beepImg} className="beep-img" alt="" />
+      <img src={data.beepImg} className="beep__img" alt="" />
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean molestie
-        ultrices non non elementum vel. Varius amet euismod ut tortor...{" "}
+        {data.beepText}
         <span>see more</span>
       </p>
-      <div className="engage">
-        <div className="engage_buttons">
-          <div className="engagement">
+      <div className="beep__engage">
+        <div className="engage_btns">
+          <button>
             <img src={reply} alt="" width={20} />
-            <p>230</p>
-          </div>
-          <div className="engagement">
+            <p>{data.replies}</p>
+          </button>
+          <button>
             <img src={rebeep} alt="" width={20} />
-            <p>230</p>
-          </div>
-          <div className="engagement">
+            <p>{data.rebeeps}</p>
+          </button>
+          <button>
             <img src={dislike} alt="" width={20} />
-            <p>230</p>
-          </div>
-          <div className="engagement">
+            <p>{data.dislikes}</p>
+          </button>
+          <button>
             <img src={like} alt="" width={20} />
-            <p>230</p>
-          </div>
+            <p>{data.likes}</p>
+          </button>
         </div>
         <img src={share} alt="" width={20} />
       </div>

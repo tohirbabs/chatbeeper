@@ -15,6 +15,7 @@ import { FooterMenu } from "../../components/FooterMenu/FooterMenu";
 
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { ProfileFeed } from "../ProfileFeed/ProfileFeed";
 
 export const Profile = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["user-data"]);
@@ -25,18 +26,20 @@ export const Profile = () => {
   }
 
   return (
-    <div className="profile-content">
-      <img src={banner} className="banner" alt="chatbeeper logo" />
+    <div className="profile">
+      <div className="profile__wrapper">
+        <div className="profile__display-imgs">
+          <img src={banner} className="profile__banner" alt="chatbeeper logo" />
+          <img src={avatar} alt="user dp" className="profile__dp" />
+        </div>
 
-      <div className="profile-container">
-        <img src={avatar} alt="chatbeeper logo" />
-        <div className="profile-detail">
+        <div className="profile__info">
           <h1>
             {`${cookies.userData.firstname} ${cookies.userData.lastname}`}
           </h1>
           <h2>
             <p>{`@${cookies.userData.username}`}</p>
-            <img src={checkmark} className="checkmark" alt="chatbeeper logo" />
+            <img src={checkmark} className="checkmark" alt="checkmark" />
           </h2>
           <p>
             Hi there, I'm a product design who loves solving real life problems
@@ -77,10 +80,9 @@ export const Profile = () => {
             <div className="section">Videos</div>
           </div>
         </div>
+        <div className="profile__feed"></div>
       </div>
-      <div className="feeder">
-        <Feed />
-      </div>
+      <ProfileFeed />
     </div>
   );
 };

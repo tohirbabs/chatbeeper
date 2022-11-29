@@ -3,8 +3,8 @@ import React from "react";
 export const BeepIcon = ({ active }) => {
   return (
     <svg
-      width="27"
-      height="27"
+      width="22"
+      height="22"
       viewBox="0 0 29 29"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

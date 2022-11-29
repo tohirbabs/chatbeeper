@@ -19,6 +19,11 @@ code {
   box-sizing: border-box;
 }
 
-img {
+/* img {
   display: inline-block;
+} */
+
+textarea:focus,
+input:focus {
+  outline: none;
 }

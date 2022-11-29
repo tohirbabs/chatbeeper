@@ -4,9 +4,10 @@
   gap: 1rem;
   margin: 1rem;
   margin-bottom: 0;
-  /* height: 100vh;
-  overflow-y: scroll;
-  overflow-x: hidden; */
+  position: sticky;
+  right: 0;
+  top: calc(100% - 100vh - 67px);
+  align-self: flex-start;
 }
 
 /* .right-bar::-webkit-scrollbar {

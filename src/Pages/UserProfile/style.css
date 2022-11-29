@@ -1,1 +1,11 @@
+.user-profile__main {
+  display: grid;
+  grid-template-columns: 8fr 5fr;
+}
 
+@media (max-width: 750px) {
+  .user-profile__main {
+    display: flex;
+    flex-direction: column;
+  }
+}

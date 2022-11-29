@@ -26,10 +26,10 @@ export const Sidebar = () => {
         <TrendIcon />
         <p>Trending</p>
       </div>
-      <div className="side-nav">
+      {/* <div className="side-nav">
         <NotificationIcon />
         <p>Notifications</p>
-      </div>
+      </div> */}
       <div className="side-nav">
         <BookmarkIcon />
         <p>Saved Beeps</p>

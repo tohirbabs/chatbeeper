@@ -1,26 +1,19 @@
-import "./style.css";
-
 import { useNavigate } from "react-router-dom";
 
 import { Feed } from "../../components/Feed/Feed";
-import { FooterMenu } from "../../components/FooterMenu/FooterMenu";
-import { Topbar } from "../../components/Topbar/Topbar";
-import { Sidebar } from "../../components/Sidebar/Sidebar";
-import { Profile } from "../../components/Profile/Profile";
 import { Rightbar } from "../../components/Rightbar/Rightbar";
 import "./style.css";
 import { AddBeep } from "../../components/AddBeep/AddBeep";
+import { Layout } from "../../components/Layout/Layout";
+import { Home } from "../../components/Home/Home";
 export default function UserFeed() {
   const location = useNavigate();
   return (
-    <>
-      <Topbar />
-      <div className="feed-body">
-        <Sidebar />
-        <Feed />
+    <Layout page="home">
+      <div className="home__main">
+        <Home />
         <Rightbar />
       </div>
-      <FooterMenu />
-    </>
+    </Layout>
   );
 }

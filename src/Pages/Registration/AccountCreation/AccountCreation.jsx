@@ -49,7 +49,7 @@ export default function AccountCreation() {
             </Typography>
             <Box sx={textBox}>
               <span>What type of account do</span>
-              <span>you want to create</span>
+              <span>you want to create?</span>
             </Box>
           </Box>
 

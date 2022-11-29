@@ -1,9 +1,10 @@
-.feed-body {
-  display: flex;
+.home__main {
+  display: grid;
+  grid-template-columns: 8fr 5fr;
 }
 @media (max-width: 750px) {
-  .feed-body {
-    margin: auto;
-    width: 100vw;
+  .home__main {
+    display: grid;
+    grid-template-columns: 8fr 5fr;
   }
 }
