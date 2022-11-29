@@ -10,40 +10,31 @@ import { NotificationIcon } from "../../assets/icons/nav/NotificationIcon";
 
 import { useNavigate } from "react-router-dom";
 
-export const FooterMenu = () => {
+export const FooterMenu = ({ nav }) => {
   const location = useNavigate();
 
   return (
-    <div className="footer">
-      <div className="menu-item">
-        <div className="menu-icon">
-          <HomeIcon />
-        </div>
+    <nav className="footer">
+      <a href="/home" className={nav == "home" ? "active" : ""}>
+        <HomeIcon active={nav == "home" ? true : false} />
         <p>Home</p>
-      </div>
-      <div className="menu-item">
-        <div className="menu-icon">
-          <TourIcon />
-        </div>
+      </a>
+      <a>
+        <TourIcon />
         <p>Tour</p>
-      </div>
-      <div className="menu-item">
-        <div className="menu-icon">
-          <BeepIcon />
-        </div>
+      </a>
+      <a>
+        <BeepIcon />
         <p>Beep</p>
-      </div>
-      <div className="menu-item">
-        <div className="menu-icon">
-          <NotificationIcon />
-        </div>
+      </a>
+      <a>
+        <NotificationIcon />
         <p>Notifications</p>
-      </div>
-      <div className="menu-item" onClick={() => location(`/profile`)}>
-        <img alt="chatbeeper logo" src={avatar} width={25} height={25} />
-
+      </a>
+      <a href="/profile" className={nav == "profile" ? "active" : ""}>
+        <img alt="user dp" src={avatar} width={28} height={28} />
         <p>Profile</p>
-      </div>
-    </div>
+      </a>
+    </nav>
   );
 };

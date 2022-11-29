@@ -12,7 +12,7 @@ export const Layout = ({ children, page }) => {
         <Sidebar />
         {children}
       </main>
-      <FooterMenu />
+      <FooterMenu nav={page} />
     </div>
   );
 };
