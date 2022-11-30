@@ -41,8 +41,9 @@ export default function Beep({ data }) {
         </div>
         <HiDotsHorizontal />
       </header>
-
-      <img src={data.beepImg} className="beep__img" alt="" />
+      {data.beepImg ? (
+        <img src={data.beepImg} className="beep__img" alt="" />
+      ) : null}
       <p>
         {data.beepText}
         <span>see more</span>

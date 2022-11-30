@@ -10,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  margin: 1rem;
 }
 
 .beeper__info {
@@ -32,6 +32,7 @@
 .beeper__name p > span:last-child {
   color: #9e9e9e;
   display: flex;
+  gap: 0.2rem;
   align-items: center;
 }
 
@@ -40,12 +41,13 @@
 }
 
 .beep > p {
-  padding: 1.2rem;
+  margin: 1rem;
   text-align: left;
 }
 
 .beep > p > span {
   color: #9e9e9e;
+  cursor: pointer;
 }
 
 .beep__engage {
