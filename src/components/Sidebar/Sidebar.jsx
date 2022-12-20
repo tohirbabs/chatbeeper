@@ -9,7 +9,6 @@ import { BriefcaseIcon } from "../../assets/icons/nav/BriefcaseIcon";
 import { BookmarkIcon } from "../../assets/icons/nav/BookmarkIcon";
 
 import chatbeeper from "../../assets/chatbeeper.png";
-import { NotificationIcon } from "../../assets/icons/nav/NotificationIcon";
 
 export const Sidebar = () => {
   return (

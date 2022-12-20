@@ -27,8 +27,11 @@ export const FooterMenu = ({ nav }) => {
         <BeepIcon />
         <p>Beep</p>
       </a>
-      <a>
-        <NotificationIcon />
+      <a
+        href="/notifications"
+        className={nav == "notifications" ? "active" : ""}
+      >
+        <NotificationIcon active={nav == "notifications" ? true : false} />
         <p>Notifications</p>
       </a>
       <a href="/profile" className={nav == "profile" ? "active" : ""}>

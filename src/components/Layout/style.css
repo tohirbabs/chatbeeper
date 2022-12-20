@@ -7,12 +7,47 @@
 }
 
 @media (max-width: 750px) {
+  @keyframes openSidebar {
+    0% {
+      left: -85vw;
+    }
+    100% {
+      left: 0;
+    }
+  }
+  @keyframes closeSidebar {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -85vw;
+    }
+  }
+  .layout {
+    max-width: 100vw;
+    overflow: hidden;
+  }
   .layout main {
-    width: 100vw;
+    min-width: 100vw;
     position: relative;
+    left: -85vw;
+    /* height: max-content; */
+    min-height: calc(100vh - 113px);
+    overflow-y: scroll;
     margin: auto;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    /* align-items: center; */
+  }
+
+  .activateSidebar {
+    animation: openSidebar 0.3s ease-in-out both;
+  }
+  .deactivateSidebar {
+    animation: closeSidebar 0.3s ease-in-out both;
+  }
+  .layout section {
+    max-height: calc(100vh - 113px);
+    overflow-y: scroll;
   }
 }

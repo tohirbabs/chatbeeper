@@ -31,7 +31,7 @@ export const HomeFeed = () => {
       replies: "1k",
       rebeeps: "168",
       dislikes: "17",
-      likes: "2.56k",
+      likes: "2567",
     },
     {
       userDp: avatar,
@@ -46,5 +46,5 @@ export const HomeFeed = () => {
       likes: "775",
     },
   ];
-  return homeFeedData.map((data) => <Beep data={data} />);
+  return homeFeedData.map((data, i) => <Beep data={data} key={i} />);
 };

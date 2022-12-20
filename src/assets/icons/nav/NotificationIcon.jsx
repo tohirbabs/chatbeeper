@@ -1,6 +1,7 @@
 import React from "react";
 
 export const NotificationIcon = ({ active }) => {
+  console.log(active);
   return (
     <svg
       width="25"

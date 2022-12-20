@@ -7,6 +7,10 @@
   color: #9e9e9e;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+.mheader-bar__wrapper {
+  display: none;
+}
 .header-bar__wrapper {
   width: 1250px;
   display: grid;
@@ -67,7 +71,17 @@
 }
 
 @media (max-width: 750px) {
-  .header-bar {
+  .header-bar__wrapper {
     display: none;
+  }
+  .mheader-bar__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+  }
+  .mheader-bar__wrapper nav {
+    display: flex;
+    gap: 0.8rem;
   }
 }

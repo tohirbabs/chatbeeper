@@ -1,0 +1,225 @@
+.follower_requests__section {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.follower_requests__section > header {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: normal;
+  font-size: 1rem;
+}
+
+.follower_requests__list {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  margin: 1rem;
+  width: 98%;
+}
+
+.notification {
+  width: 100%;
+  padding: 1.5rem 1rem;
+  position: relative;
+}
+
+.notification__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.notification:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.notification__info {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.notification__info .duration {
+  display: flex;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  align-items: center;
+}
+
+.notification__text > p {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.notification__text p > span:last-child {
+  color: #9e9e9e;
+}
+
+.notification__avatar {
+  max-width: 3rem;
+}
+
+.notification__reaction {
+  padding: 0.6em 1.4rem;
+  font-size: 0.9rem;
+  margin-right: 3rem;
+  border-radius: 3rem;
+  border: 1px solid #386fa4;
+  color: #386fa4;
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.notification__extra {
+  margin: 1rem;
+
+  margin-left: 4rem;
+}
+
+.interested {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  padding: 1rem;
+  font-size: 0.9rem;
+  width: max-content;
+}
+
+.interested button {
+  padding: 0.6em 1.4rem;
+  font-size: 0.9rem;
+  border-radius: 3rem;
+  border: none;
+  cursor: pointer;
+}
+
+.interested button:first-child {
+  background-color: white;
+  color: #386fa4;
+}
+
+.interested button:last-child {
+  background-color: #386fa4;
+  color: white;
+}
+
+@media (max-width: 750px) {
+  .follower_requests__section {
+    margin: 0.6rem 0;
+  }
+
+  .follower_requests__section > header {
+    padding: 0.6rem;
+    border-radius: 0.6rem;
+  }
+
+  .follower_requests__section > header h2 {
+    font-size: 1rem;
+  }
+
+  .follower_requests__list {
+    border: none;
+    margin: 0.6rem 0;
+  }
+
+  .notification {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    position: relative;
+  }
+
+  .notification__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .notification:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .notification__info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .notification__info .duration {
+    display: flex;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    align-items: center;
+  }
+
+  .notification__text > p {
+    display: flex;
+    gap: 0.3rem;
+  }
+
+  .notification__text p > span:last-child {
+    color: #9e9e9e;
+  }
+
+  .notification__avatar {
+    max-width: 3rem;
+  }
+
+  .notification__reaction {
+    padding: 0.6em 1.4rem;
+    font-size: 0.9rem;
+    margin-right: 3rem;
+    border-radius: 3rem;
+    border: 1px solid #386fa4;
+    color: #386fa4;
+    background: transparent;
+
+    cursor: pointer;
+  }
+
+  .notification__extra {
+    margin: 1rem;
+
+    margin-left: 4rem;
+  }
+
+  .interested {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 0.9rem;
+    width: max-content;
+  }
+
+  .interested button {
+    padding: 0.6em 1.4rem;
+    font-size: 0.9rem;
+    border-radius: 3rem;
+    border: none;
+    cursor: pointer;
+  }
+
+  .interested button:first-child {
+    background-color: white;
+    color: #386fa4;
+  }
+
+  .interested button:last-child {
+    background-color: #386fa4;
+    color: white;
+  }
+}

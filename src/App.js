@@ -15,6 +15,8 @@ import UserProfile from "./Pages/UserProfile/UserProfile";
 import UserFeed from "./Pages/UserFeed/UserFeed";
 import { CookiesProvider } from "react-cookie";
 import { Toaster } from "react-hot-toast";
+import FollowerRequest from "./Pages/FollowerRequest/FollowerRequests";
+import Notification from "./Pages/Notification/Notifications";
 
 function App() {
   const [mode, setMode] = React.useState("dark");
@@ -53,6 +55,8 @@ function App() {
             />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/home" element={<UserFeed />} />
+            <Route path="/notifications" element={<Notification />} />
+            <Route path="/follower_requests" element={<FollowerRequest />} />
           </Routes>
         </AnimatePresence>
       </ThemeProvider>
