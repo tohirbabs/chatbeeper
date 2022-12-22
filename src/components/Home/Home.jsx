@@ -22,9 +22,9 @@ export const Home = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["user-data"]);
   const location = useNavigate();
 
-  if (!cookies.userData.firstname) {
-    location("/ceate-account");
-  }
+  // if (!cookies.userData.firstname) {
+  //   location("/ceate-account");
+  // }
 
   return (
     <div className="home">

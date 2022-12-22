@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-import avatar from "../../assets/user_dp.png";
+import avatar from "../../assets/mark-avatar.png";
 import chatbeeper from "../../assets/chatbeeper.png";
 import { SmsIcon } from "../../assets/icons/nav/SmsIcon";
 
@@ -88,7 +88,7 @@ export const Header = ({ nav, sidebar, setSidebar, setOverlay, overlay }) => {
             <p>Notifications</p>
           </NavLink>
           <NavLink to="/profile" activeClassName="active">
-            <img alt="user dp" src={avatar} width={28} height={28} />
+            <img alt="user dp" src={avatar} width={30} height={30} />
             <p>Profile</p>
           </NavLink>
         </nav>

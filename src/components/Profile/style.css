@@ -15,7 +15,8 @@
 
 .profile__dp {
   position: relative;
-  bottom: 38px;
+  width: 5rem;
+  bottom: 30px;
 }
 
 .profile__banner {
@@ -26,7 +27,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  bottom: 36px;
+  bottom: 26px;
   align-items: center;
   padding: 0.8rem 0;
   text-align: center;

@@ -7,7 +7,7 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import banner from "../../assets/banner.png";
 import sms from "../../assets/sms-icon.png";
 import checkmark from "../../assets/checkmark.png";
-import avatar from "../../assets/user_dp.png";
+import avatar from "../../assets/mark-avatar.png";
 import { Divider } from "@mui/material";
 import Beep from "../../components/Beep/Beep";
 import { Feed } from "../../components/Feed/Feed";
@@ -21,9 +21,9 @@ export const Profile = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["user-data"]);
   const location = useNavigate();
 
-  if (!cookies.userData.firstname) {
-    location("/ceate-account");
-  }
+  // if (!cookies.userData.firstname) {
+  //   location("/ceate-account");
+  // }
 
   return (
     <div className="profile">
@@ -35,10 +35,12 @@ export const Profile = () => {
 
         <div className="profile__info">
           <h1>
-            {`${cookies.userData.firstname} ${cookies.userData.lastname}`}
+            {/* {`${cookies.userData.firstname} ${cookies.userData.lastname}`} */}
+            John Doe
           </h1>
           <h2>
-            <p>{`@${cookies.userData.username}`}</p>
+            {/* <p>{`@${cookies.userData.username}`}</p> */}
+            <p>jon_thou</p>
             <img src={checkmark} className="checkmark" alt="checkmark" />
           </h2>
           <p>
