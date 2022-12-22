@@ -22,7 +22,7 @@ export default function GenderSelect({
       style={{
         ...gender.content,
         backgroundColor: formikValue === value ? "#295B85" : "inherit",
-        color: formikValue === value ? "white" : "rgba(255, 255, 255, 0.7)",
+        color: formikValue === value ? "white" : "text.primary",
       }}
     >
       <Field

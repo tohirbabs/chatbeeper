@@ -12,8 +12,12 @@ export const mainBox = {
 };
 export const heading = {
   margin: "1.2rem 0 2rem 0",
-  fontSize: "32px",
+  fontSize: "30px",
   fontWeight: "600",
+};
+export const footing = {
+  margin: "1.2rem 0.4rem",
+  fontSize: "1rem",
 };
 export const multistepContainer = {
   display: "flex",

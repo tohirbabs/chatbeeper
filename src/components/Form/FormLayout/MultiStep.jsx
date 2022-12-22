@@ -23,8 +23,7 @@ export default function MultiStep({ currentForm, setCurrentForm }) {
       <Box
         sx={{
           ...line,
-          backgroundColor:
-            currentForm >= 1 ? "primary.main" : "rgba(255, 255, 255, 0.12)",
+          backgroundColor: currentForm >= 1 ? "primary.main" : "#D8D8D8",
         }}
       ></Box>
       <Box
@@ -39,8 +38,7 @@ export default function MultiStep({ currentForm, setCurrentForm }) {
       <Box
         sx={{
           ...line,
-          backgroundColor:
-            currentForm >= 2 ? "primary.main" : "rgba(255, 255, 255, 0.12)",
+          backgroundColor: currentForm >= 2 ? "primary.main" : "#D8D8D8",
         }}
       ></Box>
       <Box

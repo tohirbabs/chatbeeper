@@ -10,11 +10,9 @@ import { Notifications } from "../../components/Notifications/Notifications";
 export default function Notification() {
   const location = useNavigate();
   return (
-    <Layout page="notifications">
-      <div className="notification__main">
-        <Notifications />
-        <Rightbar />
-      </div>
-    </Layout>
+    <div className="notification__main">
+      <Notifications />
+      <Rightbar />
+    </div>
   );
 }

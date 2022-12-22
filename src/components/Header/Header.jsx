@@ -11,14 +11,14 @@ import { TourIcon } from "../../assets/icons/nav/TourIcon";
 import { BeepIcon } from "../../assets/icons/nav/BeepIcon";
 import { NotificationIcon } from "../../assets/icons/nav/NotificationIcon";
 
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { HiSearch } from "react-icons/hi";
 
-export const Header = ({ nav, sidebar, setSidebar }) => {
+export const Header = ({ nav, sidebar, setSidebar, setOverlay, overlay }) => {
   const location = useNavigate();
 
   function toggleSidebar() {
-    sidebar == "" || sidebar === "close"
+    sidebar === "" || sidebar === "close"
       ? setSidebar("open")
       : setSidebar("close");
     console.log(sidebar);
@@ -63,29 +63,34 @@ export const Header = ({ nav, sidebar, setSidebar }) => {
         </div>
 
         <nav>
-          <a href="/home" className={nav == "home" ? "active" : ""}>
-            <HomeIcon active={nav == "home" ? true : false} />
+          <NavLink to="/home" activeClassName="active">
+            <HomeIcon active={nav === "/home" ? true : false} />
             <p>Home</p>
-          </a>
+          </NavLink>
           <a>
             <TourIcon />
             <p>Tour</p>
           </a>
-          <a>
+          <a
+            onClick={() => {
+              overlay === "beepPrompt"
+                ? setOverlay("")
+                : setOverlay("beepPrompt");
+            }}
+          >
             <BeepIcon />
             <p>Beep</p>
           </a>
-          <a
-            href="/notifications"
-            className={nav == "notifications" ? "active" : ""}
-          >
-            <NotificationIcon active={nav == "notifications" ? true : false} />
+          <NavLink to="/notifications" activeClassName="active">
+            <NotificationIcon
+              active={nav === "/notifications" ? true : false}
+            />
             <p>Notifications</p>
-          </a>
-          <a href="/profile" className={nav == "profile" ? "active" : ""}>
+          </NavLink>
+          <NavLink to="/profile" activeClassName="active">
             <img alt="user dp" src={avatar} width={28} height={28} />
             <p>Profile</p>
-          </a>
+          </NavLink>
         </nav>
       </div>
     </header>

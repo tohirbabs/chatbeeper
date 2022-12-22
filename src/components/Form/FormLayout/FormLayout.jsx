@@ -6,12 +6,18 @@ import Box from "@mui/material/Box";
 
 import { motion } from "framer-motion";
 
-import { container, mainBox, heading } from "./style";
+import { container, mainBox, heading, footing } from "./style";
 import MultiStep from "./MultiStep";
 import ChatBeeperLogo from "../../Logo";
 import { pageAnimation } from "../../../animations";
+import { NavLink } from "react-router-dom";
 
-export default function FormLayout({ children, currentForm, setCurrentForm }) {
+export default function FormLayout({
+  children,
+  currentForm,
+  setCurrentForm,
+  login,
+}) {
   return (
     <motion.div
       variants={pageAnimation}
@@ -24,14 +30,51 @@ export default function FormLayout({ children, currentForm, setCurrentForm }) {
           <ChatBeeperLogo />
 
           <Typography variant="h1" sx={heading}>
-            Create an account
+            {login ? "Login to your account" : " Create an account"}
           </Typography>
+          {login ? null : (
+            <MultiStep
+              currentForm={currentForm}
+              setCurrentForm={setCurrentForm}
+            />
+          )}
 
-          <MultiStep
-            currentForm={currentForm}
-            setCurrentForm={setCurrentForm}
-          />
           {children}
+          <Box sx={footing}>
+            {login ? (
+              <>
+                <Typography variant="p" sx={footing}>
+                  Don't have a beeper account?
+                </Typography>
+                <NavLink
+                  to="/welcome"
+                  style={{
+                    textDecoration: "none",
+                    color: "#386FA4",
+                    fontSize: "1.1rem",
+                  }}
+                >
+                  Sign up
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <Typography variant="p" sx={footing}>
+                  Already have a beeper account?
+                </Typography>
+                <NavLink
+                  to="/login"
+                  style={{
+                    textDecoration: "none",
+                    color: "#386FA4",
+                    fontSize: "1.1rem",
+                  }}
+                >
+                  Log in
+                </NavLink>
+              </>
+            )}
+          </Box>
         </Box>
       </Container>
     </motion.div>

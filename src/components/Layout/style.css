@@ -1,3 +1,7 @@
+.layout {
+  position: relative;
+}
+
 .layout main {
   width: 1250px;
   position: relative;

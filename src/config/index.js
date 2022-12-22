@@ -1,1 +1,1 @@
-export const API_BASE_URL = "https://beeperchat.herokuapp.com/";
+export const API_BASE_URL = "https://chatbeeper.onrender.com/";

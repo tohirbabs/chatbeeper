@@ -41,7 +41,7 @@ export const gender = {
     alignItems: "center",
     justifyContent: "center",
     gap: "2px",
-    color: "text.primary",
+    color: "white",
     borderRadius: "6px",
     border: "1px solid  grey",
   },

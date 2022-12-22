@@ -118,25 +118,33 @@
 @media (max-width: 750px) {
   .notifications__section {
     margin: 0.6rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .notifications__section > header {
-    padding: 0.6rem;
-    border-radius: 0.6rem;
+    width: 100%;
+    border: none;
+    padding: 0rem;
+    /* border-radius: 0.6rem; */
   }
 
   .notifications__section > header h2 {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .notifications__list {
     border: none;
-    margin: 0.6rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0;
+    /* margin: 1rem; */
+    width: 100%;
   }
 
   .notification {
     width: 100%;
-    padding: 1.5rem 1rem;
+    padding: 0.8rem 0.6rem;
     position: relative;
   }
 
@@ -164,8 +172,7 @@
   }
 
   .notification__text > p {
-    display: flex;
-    gap: 0.3rem;
+    font-size: 0.9rem;
   }
 
   .notification__text p > span:last-child {
@@ -177,9 +184,9 @@
   }
 
   .notification__reaction {
-    padding: 0.6em 1.4rem;
-    font-size: 0.9rem;
-    margin-right: 3rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    margin-right: 1rem;
     border-radius: 3rem;
     border: 1px solid #386fa4;
     color: #386fa4;
@@ -189,25 +196,20 @@
   }
 
   .notification__extra {
-    margin: 1rem;
-
-    margin-left: 4rem;
+    margin: 1rem 0;
+    margin-left: 0.5rem;
   }
 
   .interested {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 1rem;
-    padding: 1rem;
-    font-size: 0.9rem;
-    width: max-content;
+    gap: 0.6rem;
+    border-radius: 0.6rem;
+    padding: 0.6rem;
+    font-size: 0.8rem;
   }
 
   .interested button {
-    padding: 0.6em 1.4rem;
-    font-size: 0.9rem;
+    padding: 0.6em 1rem;
+    font-size: 0.8rem;
     border-radius: 3rem;
     border: none;
     cursor: pointer;
@@ -221,5 +223,10 @@
   .interested button:last-child {
     background-color: #386fa4;
     color: white;
+  }
+
+  .notification .beep {
+    width: 90vw;
+    margin: 0px 0px;
   }
 }

@@ -2,7 +2,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
-import { createTheme, Paper } from "@mui/material";
+import { createTheme, Paper, useMediaQuery } from "@mui/material";
 import { AnimatePresence } from "framer-motion";
 import { Home, Onboarding } from "./Pages/index";
 import {
@@ -17,9 +17,17 @@ import { CookiesProvider } from "react-cookie";
 import { Toaster } from "react-hot-toast";
 import FollowerRequest from "./Pages/FollowerRequest/FollowerRequests";
 import Notification from "./Pages/Notification/Notifications";
+import { Layout } from "./components/Layout/Layout";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Login } from "./Pages/Login/Login";
 
 function App() {
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme:dark)");
+  // const preferredMode =
   const [mode, setMode] = React.useState("dark");
+  // const [mode, setMode] = React.useState(prefersDarkMode ? "dark" : "light");
+
+  const client = new QueryClient();
 
   const colorMode = React.useMemo(
     () => ({
@@ -32,34 +40,72 @@ function App() {
   );
 
   //  Update the theme only if the mode changes
-  const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+  const theme = React.useMemo(
+    () => createTheme(getDesignTokens(mode)),
+    [prefersDarkMode]
+  );
 
   const location = useLocation();
+
+  const onBoardRoutes = [
+    "/",
+    "/welcome",
+    "/login",
+
+    "/create-account",
+    "/create-personal-account",
+    "/create-business-account",
+  ];
+
   return (
     <CookiesProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Toaster />
-        <AnimatePresence exitBeforeEnter>
-          <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<Home />} />
-            <Route path="/welcome" element={<Onboarding />} />
-            <Route path="/create-account" element={<AccountCreation />} />
-            <Route
-              path="/create-personal-account"
-              element={<PersonalAccount />}
-            />
-            <Route
-              path="/create-business-account"
-              element={<BusinessAccout />}
-            />
-            <Route path="/profile" element={<UserProfile />} />
-            <Route path="/home" element={<UserFeed />} />
-            <Route path="/notifications" element={<Notification />} />
-            <Route path="/follower_requests" element={<FollowerRequest />} />
-          </Routes>
-        </AnimatePresence>
-      </ThemeProvider>
+      <QueryClientProvider client={client}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Toaster />
+          <AnimatePresence mode="wait">
+            {!onBoardRoutes.includes(location.pathname) ? (
+              <Layout>
+                <Routes location={location} key={location.pathname}>
+                  <Route exact path="/profile" element={<UserProfile />} />
+                  <Route exact path="/home" element={<UserFeed />} />
+                  <Route
+                    exact
+                    path="/notifications"
+                    element={<Notification />}
+                  />
+                  <Route
+                    exact
+                    path="/follower_requests"
+                    element={<FollowerRequest />}
+                  />
+                </Routes>
+              </Layout>
+            ) : (
+              <Routes location={location} key={location.pathname}>
+                <Route exact path="/" element={<Home />} />
+                <Route exact path="/welcome" element={<Onboarding />} />
+                <Route
+                  exact
+                  path="/create-account"
+                  element={<AccountCreation />}
+                />
+                <Route
+                  exact
+                  path="/create-personal-account"
+                  element={<PersonalAccount />}
+                />
+                <Route
+                  exact
+                  path="/create-business-account"
+                  element={<BusinessAccout />}
+                />
+                <Route exact path="/login" element={<Login />} />
+              </Routes>
+            )}
+          </AnimatePresence>
+        </ThemeProvider>
+      </QueryClientProvider>
     </CookiesProvider>
   );
 }

@@ -22,11 +22,9 @@ import { Layout } from "../../components/Layout/Layout";
 export default function UserProfile() {
   const location = useNavigate();
   return (
-    <Layout page="profile">
-      <div className="user-profile__main">
-        <Profile />
-        <Rightbar />
-      </div>
-    </Layout>
+    <div className="user-profile__main">
+      <Profile />
+      <Rightbar />
+    </div>
   );
 }
