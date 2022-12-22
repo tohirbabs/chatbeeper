@@ -172,7 +172,7 @@
   }
 
   .notification__text > p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 
   .notification__text p > span:last-child {
@@ -180,13 +180,13 @@
   }
 
   .notification__avatar {
-    max-width: 3rem;
+    max-width: 2.5rem;
   }
 
   .notification__reaction {
-    padding: 0.6rem 1rem;
+    padding: 0.4rem 0.6rem;
     font-size: 0.8rem;
-    margin-right: 1rem;
+    margin-right: 0rem;
     border-radius: 3rem;
     border: 1px solid #386fa4;
     color: #386fa4;
@@ -226,7 +226,7 @@
   }
 
   .notification .beep {
-    width: 90vw;
+    width: 85vw;
     margin: 0px 0px;
   }
 }

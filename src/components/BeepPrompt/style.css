@@ -7,6 +7,7 @@
 .beep_prompt textarea {
   margin: 1rem 0;
   border: none;
+  width: 30rem;
 }
 
 .prompt_actions {
@@ -35,4 +36,46 @@
   color: white;
   padding: 0.6rem 1rem;
   cursor: pointer;
+}
+
+@media (max-width: 750px) {
+  .beep_prompt {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .beep_prompt textarea {
+    margin: 1rem 0;
+    border: none;
+    width: 80vw;
+  }
+
+  .prompt_actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .prompt_extras {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .prompt_extras img {
+    cursor: pointer;
+  }
+
+  .prompt_actions button {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    background: #386fa4;
+    border: none;
+    border-radius: 3rem;
+    color: white;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+  }
 }

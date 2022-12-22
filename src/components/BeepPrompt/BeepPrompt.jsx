@@ -30,14 +30,17 @@ export const BeepPrompt = ({ setHomeFeedData, homeFeedData }) => {
     setHomeFeedData(feedData);
   };
   return (
-    <div className="beep_prompt">
+    <div
+      className="beep_prompt"
+      // style={{ backgroundColor: "backgound.default" }}
+    >
       <header>
         <img src={avatar} width={"35px"} />
       </header>
       <textarea
         name=""
         id=""
-        cols="65"
+        // cols="65"
         rows="10"
         placeholder="What's going on?"
         onChange={handleBeepText}
