@@ -2,7 +2,6 @@
 
 export const button = {
   fontFamily: "Syne",
-
   width: "100%",
   textTransform: "capitalize",
   padding: "0.8rem",
@@ -13,4 +12,5 @@ export const button = {
 
 export const roundedInput = {
   [`& fieldset`]: { borderRadius: "1.2rem" },
+  fontFamily: "Montserrat",
 };

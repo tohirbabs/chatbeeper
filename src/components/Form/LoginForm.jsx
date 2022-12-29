@@ -30,7 +30,7 @@ export default function LoginForm() {
 
   return (
     <form onSubmit={formik.handleSubmit} method="post">
-      <Stack spacing={3} minWidth="80vw" maxWidth="375px">
+      <Stack spacing={3} width="90vw" maxWidth="375px">
         <TextField
           onBlur={formik.handleBlur}
           label="Email"
