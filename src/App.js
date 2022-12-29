@@ -5,19 +5,19 @@ import { ThemeProvider } from "@mui/material/styles";
 import { createTheme, Paper, useMediaQuery } from "@mui/material";
 import { AnimatePresence } from "framer-motion";
 import { Home, Onboarding } from "./Pages/index";
-import {
-  PersonalAccount,
-  BusinessAccout,
-  AccountCreation,
-} from "./Pages/Registration";
+// import {
+//   PersonalAccount,
+//   BusinessAccout,
+//   AccountCreation,
+// } from "./Pages/Registration";
 import getDesignTokens from "./theme/theme";
-import UserProfile from "./Pages/UserProfile/UserProfile";
-import UserFeed from "./Pages/UserFeed/UserFeed";
+// import UserProfile from "./Pages/UserProfile/UserProfile";
+// import UserFeed from "./Pages/UserFeed/UserFeed";
 import { CookiesProvider } from "react-cookie";
 import { Toaster } from "react-hot-toast";
-import FollowerRequest from "./Pages/FollowerRequest/FollowerRequests";
-import Notification from "./Pages/Notification/Notifications";
-import { Layout } from "./components/Layout/Layout";
+// import FollowerRequest from "./Pages/FollowerRequest/FollowerRequests";
+// import Notification from "./Pages/Notification/Notifications";
+// import { Layout } from "./components/Layout/Layout";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Login } from "./Pages/Login/Login";
 
@@ -51,7 +51,6 @@ function App() {
     "/",
     "/welcome",
     "/login",
-
     "/create-account",
     "/create-personal-account",
     "/create-business-account",
@@ -64,7 +63,7 @@ function App() {
           <CssBaseline />
           <Toaster />
           <AnimatePresence mode="wait">
-            {!onBoardRoutes.includes(location.pathname) ? (
+            {/* {!onBoardRoutes.includes(location.pathname) ? (
               <Layout>
                 <Routes location={location} key={location.pathname}>
                   <Route exact path="/profile" element={<UserProfile />} />
@@ -102,7 +101,12 @@ function App() {
                 />
                 <Route exact path="/login" element={<Login />} />
               </Routes>
-            )}
+            )} */}
+            <Routes location={location} key={location.pathname}>
+              <Route exact path="/" element={<Home />} />
+
+              <Route exact path="/login" element={<Login />} />
+            </Routes>
           </AnimatePresence>
         </ThemeProvider>
       </QueryClientProvider>

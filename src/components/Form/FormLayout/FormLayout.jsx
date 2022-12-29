@@ -19,64 +19,57 @@ export default function FormLayout({
   login,
 }) {
   return (
-    <motion.div
-      variants={pageAnimation}
-      animate="animate"
-      initial="initial"
-      transition={pageAnimation.transition}
-    >
-      <Container sx={container}>
-        <Box sx={mainBox}>
-          <ChatBeeperLogo />
+    <Container sx={container}>
+      <Box sx={mainBox}>
+        <ChatBeeperLogo />
 
-          <Typography variant="h1" sx={heading}>
-            {login ? "Login to your account" : " Create an account"}
-          </Typography>
-          {login ? null : (
-            <MultiStep
-              currentForm={currentForm}
-              setCurrentForm={setCurrentForm}
-            />
+        <Typography variant="h1" sx={heading}>
+          {login ? "Login to your account" : " Create an account"}
+        </Typography>
+        {login ? null : (
+          <MultiStep
+            currentForm={currentForm}
+            setCurrentForm={setCurrentForm}
+          />
+        )}
+
+        {children}
+        <Box sx={footing}>
+          {login ? (
+            <>
+              <Typography variant="p" sx={footing}>
+                Don't have a beeper account?
+              </Typography>
+              <NavLink
+                to="/welcome"
+                style={{
+                  textDecoration: "none",
+                  color: "#386FA4",
+                  fontSize: "1.1rem",
+                }}
+              >
+                Sign up
+              </NavLink>
+            </>
+          ) : (
+            <>
+              <Typography variant="p" sx={footing}>
+                Already have a beeper account?
+              </Typography>
+              <NavLink
+                to="/login"
+                style={{
+                  textDecoration: "none",
+                  color: "#386FA4",
+                  fontSize: "1.1rem",
+                }}
+              >
+                Log in
+              </NavLink>
+            </>
           )}
-
-          {children}
-          <Box sx={footing}>
-            {login ? (
-              <>
-                <Typography variant="p" sx={footing}>
-                  Don't have a beeper account?
-                </Typography>
-                <NavLink
-                  to="/welcome"
-                  style={{
-                    textDecoration: "none",
-                    color: "#386FA4",
-                    fontSize: "1.1rem",
-                  }}
-                >
-                  Sign up
-                </NavLink>
-              </>
-            ) : (
-              <>
-                <Typography variant="p" sx={footing}>
-                  Already have a beeper account?
-                </Typography>
-                <NavLink
-                  to="/login"
-                  style={{
-                    textDecoration: "none",
-                    color: "#386FA4",
-                    fontSize: "1.1rem",
-                  }}
-                >
-                  Log in
-                </NavLink>
-              </>
-            )}
-          </Box>
         </Box>
-      </Container>
-    </motion.div>
+      </Box>
+    </Container>
   );
 }
