@@ -1,6 +1,6 @@
 const getDesignTokens = (mode) => ({
   typography: {
-    fontFamily: ["-apple-system", "BlinkMacSystemFont", "Montserrat"],
+    fontFamily: "Montserrat",
   },
   palette: {
     mode,
