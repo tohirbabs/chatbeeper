@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { Field } from "formik";
 
 import { gender } from "./style";

@@ -1,14 +1,9 @@
-import { useState } from "react";
-
 import Box from "@mui/material/Box";
 import { MdDone } from "react-icons/md";
 
 import { multistepContainer, circle, line } from "./style";
 
 export default function MultiStep({ currentForm, setCurrentForm }) {
-  const handleClick = (num) => {
-    setCurrentForm(num);
-  };
   return (
     <Box sx={multistepContainer}>
       <Box

@@ -8,12 +8,10 @@ import { MuiTelInput } from "mui-tel-input";
 
 import { useStore } from "../../store";
 
-import { useCookies } from "react-cookie";
 import {
   FormControl,
   FormHelperText,
   InputAdornment,
-  InputLabel,
   OutlinedInput,
   Stack,
   TextField,
@@ -34,7 +32,6 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
   const initialValues = useStore((state) => state.userReg.data);
   const updateValues = useStore((state) => state.updateRegValues);
 
-  const [cookies, setCookie, removeCookie] = useCookies(["user-data"]);
   const [fieldValue, setFieldValue] = useState("");
 
   const formik = useFormik({
@@ -45,6 +42,17 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
       username: Yup.string().required("Required"),
       email: Yup.string().email("Email address not valid").required("Required"),
       phone: Yup.string().phone("Phone number not valid").required("Required"),
+      gender: Yup.string().required("Required"),
+      dob: Yup.date("Date is invalid").required("Required"),
+      password: Yup.string()
+        .required("Required")
+        .matches(
+          /[a-zA-Z0-9]/,
+          "Your password must be strong. We advise a combination of letters and numbers"
+        ),
+      confirmPassword: Yup.string()
+        .oneOf([Yup.ref("password"), null], "Passwords must match")
+        .required("Confirm Password"),
     }),
     onSubmit: (values) => {
       POST("user", JSON.stringify(values))
