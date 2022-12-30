@@ -6,22 +6,8 @@ export const container = {
 };
 
 export const h1 = {
-  fontWeight: 700,
-  fontSize: "20px",
+  fontFamily: "Syne",
+  fontWeight: 600,
+  fontSize: "30px",
   textAlign: "center",
-  marginTop: "4rem",
-};
-
-export const button = {
-  width: "100%",
-  maxWidth: "372px",
-  height: "54px",
-  display: "flex",
-  justifyContent: "center",
-  gap: ".5rem",
-  marginTop: "56px",
-  borderRadius: "6px",
-  textTransform: "capitalize",
-  fontSize: "16px",
-  fontWeight: "600",
 };

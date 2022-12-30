@@ -1,21 +1,10 @@
 import { useState } from "react";
 
-import Box from "@mui/material/Box";
-
 import { Field } from "formik";
 
-import { ManIcon, WomanIcon } from "../../assets/icons";
-import { gender } from "./PersonalDetailsForm/style";
+import { gender } from "./style";
 
-export default function GenderSelect({
-  value,
-  id,
-  icon,
-  label,
-  formikValue,
-  fieldValue,
-  setFieldValue,
-}) {
+export default function GenderSelect({ value, id, icon, label, formikValue }) {
   return (
     <label
       htmlFor={id}

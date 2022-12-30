@@ -7,6 +7,7 @@ import { pageAnimation } from "../../animations";
 import { Logo } from "../../assets/logo";
 
 import { container } from "./style";
+import { Box } from "@mui/material";
 export default function Index() {
   const history = useNavigate();
 
@@ -23,7 +24,13 @@ export default function Index() {
       transitions={pageAnimation.transition}
     >
       <Container sx={container}>
-        <img alt="chatbeeper logo" src={Logo} width={80} height={80} />
+        <Box
+          component="img"
+          alt="chatbeeper logo"
+          src={Logo}
+          width={80}
+          height={80}
+        />
       </Container>
     </motion.div>
   );

@@ -12,7 +12,7 @@ export default function MultiStep({ currentForm, setCurrentForm }) {
   return (
     <Box sx={multistepContainer}>
       <Box
-        // onClick={() => setCurrentForm(0)}
+        onClick={() => setCurrentForm(0)}
         sx={{
           ...circle,
           backgroundColor: currentForm >= 0 ? "primary.main" : "#D1E1EF",
@@ -34,22 +34,6 @@ export default function MultiStep({ currentForm, setCurrentForm }) {
         }}
       >
         {currentForm > 1 && <MdDone color="white" width={7} height={4.81} />}
-      </Box>
-      <Box
-        sx={{
-          ...line,
-          backgroundColor: currentForm >= 2 ? "primary.main" : "#D8D8D8",
-        }}
-      ></Box>
-      <Box
-        // onClick={() => setCurrentForm(2)}
-        sx={{
-          ...circle,
-          backgroundColor: currentForm >= 2 ? "primary.main" : "#D1E1EF",
-          padding: "5px",
-        }}
-      >
-        {currentForm > 2 && <MdDone color="white" width={7} height={4.81} />}
       </Box>
     </Box>
   );

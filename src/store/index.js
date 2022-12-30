@@ -10,12 +10,12 @@ export const useStore = create((set) => ({
     data: {
       firstname: "",
       lastname: "",
-      email: "",
+      username: "",
       phone: "",
+      email: "",
       dob: new Date().now,
       gender: "",
       password: "",
-      username: "",
     },
   },
   updateRegValues: (data) =>

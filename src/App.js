@@ -21,6 +21,7 @@ import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Login } from "./Pages/Login/Login";
 import GetStarted from "./Pages/GetStarted/GetStarted";
+import CreateAccount from "./Pages/Signup/Signup";
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme:dark)");
@@ -106,7 +107,7 @@ function App() {
             <Routes location={location} key={location.pathname}>
               <Route exact path="/" element={<Home />} />
               <Route exact path="/welcome" element={<GetStarted />} />
-
+              <Route exact path="/create-account" element={<CreateAccount />} />
               <Route exact path="/login" element={<Login />} />
             </Routes>
           </AnimatePresence>

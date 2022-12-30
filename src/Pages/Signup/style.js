@@ -12,7 +12,7 @@ export const mainBox = {
 };
 export const heading = {
   fontFamily: "Syne",
-  margin: "1.2rem 0 2rem 0",
+  margin: "1rem 0",
   fontSize: "26px",
   fontWeight: "500",
   textAlign: "center",

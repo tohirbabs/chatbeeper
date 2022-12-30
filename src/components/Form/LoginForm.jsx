@@ -4,15 +4,22 @@ import * as Yup from "yup";
 import "yup-phone";
 
 // MUI components
-import Button from "@mui/material/Button";
 import PasswordInput from "./PasswordInput";
 
 import { Stack, TextField } from "@mui/material";
 import { roundedInput, button } from "./style";
+import { StyledButton } from "../StyledButton";
+import { POST } from "../../utils/request";
+import { useStore } from "../../store";
 
 export default function LoginForm() {
+  const initialValues = useStore((state) => state.userReg.data);
+
   const formik = useFormik({
-    initialValues: { email: "", password: "" },
+    initialValues: {
+      email: initialValues.email,
+      password: initialValues.password,
+    },
     validationSchema: Yup.object({
       password: Yup.string()
         .required("Required")
@@ -22,10 +29,13 @@ export default function LoginForm() {
         ),
       email: Yup.string().email("Email address not valid").required("Required"),
     }),
-    onChange: () => {
-      console.log(Object.values(formik.values).length);
+
+    onSubmit: (values) => {
+      POST("auth/login", JSON.stringify(values))
+        .then((res) => res.json())
+        .then((res) => console.log(res))
+        .catch((err) => console.log("error:", err));
     },
-    onSubmit: (values) => {},
   });
 
   return (
@@ -52,10 +62,9 @@ export default function LoginForm() {
           helperText={formik.touched.password && formik.errors.password}
           error={formik.touched.password && formik.errors.password && true}
         />
-        <Button
+        <StyledButton
           variant="contained"
           type="submit"
-          sx={button}
           disabled={
             Object.values(formik.errors).length !== 0 &&
             Object.values(formik.values).length !== 0
@@ -64,7 +73,7 @@ export default function LoginForm() {
           }
         >
           Login
-        </Button>
+        </StyledButton>
       </Stack>
     </form>
   );

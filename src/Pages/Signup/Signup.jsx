@@ -1,13 +1,17 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
-import Logo from "../../assets/logo/chatBeeper.svg";
+import { useState } from "react";
+import { SignUpForm } from "../../components/Form";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-import { Link } from "react-router-dom";
-import LoginForm from "../../components/Form/LoginForm";
 import { container, footing, heading, mainBox } from "./style";
+import { Box, Container, Stack, Typography } from "@mui/material";
+import Logo from "../../assets/logo/chatBeeper.svg";
+import MultiStep from "../../components/Multistep/MultiStep";
 import { pageAnimation } from "../../animations";
 
-export const Login = () => {
+export default function CreateAccount() {
+  const [currentForm, setCurrentForm] = useState(0);
+
   return (
     <motion.div
       variants={pageAnimation}
@@ -27,25 +31,27 @@ export const Login = () => {
         />
 
         <Typography variant="h1" sx={heading}>
-          Login to your account
+          Create an account
         </Typography>
 
-        <LoginForm />
+        <MultiStep currentForm={currentForm} setCurrentForm={setCurrentForm} />
+
+        <SignUpForm setCurrentForm={setCurrentForm} currentForm={currentForm} />
 
         <Typography variant="p" sx={footing}>
-          Don't have a beeper account?{" "}
+          Already have a beeper account?{" "}
           <Link
-            to="/welcome"
+            to="/login"
             style={{
               textDecoration: "none",
               color: "#386FA4",
               fontSize: "1.1rem",
             }}
           >
-            Sign up
+            Log in
           </Link>
         </Typography>
       </Stack>
     </motion.div>
   );
-};
+}

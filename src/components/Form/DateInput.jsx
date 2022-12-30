@@ -1,7 +1,8 @@
-import TextField from '@mui/material/TextField';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import TextField from "@mui/material/TextField";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { roundedInput } from "./style";
 
 export default function DateInput({
   value,
@@ -19,11 +20,11 @@ export default function DateInput({
         disableFuture
         value={value}
         onChange={onChange}
-        inputFormat='DD/MM/YYYY'
+        inputFormat="DD/MM/YYYY"
         renderInput={(params) => (
           <TextField
             name={name}
-            sx={{ width: '100%' }}
+            sx={roundedInput}
             helperText={helperText}
             error={error}
             {...params}
