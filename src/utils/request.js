@@ -13,6 +13,12 @@ export const POST = async (urlPath, body) => {
   return await fetch(`${API_BASE_URL}${urlPath}`, requestOptions);
 };
 
+export const PATCH = async (urlPath, body) => {
+  const requestOptions = { headers, body, method: "PATCH" };
+  console.log("requestOptions", requestOptions);
+  return await fetch(`${API_BASE_URL}${urlPath}`, requestOptions);
+};
+
 export const PUT = async (urlPath, body) => {
   const requestOptions = { headers, body, method: "PUT" };
   return await fetch(`${API_BASE_URL}${urlPath}`, requestOptions);

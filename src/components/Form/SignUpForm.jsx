@@ -7,7 +7,7 @@ import "yup-phone";
 import { MuiTelInput } from "mui-tel-input";
 
 import { useStore } from "../../store";
-
+import { useNavigate } from "react-router-dom";
 import {
   FormControl,
   FormHelperText,
@@ -28,10 +28,15 @@ import { ManIcon, WomanIcon } from "../../assets/icons";
 import DateInput from "./DateInput";
 import { POST } from "../../utils/request";
 
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+
 export default function SignUpForm({ setCurrentForm, currentForm }) {
   const initialValues = useStore((state) => state.userReg.data);
   const updateValues = useStore((state) => state.updateRegValues);
 
+  const store = useStore();
+  const navigate = useNavigate();
   const [fieldValue, setFieldValue] = useState("");
 
   const formik = useFormik({
@@ -55,12 +60,41 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
         .required("Confirm Password"),
     }),
     onSubmit: (values) => {
+      updateValues({ ...values });
       POST("user", JSON.stringify(values))
         .then((res) => res.json())
-        .then((res) => console.log(res))
+        .then((res) => (res.message ? toast(res.message) : navigate("/verify")))
         .catch((err) => console.log("error:", err));
+      // registerUser.mutate();
     },
   });
+
+  // const registerUser = useMutation(
+  //   POST("user", JSON.stringify(formik.values)),
+  //   {
+  //     onMutate(variables) {
+  //       store.setRequestLoading(true);
+  //     },
+  //     onSuccess(data) {
+  //       store.setRequestLoading(false);
+  //       toast.success(data?.message);
+  //     },
+  //     onError(error) {
+  //       store.setRequestLoading(false);
+  //       if (Array.isArray(error.response.data.error)) {
+  //         error.response.data.error.forEach((el) =>
+  //           toast.error(el.message, {
+  //             position: "top-right",
+  //           })
+  //         );
+  //       } else {
+  //         toast.error(error.response.data.message, {
+  //           position: "top-right",
+  //         });
+  //       }
+  //     },
+  //   }
+  // );
 
   const page1Error =
     formik.errors.firstname ||

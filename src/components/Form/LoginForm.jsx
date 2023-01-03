@@ -12,8 +12,11 @@ import { StyledButton } from "../StyledButton";
 import { POST } from "../../utils/request";
 import { useStore } from "../../store";
 
+import { useNavigate } from "react-router-dom";
+
 export default function LoginForm() {
   const initialValues = useStore((state) => state.userReg.data);
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -33,7 +36,7 @@ export default function LoginForm() {
     onSubmit: (values) => {
       POST("auth/login", JSON.stringify(values))
         .then((res) => res.json())
-        .then((res) => console.log(res))
+        .then((res) => navigate("/home"))
         .catch((err) => console.log("error:", err));
     },
   });

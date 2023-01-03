@@ -5,23 +5,20 @@ import { ThemeProvider } from "@mui/material/styles";
 import { createTheme, Paper, useMediaQuery } from "@mui/material";
 import { AnimatePresence } from "framer-motion";
 import { Home, Onboarding } from "./Pages/index";
-// import {
-//   PersonalAccount,
-//   BusinessAccout,
-//   AccountCreation,
-// } from "./Pages/Registration";
+
 import getDesignTokens from "./theme/theme";
-// import UserProfile from "./Pages/UserProfile/UserProfile";
-// import UserFeed from "./Pages/UserFeed/UserFeed";
+
 import { CookiesProvider } from "react-cookie";
 import { Toaster } from "react-hot-toast";
-// import FollowerRequest from "./Pages/FollowerRequest/FollowerRequests";
-// import Notification from "./Pages/Notification/Notifications";
-// import { Layout } from "./components/Layout/Layout";
-import { QueryClient, QueryClientProvider } from "react-query";
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Login } from "./Pages/Login/Login";
 import GetStarted from "./Pages/GetStarted/GetStarted";
 import CreateAccount from "./Pages/Signup/Signup";
+import { Verify } from "./Pages/Verify";
+import { Layout } from "./components/Layout/Layout";
+import UserFeed from "./Pages/UserFeed/UserFeed";
+import UserProfile from "./Pages/UserProfile/UserProfile";
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme:dark)");
@@ -54,7 +51,7 @@ function App() {
     "/welcome",
     "/login",
     "/create-account",
-    "/create-personal-account",
+    "/verify",
     "/create-business-account",
   ];
 
@@ -65,51 +62,36 @@ function App() {
           <CssBaseline />
           <Toaster />
           <AnimatePresence mode="wait">
-            {/* {!onBoardRoutes.includes(location.pathname) ? (
+            {!onBoardRoutes.includes(location.pathname) ? (
               <Layout>
                 <Routes location={location} key={location.pathname}>
                   <Route exact path="/profile" element={<UserProfile />} />
                   <Route exact path="/home" element={<UserFeed />} />
-                  <Route
+                  {/* <Route
                     exact
                     path="/notifications"
                     element={<Notification />}
-                  />
-                  <Route
+                  /> */}
+                  {/* <Route
                     exact
                     path="/follower_requests"
                     element={<FollowerRequest />}
-                  />
+                  /> */}
                 </Routes>
               </Layout>
             ) : (
               <Routes location={location} key={location.pathname}>
                 <Route exact path="/" element={<Home />} />
-                <Route exact path="/welcome" element={<Onboarding />} />
+                <Route exact path="/welcome" element={<GetStarted />} />
                 <Route
                   exact
                   path="/create-account"
-                  element={<AccountCreation />}
-                />
-                <Route
-                  exact
-                  path="/create-personal-account"
-                  element={<PersonalAccount />}
-                />
-                <Route
-                  exact
-                  path="/create-business-account"
-                  element={<BusinessAccout />}
+                  element={<CreateAccount />}
                 />
                 <Route exact path="/login" element={<Login />} />
+                <Route exact path="/verify" element={<Verify />} />
               </Routes>
-            )} */}
-            <Routes location={location} key={location.pathname}>
-              <Route exact path="/" element={<Home />} />
-              <Route exact path="/welcome" element={<GetStarted />} />
-              <Route exact path="/create-account" element={<CreateAccount />} />
-              <Route exact path="/login" element={<Login />} />
-            </Routes>
+            )}
           </AnimatePresence>
         </ThemeProvider>
       </QueryClientProvider>

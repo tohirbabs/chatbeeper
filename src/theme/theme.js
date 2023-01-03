@@ -4,7 +4,7 @@ const getDesignTokens = (mode) => ({
   },
   palette: {
     mode,
-    ...(mode === "light+"
+    ...(mode === "light"
       ? {
           //  palette values for light mode
           primary: {
@@ -15,7 +15,7 @@ const getDesignTokens = (mode) => ({
           },
           text: { primary: "#0A151E", secondary: "#9E9E9E" },
           //   error: "#DF3800",
-          background: { default: "#FFFFFF", paper: "#0A151E" },
+          background: { default: "#fff", paper: "#0A151E" },
           //   success: "#33DB39",
           action: {
             disabled: "#FFFFFF",

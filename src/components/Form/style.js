@@ -11,7 +11,10 @@ export const button = {
 };
 
 export const roundedInput = {
-  [`& fieldset`]: { borderRadius: "1.5rem" },
+  [`& fieldset`]: {
+    borderRadius: "1.5rem",
+    borderColor: "#505558",
+  },
   fontFamily: "Montserrat",
 };
 

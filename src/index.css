@@ -27,3 +27,7 @@ textarea:focus,
 input:focus {
   outline: none;
 }
+
+.css-9425fu-MuiOutlinedInput-notchedOutline {
+  border-color: #505558;
+}
