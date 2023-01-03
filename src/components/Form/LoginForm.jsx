@@ -6,17 +6,20 @@ import "yup-phone";
 // MUI components
 import PasswordInput from "./PasswordInput";
 
-import { Stack, TextField } from "@mui/material";
+import { CircularProgress, Stack, TextField } from "@mui/material";
 import { roundedInput, button } from "./style";
 import { StyledButton } from "../StyledButton";
 import { POST } from "../../utils/request";
 import { useStore } from "../../store";
 
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function LoginForm() {
   const initialValues = useStore((state) => state.userReg.data);
   const navigate = useNavigate();
+
+  const [loading, setloading] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -34,10 +37,14 @@ export default function LoginForm() {
     }),
 
     onSubmit: (values) => {
+      setloading(true);
       POST("auth/login", JSON.stringify(values))
         .then((res) => res.json())
-        .then((res) => navigate("/home"))
-        .catch((err) => console.log("error:", err));
+        .then((res) => {
+          navigate("/home");
+        })
+        .catch((err) => console.log("error:", err))
+        .finally(() => setloading(false));
     },
   });
 
@@ -75,7 +82,7 @@ export default function LoginForm() {
               : false
           }
         >
-          Login
+          {loading ? <CircularProgress color="secondary" /> : "Login"}
         </StyledButton>
       </Stack>
     </form>

@@ -16,6 +16,7 @@ import {
   Stack,
   TextField,
   Box,
+  CircularProgress,
 } from "@mui/material";
 import { StyledButton } from "../StyledButton";
 import { gender, roundedInput } from "./style";
@@ -34,6 +35,8 @@ import toast from "react-hot-toast";
 export default function SignUpForm({ setCurrentForm, currentForm }) {
   const initialValues = useStore((state) => state.userReg.data);
   const updateValues = useStore((state) => state.updateRegValues);
+
+  const [loading, setloading] = useState(false);
 
   const store = useStore();
   const navigate = useNavigate();
@@ -60,11 +63,14 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
         .required("Confirm Password"),
     }),
     onSubmit: (values) => {
+      setloading(true);
+
       updateValues({ ...values });
       POST("user", JSON.stringify(values))
         .then((res) => res.json())
         .then((res) => (res.message ? toast(res.message) : navigate("/verify")))
-        .catch((err) => console.log("error:", err));
+        .catch((err) => console.log("error:", err))
+        .finally(() => setloading(false));
       // registerUser.mutate();
     },
   });
@@ -262,7 +268,11 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
                   : false
               }
             >
-              Create Account
+              {loading ? (
+                <CircularProgress color="secondary" />
+              ) : (
+                "Create Account"
+              )}
             </StyledButton>
           </Stack>
         )}

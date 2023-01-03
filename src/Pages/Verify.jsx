@@ -1,4 +1,10 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Container,
+  Stack,
+  Typography,
+} from "@mui/material";
 import Logo from "../assets/verify.png";
 import { motion } from "framer-motion";
 
@@ -14,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Verify = () => {
   const [code, setcode] = useState("");
+  const [loading, setloading] = useState(false);
   const user = useStore((state) => state.userReg.data);
   const navigate = useNavigate();
 
@@ -34,7 +41,7 @@ export const Verify = () => {
           Verification
         </Typography>
         <Typography variant="p">
-          Please enter the 6 digit verification code sent to janedoe4real@gmail
+          Please enter the 6 digit verification code sent to {user.email}
         </Typography>
 
         <VerificationInput
@@ -46,6 +53,8 @@ export const Verify = () => {
         <StyledButton
           variant="contained"
           onClick={() => {
+            setloading(true);
+
             const body = {
               //   username: user.username,
               //   email: user.email,
@@ -60,10 +69,11 @@ export const Verify = () => {
                 //   res.message ? toast(res.message) : console.log(res)
                 navigate("/login")
               )
-              .catch((err) => console.log("error:", err));
+              .catch((err) => console.log("error:", err))
+              .finally(() => setloading(false));
           }}
         >
-          Verify
+          {loading ? <CircularProgress color="secondary" /> : "Verify"}
         </StyledButton>
       </Stack>
     </motion.div>
