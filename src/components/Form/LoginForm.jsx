@@ -15,7 +15,7 @@ import { useStore } from "../../store";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-export default function LoginForm() {
+export default function LoginForm({ setToken }) {
   const initialValues = useStore((state) => state.userReg.data);
   const navigate = useNavigate();
 
@@ -40,9 +40,7 @@ export default function LoginForm() {
       setloading(true);
       POST("auth/login", JSON.stringify(values))
         .then((res) => res.json())
-        .then((res) => {
-          navigate("/home");
-        })
+        .then((res) => setToken(res))
         .catch((err) => console.log("error:", err))
         .finally(() => setloading(false));
     },

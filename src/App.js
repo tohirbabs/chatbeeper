@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme, Paper, useMediaQuery } from "@mui/material";
@@ -19,6 +19,7 @@ import { Verify } from "./Pages/Verify";
 import { Layout } from "./components/Layout/Layout";
 import UserFeed from "./Pages/UserFeed/UserFeed";
 import UserProfile from "./Pages/UserProfile/UserProfile";
+import useToken from "./Hooks/useToken";
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme:dark)");
@@ -54,6 +55,23 @@ function App() {
     "/verify",
     "/create-business-account",
   ];
+
+  const { token, setToken } = useToken();
+
+  console.log(token);
+  if (!token) {
+    return (
+      <QueryClientProvider client={client}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Toaster />
+          <AnimatePresence mode="wait">
+            <Login setToken={setToken} />
+          </AnimatePresence>
+        </ThemeProvider>
+      </QueryClientProvider>
+    );
+  }
 
   return (
     <CookiesProvider>

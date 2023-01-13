@@ -7,7 +7,7 @@ import LoginForm from "../../components/Form/LoginForm";
 import { container, footing, heading, mainBox } from "./style";
 import { pageAnimation } from "../../animations";
 
-export const Login = () => {
+export const Login = ({ setToken }) => {
   return (
     <motion.div
       variants={pageAnimation}
@@ -30,7 +30,7 @@ export const Login = () => {
           Login to your account
         </Typography>
 
-        <LoginForm />
+        <LoginForm setToken={setToken} />
 
         <Typography variant="p" sx={footing}>
           Don't have a beeper account?{" "}
