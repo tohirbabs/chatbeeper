@@ -4,7 +4,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme, Paper, useMediaQuery } from "@mui/material";
 import { AnimatePresence } from "framer-motion";
-import { Home, Onboarding } from "./Pages/index";
+import { Home } from "./Pages/index";
 
 import getDesignTokens from "./theme/theme";
 
