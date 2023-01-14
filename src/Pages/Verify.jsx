@@ -56,18 +56,17 @@ export const Verify = () => {
             setloading(true);
 
             const body = {
-              //   username: user.username,
-              //   email: user.email,
-              //   token: code,
-              username: "dev_panda",
-              email: "tohirbabs@gmail.com",
+              username: user.username,
+              email: user.email,
               token: code,
+              // username: "dev_panda",
+              // email: "tohirbabs@gmail.com",
+              // token: code,
             };
             PATCH("auth/verify-token/email", JSON.stringify(body))
               .then((res) => res.json())
               .then((res) =>
-                //   res.message ? toast(res.message) : console.log(res)
-                navigate("/login")
+                res.message ? toast(res.message) : console.log(res)
               )
               .catch((err) => console.log("error:", err))
               .finally(() => setloading(false));
