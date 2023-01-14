@@ -14,17 +14,22 @@ import { useStore } from "../../store";
 
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function LoginForm({ setToken }) {
   const initialValues = useStore((state) => state.userReg.data);
+  const userInfo = useStore((state) => state.userReg.auth);
+
+  const authenticate = useStore((state) => state.authenticateUser);
+
   const navigate = useNavigate();
 
   const [loading, setloading] = useState(false);
-
+  console.log(userInfo);
   const formik = useFormik({
     initialValues: {
-      email: initialValues.email,
-      password: initialValues.password,
+      email: "",
+      password: "",
     },
     validationSchema: Yup.object({
       password: Yup.string()
@@ -40,7 +45,14 @@ export default function LoginForm({ setToken }) {
       setloading(true);
       POST("auth/login", JSON.stringify(values))
         .then((res) => res.json())
-        .then((res) => setToken(res))
+        // .then((res) => setToken(res))
+        .then(
+          (res) =>
+            (res.jwt && authenticate(res)) ||
+            (res.message && toast(res.message))
+        )
+        // .then((res) => console.log(res))
+
         .catch((err) => console.log("error:", err))
         .finally(() => setloading(false));
     },
