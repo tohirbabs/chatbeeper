@@ -12,7 +12,7 @@ export default function Index() {
   const history = useNavigate();
 
   useEffect(() => {
-    setTimeout(() => history("/login"), 3000);
+    setTimeout(() => history("/home"), 3000);
   }, []);
 
   return (
