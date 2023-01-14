@@ -1,13 +1,9 @@
 // This file is responsible for state management
 
 import create from "zustand";
+import { persist } from "zustand/middleware";
 
-export const useStore = create((set) => ({
-  authUser: null,
-  requestLoading: false,
-  setAuthUser: (user) => set((state) => ({ ...state, authUser: user })),
-  setRequestLoading: (isLoading) =>
-    set((state) => ({ ...state, requestLoading: isLoading })),
+let store = (set) => ({
   userReg: {
     data: {
       firstname: "",
@@ -19,11 +15,20 @@ export const useStore = create((set) => ({
       gender: "",
       password: "",
     },
+    auth: null,
   },
+
   updateRegValues: (data) =>
     set((state) => ({
       userReg: { ...state.userReg.data, data },
     })),
+  authenticateUser: (auth) =>
+    set((state) => ({
+      userReg: { ...state.userReg.auth, auth },
+    })),
   feeds: [],
   comments: [],
-}));
+});
+
+store = persist(store, { name: "userInfo" });
+export const useStore = create(store);
