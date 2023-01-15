@@ -16,9 +16,10 @@ import { FooterMenu } from "../../components/FooterMenu/FooterMenu";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { ProfileFeed } from "../ProfileFeed/ProfileFeed";
+import { useStore } from "../../store";
 
 export const Profile = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(["user-data"]);
+  const userInfo = useStore((state) => state.userReg.data);
   const location = useNavigate();
 
   // if (!cookies.userData.firstname) {
@@ -34,13 +35,10 @@ export const Profile = () => {
         </div>
 
         <div className="profile__info">
-          <h1>
-            {/* {`${cookies.userData.firstname} ${cookies.userData.lastname}`} */}
-            John Doe
-          </h1>
+          <h1>{`${userInfo.firstname} ${userInfo.lastname}`}</h1>
           <h2>
-            {/* <p>{`@${cookies.userData.username}`}</p> */}
-            <p>jon_thou</p>
+            <p>{`@${userInfo.username}`}</p>
+
             <img src={checkmark} className="checkmark" alt="checkmark" />
           </h2>
           <p>
