@@ -6,13 +6,17 @@ import { FooterMenu } from "../FooterMenu/FooterMenu";
 import { Overlay } from "../Overlay/Overlay";
 import { BeepPrompt } from "../BeepPrompt/BeepPrompt";
 import { useLocation } from "react-router-dom";
+import { useStore } from "../../store";
 
 export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
   const [sidebar, setSidebar] = useState("");
   const [overlay, setOverlay] = useState("");
+  const userInfo = useStore((state) => state.userReg.auth);
 
   const location = useLocation();
-  console.log(location);
+  if (!userInfo) {
+    location("/ceate-account");
+  }
 
   return (
     <div className="layout">
