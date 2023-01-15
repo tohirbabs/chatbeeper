@@ -25,7 +25,9 @@ export default function LoginForm({ setToken }) {
   const navigate = useNavigate();
 
   const [loading, setloading] = useState(false);
+  console.log(initialValues);
   console.log(userInfo);
+
   const formik = useFormik({
     initialValues: {
       email: "",
