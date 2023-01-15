@@ -8,7 +8,7 @@ import banner from "../../assets/banner.png";
 import sms from "../../assets/sms-icon.png";
 import checkmark from "../../assets/checkmark.png";
 import avatar from "../../assets/user_dp.png";
-import { Divider } from "@mui/material";
+import { Box, CircularProgress, Divider } from "@mui/material";
 import Beep from "../Beep/Beep";
 import { Feed } from "../Feed/Feed";
 import { FooterMenu } from "../FooterMenu/FooterMenu";
@@ -17,19 +17,42 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { ProfileFeed } from "../ProfileFeed/ProfileFeed";
 import { HomeFeed } from "../HomeFeed/HomeFeed";
+import { useEffect, useState } from "react";
+import { GET } from "../../utils/request";
+import { useStore } from "../../store";
 
 export const Home = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(["user-data"]);
+  const [loading, setloading] = useState(true);
+  const userInfo = useStore((state) => state.userReg.auth);
+
   const location = useNavigate();
 
-  // if (!cookies.userData.firstname) {
-  //   location("/ceate-account");
-  // }
+  useEffect(() => {
+    GET("feed", userInfo.jwt)
+      .then((res) => res.json())
+      .then((res) => console.log(res))
+      // .then((res) => console.log(res))
+
+      .catch((err) => console.log("error:", err))
+      .finally(() => setloading(false));
+  }, []);
 
   return (
     <div className="home">
-      <div className="home__wrapper"></div>
-      <HomeFeed />
+      {loading ? (
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            padding: "2rem 0",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      ) : (
+        <HomeFeed />
+      )}
     </div>
   );
 };
