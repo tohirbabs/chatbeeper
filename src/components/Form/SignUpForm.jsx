@@ -29,7 +29,6 @@ import { ManIcon, WomanIcon } from "../../assets/icons";
 import DateInput from "./DateInput";
 import { POST } from "../../utils/request";
 
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 export default function SignUpForm({ setCurrentForm, currentForm }) {
@@ -38,12 +37,20 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
 
   const [loading, setloading] = useState(false);
 
-  const store = useStore();
   const navigate = useNavigate();
   const [fieldValue, setFieldValue] = useState("");
 
   const formik = useFormik({
-    initialValues: initialValues,
+    initialValues: {
+      firstname: "",
+      lastname: "",
+      username: "",
+      phone: "",
+      email: "",
+      dob: new Date().now,
+      gender: "",
+      password: "",
+    },
     validationSchema: Yup.object({
       firstname: Yup.string().required("Required"),
       lastname: Yup.string().required("Required"),
@@ -74,33 +81,6 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
       // registerUser.mutate();
     },
   });
-
-  // const registerUser = useMutation(
-  //   POST("user", JSON.stringify(formik.values)),
-  //   {
-  //     onMutate(variables) {
-  //       store.setRequestLoading(true);
-  //     },
-  //     onSuccess(data) {
-  //       store.setRequestLoading(false);
-  //       toast.success(data?.message);
-  //     },
-  //     onError(error) {
-  //       store.setRequestLoading(false);
-  //       if (Array.isArray(error.response.data.error)) {
-  //         error.response.data.error.forEach((el) =>
-  //           toast.error(el.message, {
-  //             position: "top-right",
-  //           })
-  //         );
-  //       } else {
-  //         toast.error(error.response.data.message, {
-  //           position: "top-right",
-  //         });
-  //       }
-  //     },
-  //   }
-  // );
 
   const page1Error =
     formik.errors.firstname ||
