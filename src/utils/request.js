@@ -3,7 +3,8 @@ import { API_BASE_URL } from "../config";
 const headers = {
   "Content-Type": "application/json",
 };
-export const GET = async (urlPath) => {
+export const GET = async (urlPath, jwt = null) => {
+  headers.Authorization = `Bearer ${jwt}`;
   return await fetch(`${API_BASE_URL}${urlPath}`, { headers, method: "GET" });
 };
 
