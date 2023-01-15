@@ -66,7 +66,7 @@ export const Verify = () => {
             PATCH("auth/verify-token/email", JSON.stringify(body))
               .then((res) => res.json())
               .then((res) =>
-                res.message ? toast(res.message) : console.log(res)
+                res.message ? toast(res.message) : navigate("/login")
               )
               .catch((err) => console.log("error:", err))
               .finally(() => setloading(false));
