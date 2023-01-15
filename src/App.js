@@ -4,7 +4,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme, Paper, useMediaQuery } from "@mui/material";
 import { AnimatePresence } from "framer-motion";
-import { Home } from "./Pages/index";
+import { Home, Onboarding } from "./Pages/index";
 
 import getDesignTokens from "./theme/theme";
 
@@ -20,10 +20,12 @@ import { Layout } from "./components/Layout/Layout";
 import UserFeed from "./Pages/UserFeed/UserFeed";
 import UserProfile from "./Pages/UserProfile/UserProfile";
 import useToken from "./Hooks/useToken";
+import { useStore } from "./store";
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme:dark)");
-  // const preferredMode =
+  const token = useStore((state) => state.userReg.auth);
+
   const [mode, setMode] = React.useState("dark");
   // const [mode, setMode] = React.useState(prefersDarkMode ? "dark" : "light");
 
@@ -56,9 +58,6 @@ function App() {
     "/create-business-account",
   ];
 
-  const { token, setToken } = useToken();
-
-  console.log(token);
   if (!token) {
     return (
       <QueryClientProvider client={client}>
@@ -66,7 +65,7 @@ function App() {
           <CssBaseline />
           <Toaster />
           <AnimatePresence mode="wait">
-            <Login setToken={setToken} />
+            <Login />
           </AnimatePresence>
         </ThemeProvider>
       </QueryClientProvider>
