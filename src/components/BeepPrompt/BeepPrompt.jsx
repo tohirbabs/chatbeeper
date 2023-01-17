@@ -5,8 +5,16 @@ import lock from "../../assets/lock-slash.png";
 import "./style.css";
 
 import { useState } from "react";
+import { Modal } from "@mui/material";
+import toast from "react-hot-toast";
+import { POST } from "../../utils/request";
 
-export const BeepPrompt = ({ setHomeFeedData, homeFeedData }) => {
+export const BeepPrompt = ({
+  setHomeFeedData,
+  homeFeedData,
+  open,
+  setAddBeep,
+}) => {
   const [beepText, setBeepText] = useState("");
   const feedData = homeFeedData;
   const handleBeepText = (event) => {
@@ -15,46 +23,52 @@ export const BeepPrompt = ({ setHomeFeedData, homeFeedData }) => {
   };
 
   const handleSubmitBeep = () => {
-    feedData.unshift({
-      userDp: avatar,
-      userName: "Jason Bourne",
-      userHandle: "@jb",
-      beepAge: "1 hour ago",
-      beepImg: false,
-      beepText: beepText,
-      replies: "10",
-      rebeeps: "2",
-      dislikes: "1",
-      likes: "25",
-    });
-    setHomeFeedData(feedData);
+    let body = new FormData();
+    body.append("text", beepText);
+    body.append("file", null);
+
+    POST("beep", body)
+      .then((res) => res.json())
+      // .then((res) => setToken(res))
+      .then(
+        (res) =>
+          (res.text && console.log(res)) ||
+          (res.message && console.log(res.message))
+      )
+      // .then((res) => console.log(res))
+
+      .catch((err) => console.log("error:", err));
+    // .finally(() => setloading(false));}
   };
+
   return (
-    <div
-      className="beep_prompt"
-      // style={{ backgroundColor: "backgound.default" }}
-    >
-      <header>
-        <img src={avatar} width={"35px"} />
-      </header>
-      <textarea
-        name=""
-        id=""
-        // cols="65"
-        rows="10"
-        placeholder="What's going on?"
-        onChange={handleBeepText}
-      ></textarea>
-      <div className="prompt_actions">
-        <div className="prompt_extras">
-          <img src={gallery} />
-          <img src={lock} />
+    <Modal open={open} onClose={() => setAddBeep(false)}>
+      <div
+        className="beep_prompt"
+        // style={{ backgroundColor: "backgound.default" }}
+      >
+        <header>
+          <img src={avatar} width={"35px"} />
+        </header>
+        <textarea
+          name=""
+          id=""
+          // cols="65"
+          rows="10"
+          placeholder="What's going on?"
+          onChange={handleBeepText}
+        ></textarea>
+        <div className="prompt_actions">
+          <div className="prompt_extras">
+            <img src={gallery} />
+            <img src={lock} />
+          </div>
+          <button type="submit" onClick={() => setAddBeep(false)}>
+            <p>Beep</p>
+            <img src={sendbeep} />
+          </button>
         </div>
-        <button type="submit" onClick={handleSubmitBeep}>
-          <p>Beep</p>
-          <img src={sendbeep} />
-        </button>
       </div>
-    </div>
+    </Modal>
   );
 };
