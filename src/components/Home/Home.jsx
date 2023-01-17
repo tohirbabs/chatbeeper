@@ -8,7 +8,7 @@ import banner from "../../assets/banner.png";
 import sms from "../../assets/sms-icon.png";
 import checkmark from "../../assets/checkmark.png";
 import avatar from "../../assets/user_dp.png";
-import { Box, CircularProgress, Divider } from "@mui/material";
+import { Box, CircularProgress, Divider, Typography } from "@mui/material";
 import Beep from "../Beep/Beep";
 import { Feed } from "../Feed/Feed";
 import { FooterMenu } from "../FooterMenu/FooterMenu";
@@ -44,11 +44,15 @@ export const Home = () => {
           sx={{
             width: "100%",
             display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 4,
             justifyContent: "center",
             padding: "2rem 0",
           }}
         >
           <CircularProgress />
+          <Typography sx={{ fontSize: "1rem" }}>Getting Feed...</Typography>
         </Box>
       ) : (
         <HomeFeed />
