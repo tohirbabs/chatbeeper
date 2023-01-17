@@ -34,7 +34,7 @@ export default function CreateAccount() {
           Create an account
         </Typography>
 
-        <MultiStep currentForm={currentForm} setCurrentForm={setCurrentForm} />
+        {/* <MultiStep currentForm={currentForm} setCurrentForm={setCurrentForm} /> */}
 
         <SignUpForm setCurrentForm={setCurrentForm} currentForm={currentForm} />
 
