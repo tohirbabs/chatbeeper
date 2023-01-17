@@ -36,7 +36,13 @@ export const Topbar = ({ setAddBeep }) => {
             </div>
             <p>Tour</p>
           </div>
-          <div onClick={() => setAddBeep(true)} className="nav-item">
+          <div
+            onClick={() => {
+              setAddBeep(true);
+              console.log("beep");
+            }}
+            className="nav-item"
+          >
             <div className="nav-icon">
               <BeepIcon />
             </div>

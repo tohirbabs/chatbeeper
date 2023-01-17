@@ -14,7 +14,7 @@ import { NotificationIcon } from "../../assets/icons/nav/NotificationIcon";
 import { NavLink, useNavigate } from "react-router-dom";
 import { HiSearch } from "react-icons/hi";
 
-export const Header = ({ nav, sidebar, setSidebar, setOverlay, overlay }) => {
+export const Header = ({ nav, sidebar, setSidebar, setAddBeep }) => {
   const location = useNavigate();
 
   function toggleSidebar() {
@@ -73,9 +73,7 @@ export const Header = ({ nav, sidebar, setSidebar, setOverlay, overlay }) => {
           </a>
           <a
             onClick={() => {
-              overlay === "beepPrompt"
-                ? setOverlay("")
-                : setOverlay("beepPrompt");
+              setAddBeep(true);
             }}
           >
             <BeepIcon />
