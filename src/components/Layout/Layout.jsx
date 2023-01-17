@@ -8,9 +8,13 @@ import { BeepPrompt } from "../BeepPrompt/BeepPrompt";
 import { useLocation } from "react-router-dom";
 import { useStore } from "../../store";
 
+import { AddBeep } from "../AddBeep/AddBeep";
+
 export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
   const [sidebar, setSidebar] = useState("");
   const [overlay, setOverlay] = useState("");
+  const [addBeep, setAddBeep] = useState(false);
+  console.log(addBeep);
   const userInfo = useStore((state) => state.userReg.auth);
 
   const location = useLocation();
@@ -35,7 +39,7 @@ export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
         nav={location.pathname}
         sidebar={sidebar}
         setSidebar={setSidebar}
-        setOverlay={setOverlay}
+        setAddBeep={setAddBeep}
         overlay={overlay}
       />
       <main
@@ -52,9 +56,10 @@ export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
       </main>
       <FooterMenu
         nav={location.pathname}
-        setOverlay={setOverlay}
+        setAddBeep={setAddBeep}
         overlay={overlay}
       />
+      <BeepPrompt open={addBeep} setAddBeep={setAddBeep} />
     </div>
   );
 };
