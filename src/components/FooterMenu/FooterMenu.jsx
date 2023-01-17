@@ -10,7 +10,7 @@ import { NotificationIcon } from "../../assets/icons/nav/NotificationIcon";
 
 import { NavLink, useNavigate } from "react-router-dom";
 
-export const FooterMenu = ({ nav, setOverlay, overlay }) => {
+export const FooterMenu = ({ nav, setAddBeep }) => {
   const location = useNavigate();
 
   return (
@@ -23,11 +23,7 @@ export const FooterMenu = ({ nav, setOverlay, overlay }) => {
         <TourIcon />
         <p>Tour</p>
       </a>
-      <a
-        onClick={() => {
-          overlay === "beepPrompt" ? setOverlay("") : setOverlay("beepPrompt");
-        }}
-      >
+      <a onClick={() => setAddBeep(true)}>
         <BeepIcon />
         <p>Beep</p>
       </a>
