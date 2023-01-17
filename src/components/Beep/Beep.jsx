@@ -57,7 +57,7 @@ export default function Beep({ data }) {
       ) : null}
       <p>
         {data.beepText}
-        <span>see more</span>
+        {/* <span>see more</span> */}
       </p>
       <div className="beep__engage">
         <div className="engage_btns">
