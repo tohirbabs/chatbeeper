@@ -11,7 +11,7 @@ import { NotificationIcon } from "../../assets/icons/nav/NotificationIcon";
 
 import { useNavigate } from "react-router-dom";
 
-export const Topbar = () => {
+export const Topbar = ({ setAddBeep }) => {
   const location = useNavigate();
 
   return (
@@ -36,7 +36,7 @@ export const Topbar = () => {
             </div>
             <p>Tour</p>
           </div>
-          <div className="nav-item">
+          <div onClick={() => setAddBeep(true)} className="nav-item">
             <div className="nav-icon">
               <BeepIcon />
             </div>
