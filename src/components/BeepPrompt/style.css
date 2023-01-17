@@ -2,12 +2,20 @@
   background-color: white;
   padding: 1rem;
   border-radius: 0.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .beep_prompt textarea {
   margin: 1rem 0;
   border: none;
   width: 30rem;
+}
+
+.beep_prompt textarea:focus {
+  outline: none;
 }
 
 .prompt_actions {
