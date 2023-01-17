@@ -3,8 +3,12 @@ import Beep from "../Beep/Beep";
 import avatar from "../../assets/mark-avatar.png";
 import beepImg1 from "../../assets/display-img.png";
 import beepImg2 from "../../assets/beep-img.png";
+import { useStore } from "../../store";
+import { Box, Typography } from "@mui/material";
 
 export const HomeFeed = () => {
+  const feed = useStore((state) => state.feeds);
+
   const homeFeedData = [
     {
       userDp: avatar,
@@ -46,5 +50,18 @@ export const HomeFeed = () => {
       likes: "775",
     },
   ];
-  return homeFeedData.map((data, i) => <Beep data={data} key={i} />);
+  return feed ? (
+    feed.map((data, i) => <Beep data={data} key={i} />)
+  ) : (
+    <Box
+      sx={{
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        padding: "2rem 0",
+      }}
+    >
+      <Typography sx={{ fontSize: "1rem" }}>No Feeds Yet</Typography>
+    </Box>
+  );
 };
