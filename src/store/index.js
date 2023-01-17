@@ -27,6 +27,11 @@ let store = (set) => ({
       userReg: { ...state.userReg.auth, auth },
     })),
   feeds: [],
+  addToFeed: (beep) =>
+    set((state) => ({
+      feeds: [...state.feeds, beep],
+    })),
+
   comments: [],
 });
 

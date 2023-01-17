@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Modal } from "@mui/material";
 import toast from "react-hot-toast";
 import { POST } from "../../utils/request";
+import { useStore } from "../../store";
 
 export const BeepPrompt = ({
   setHomeFeedData,
@@ -16,28 +17,43 @@ export const BeepPrompt = ({
   setAddBeep,
 }) => {
   const [beepText, setBeepText] = useState("");
-  const feedData = homeFeedData;
+  const feed = useStore((state) => state.feeds);
+  const addToFeed = useStore((state) => state.addToFeed);
+
   const handleBeepText = (event) => {
     setBeepText(event.target.value);
     console.log(event.target.value);
   };
 
   const handleSubmitBeep = () => {
-    let body = new FormData();
-    body.append("text", beepText);
-    body.append("file", null);
+    addToFeed({
+      userDp: avatar,
+      userName: "Jason Bourne",
+      userHandle: "@jb",
+      beepAge: "1 hour ago",
+      beepImg: false,
+      beepText: beepText,
+      replies: "10",
+      rebeeps: "2",
+      dislikes: "1",
+      likes: "25",
+    });
+    setAddBeep(false);
+    // let body = new FormData();
+    // body.append("text", beepText);
+    // body.append("file", null);
 
-    POST("beep", body)
-      .then((res) => res.json())
-      // .then((res) => setToken(res))
-      .then(
-        (res) =>
-          (res.text && console.log(res)) ||
-          (res.message && console.log(res.message))
-      )
-      // .then((res) => console.log(res))
+    // POST("beep", body)
+    //   .then((res) => res.json())
+    // .then((res) => setToken(res))
+    // .then(
+    //   (res) =>
+    //     (res.text && console.log(res)) ||
+    //     (res.message && console.log(res.message))
+    // )
+    // .then((res) => console.log(res))
 
-      .catch((err) => console.log("error:", err));
+    // .catch((err) => console.log("error:", err));
     // .finally(() => setloading(false));}
   };
 
@@ -63,7 +79,7 @@ export const BeepPrompt = ({
             <img src={gallery} />
             <img src={lock} />
           </div>
-          <button type="submit" onClick={() => setAddBeep(false)}>
+          <button type="submit" onClick={() => handleSubmitBeep()}>
             <p>Beep</p>
             <img src={sendbeep} />
           </button>
