@@ -8,7 +8,6 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import FormHelperText from "@mui/material/FormHelperText";
 
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { roundedInput } from "./style";
 
 export default function PasswordInput({
   onChange,
@@ -53,7 +52,6 @@ export default function PasswordInput({
           </InputAdornment>
         }
         label="Password"
-        sx={roundedInput}
       />
       {helperText && (
         <FormHelperText error id={id}>
