@@ -1,26 +1,31 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import React, { useState } from "react";
-import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider } from "@mui/material/styles";
-import { createTheme, Paper, useMediaQuery } from "@mui/material";
-import { AnimatePresence } from "framer-motion";
-import { Home, Onboarding } from "./Pages/index";
-
-import getDesignTokens from "./theme/theme";
+import React from "react";
 
 import { CookiesProvider } from "react-cookie";
 import { Toaster } from "react-hot-toast";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Login } from "./Pages/Login/Login";
-import GetStarted from "./Pages/GetStarted/GetStarted";
-import CreateAccount from "./Pages/Signup/Signup";
+
+// MUI Imports
+import {
+  createTheme,
+  useMediaQuery,
+  CssBaseline,
+  ThemeProvider,
+} from "@mui/material";
+import { AnimatePresence } from "framer-motion";
+
+// Pages
+import { Home, Login, SignUp, GetStarted } from "./Pages/index";
+
 import { Verify } from "./Pages/Verify";
 import { Layout } from "./components/Layout/Layout";
 import UserFeed from "./Pages/UserFeed/UserFeed";
 import UserProfile from "./Pages/UserProfile/UserProfile";
-import useToken from "./Hooks/useToken";
+
+// Utility Imports
 import { useStore } from "./store";
+import getDesignTokens from "./utils/muitheme";
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme:dark)");
@@ -42,7 +47,7 @@ function App() {
   );
 
   //  Update the theme only if the mode changes
-  const theme = React.useMemo(
+  const muitheme = React.useMemo(
     () => createTheme(getDesignTokens(mode)),
     [prefersDarkMode]
   );
@@ -61,7 +66,7 @@ function App() {
   if (!token) {
     return (
       <QueryClientProvider client={client}>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={muitheme}>
           <CssBaseline />
           <Toaster />
           <AnimatePresence mode="wait">
@@ -75,36 +80,38 @@ function App() {
   return (
     <CookiesProvider>
       <QueryClientProvider client={client}>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={muitheme}>
           <CssBaseline />
           <Toaster />
           <AnimatePresence mode="wait">
             {!onBoardRoutes.includes(location.pathname) ? (
-              <Layout>
-                <Routes location={location} key={location.pathname}>
-                  <Route exact path="/profile" element={<UserProfile />} />
-                  <Route exact path="/home" element={<UserFeed />} />
-                  {/* <Route
-                    exact
-                    path="/notifications"
-                    element={<Notification />}
-                  /> */}
-                  {/* <Route
-                    exact
-                    path="/follower_requests"
-                    element={<FollowerRequest />}
-                  /> */}
-                </Routes>
-              </Layout>
+              <Routes location={location} key={location.pathname}>
+                <Route
+                  exact
+                  path="/profile"
+                  element={
+                    <Layout>
+                      <UserProfile />
+                    </Layout>
+                  }
+                />
+                <Route
+                  exact
+                  path="/home"
+                  element={
+                    <Layout>
+                      <UserFeed />
+                    </Layout>
+                  }
+                />
+
+                <Route path="*" element={<p>Page not found</p>} />
+              </Routes>
             ) : (
               <Routes location={location} key={location.pathname}>
                 <Route exact path="/" element={<Home />} />
                 <Route exact path="/welcome" element={<GetStarted />} />
-                <Route
-                  exact
-                  path="/create-account"
-                  element={<CreateAccount />}
-                />
+                <Route exact path="/create-account" element={<SignUp />} />
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/verify" element={<Verify />} />
               </Routes>
