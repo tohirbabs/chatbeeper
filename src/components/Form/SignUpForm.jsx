@@ -19,7 +19,6 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { StyledButton } from "../StyledButton";
-import { gender, roundedInput } from "./style";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { FiAtSign } from "react-icons/fi";
 import PasswordInput from "./PasswordInput";
@@ -36,6 +35,7 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
   const updateValues = useStore((state) => state.updateRegValues);
 
   const [loading, setloading] = useState(false);
+  const [nextPage, setNextPage] = useState(false);
 
   const navigate = useNavigate();
   const [fieldValue, setFieldValue] = useState("");
@@ -92,8 +92,8 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
   return (
     <form onSubmit={formik.handleSubmit} method="post">
       <FormikProvider value={formik}>
-        {currentForm === 0 ? (
-          <Stack spacing={1.5} width="90vw" maxWidth="375px">
+        {!nextPage ? (
+          <Stack spacing={2} width="90vw" maxWidth="375px">
             <TextField
               onBlur={formik.handleBlur}
               label={"First Name"}
@@ -106,7 +106,6 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
               }
               helperText={formik.touched.firstname && formik.errors.firstname}
               onChange={formik.handleChange}
-              sx={roundedInput}
             />
             <TextField
               onBlur={formik.handleBlur}
@@ -118,7 +117,6 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
               helperText={formik.touched.lastname && formik.errors.lastname}
               value={formik.values.lastname}
               onChange={formik.handleChange}
-              sx={roundedInput}
             />
             {/* <InputLabel htmlFor="username">Username</InputLabel> */}
             <FormControl fullWidth variant="contained">
@@ -136,7 +134,6 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
                   </InputAdornment>
                 }
                 placeholder="Username"
-                sx={roundedInput}
               />
               {formik.touched.username && formik.errors.username && (
                 <FormHelperText error id="username">
@@ -154,7 +151,6 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
               onChange={formik.handleChange}
               error={formik.touched.email && formik.errors.email && true}
               helperText={formik.touched.email && formik.errors.email}
-              sx={roundedInput}
             />
 
             <MuiTelInput
@@ -168,11 +164,10 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
               onBlur={formik.handleBlur}
               error={formik.touched.phone && formik.errors.phone && true}
               helperText={formik.touched.phone && formik.errors.phone}
-              sx={roundedInput}
             />
             <StyledButton
               variant="contained"
-              onClick={() => setCurrentForm(1)}
+              onClick={() => setNextPage(true)}
               disabled={page1Error ? true : false}
             >
               Continue <AiOutlineArrowRight />
@@ -190,7 +185,7 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
             />
 
             <Box>
-              <Box sx={gender.container}>
+              <Stack direction="row" gap={1} width="100%">
                 <GenderSelect
                   icon={ManIcon}
                   value="male"
@@ -207,7 +202,7 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
                   id="female"
                   label="Female"
                 />
-              </Box>
+              </Stack>
               {formik.errors.gender && (
                 <FormHelperText error id="gender">
                   {" "}
