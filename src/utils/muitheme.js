@@ -9,7 +9,10 @@ const getDesignTokens = (mode) => ({
     link: {
       textDecoration: "none",
       color: "#386FA4",
-      fontSize: "1.1rem",
+      fontSize: "0.9rem",
+    },
+    body: {
+      fontSize: "0.9rem",
     },
   },
 
@@ -21,13 +24,15 @@ const getDesignTokens = (mode) => ({
             "-webkit-box-shadow": "0 0 0 100px #0A151E  inset",
             "-webkit-text-fill-color": "#fff",
           },
+          fontSize: "0.9rem",
         },
         root: {
           "& fieldset": {
-            borderRadius: "1rem",
+            borderRadius: "0.9rem",
             borderColor: "#505558",
           },
           fontFamily: "Montserrat",
+          fontSize: "0.9rem",
         },
       },
     },

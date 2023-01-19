@@ -26,7 +26,7 @@ export default function CreateAccount() {
         {/* <MultiStep currentForm={currentForm} setCurrentForm={setCurrentForm} /> */}
 
         <SignUpForm />
-        <Typography variant="body1" my={2}>
+        <Typography variant="body" my={2}>
           Already have a beeper account?{" "}
           <Link to="/login">
             <Typography variant="link">Log in</Typography>

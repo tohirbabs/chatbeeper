@@ -7,5 +7,5 @@ export const StyledButton = styled(Button)({
   padding: "1rem",
   fontSize: "16px",
   fontWeight: "500",
-  borderRadius: "1rem",
+  borderRadius: "0.9rem",
 });

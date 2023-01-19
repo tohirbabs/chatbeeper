@@ -5,7 +5,7 @@ import lock from "../../assets/lock-slash.png";
 import "./style.css";
 
 import { useState } from "react";
-import { Modal } from "@mui/material";
+import { Fab, Modal } from "@mui/material";
 import toast from "react-hot-toast";
 import { POST } from "../../utils/request";
 import { useStore } from "../../store";
@@ -74,10 +74,37 @@ export const BeepPrompt = ({
           placeholder="What's going on?"
           onChange={handleBeepText}
         ></textarea>
+
         <div className="prompt_actions">
           <div className="prompt_extras">
-            <img src={gallery} />
-            <img src={lock} />
+            <input
+              accept="image/*"
+              style={{ display: "none" }}
+              id="add-image-button"
+              multiple
+              type="file"
+              // onChange={handleUploadClick}
+            />
+            <label htmlFor="add-image-button">
+              <Fab component="span" sx={{ width: "36px", height: "36px" }}>
+                {/* <AddPhotoAlternateRounded /> */}
+                <img src={gallery} />
+              </Fab>
+            </label>
+            <input
+              accept="image/*"
+              style={{ display: "none" }}
+              id="lock-draft"
+              multiple
+              type="file"
+              // onChange={handleUploadClick}
+            />
+            <label htmlFor="lock-draft">
+              <Fab component="span" sx={{ width: "36px", height: "36px" }}>
+                {/* <AddPhotoAlternateRounded /> */}
+                <img src={lock} />
+              </Fab>
+            </label>
           </div>
           <button type="submit" onClick={() => handleSubmitBeep()}>
             <p>Beep</p>

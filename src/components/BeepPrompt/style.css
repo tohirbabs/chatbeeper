@@ -1,5 +1,5 @@
 .beep_prompt {
-  background-color: white;
+  background-color: #0a151e;
   padding: 1rem;
   border-radius: 0.5rem;
   position: absolute;
@@ -12,6 +12,8 @@
   margin: 1rem 0;
   border: none;
   width: 30rem;
+  background-color: #0a151e;
+  color: #fff;
 }
 
 .beep_prompt textarea:focus {
@@ -27,7 +29,7 @@
 .prompt_extras {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .prompt_extras img {
