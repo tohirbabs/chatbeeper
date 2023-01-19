@@ -8,10 +8,10 @@ import Box from "@mui/material/Box";
 import { motion } from "framer-motion";
 import { AiOutlineArrowRight } from "react-icons/ai";
 
-import { pageAnimation } from "../../animations";
 import { container, h1, button } from "./style";
 
 import welcome from "../../assets/welcomer.png";
+import { pageAnimation } from "../../utils/animations";
 
 export default function Onboarding() {
   const location = useNavigate();
@@ -23,22 +23,18 @@ export default function Onboarding() {
       // exit="exit"
       transition={pageAnimation.transition}
     >
-      <Container sx={container}>
-        <Box>
-          <img src={welcome} alt="chatbeeper logo" />
-          <Typography variant="h1" sx={h1}>
-            Share. Interact. Mingle.
-          </Typography>
-          <Button
-            sx={button}
-            color={"primary"}
-            variant="contained"
-            onClick={() => location("/create-account")}
-          >
-            Get Started <AiOutlineArrowRight />
-          </Button>
-        </Box>
-      </Container>
+      <Stack width="100vw" mt={5} alignItems="center">
+        <img src={welcome} alt="chatbeeper logo" />
+        <Typography variant="h1">Share. Interact. Mingle.</Typography>
+        <Button
+          sx={button}
+          // color={"primary"}
+          variant="contained"
+          onClick={() => location("/create-account")}
+        >
+          Get Started <AiOutlineArrowRight />
+        </Button>
+      </Stack>
     </motion.div>
   );
 }
