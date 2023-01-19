@@ -1,11 +1,11 @@
 import { Button, styled } from "@mui/material";
 
 export const StyledButton = styled(Button)({
-  fontFamily: "Syne",
+  fontFamily: "Nunito",
   width: "100%",
   textTransform: "capitalize",
   padding: "1rem",
   fontSize: "16px",
-  fontWeight: "600",
-  borderRadius: "1.5rem",
+  fontWeight: "500",
+  borderRadius: "1rem",
 });
