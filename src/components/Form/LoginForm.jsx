@@ -7,7 +7,7 @@ import "yup-phone";
 import PasswordInput from "./PasswordInput";
 
 import { CircularProgress, Stack, TextField } from "@mui/material";
-import { roundedInput, button } from "./style";
+
 import { StyledButton } from "../StyledButton";
 import { POST } from "../../utils/request";
 import { useStore } from "../../store";
@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-export default function LoginForm({ setToken }) {
+export default function LoginForm() {
   const initialValues = useStore((state) => state.userReg.data);
   const userInfo = useStore((state) => state.userReg.auth);
 
@@ -73,7 +73,6 @@ export default function LoginForm({ setToken }) {
           onChange={formik.handleChange}
           error={formik.touched.email && formik.errors.email && true}
           helperText={formik.touched.email && formik.errors.email}
-          sx={roundedInput}
         />
 
         <PasswordInput
@@ -94,7 +93,7 @@ export default function LoginForm({ setToken }) {
               : false
           }
         >
-          {loading ? <CircularProgress color="secondary" /> : "Login"}
+          {loading ? <CircularProgress size={30} color="secondary" /> : "Login"}
         </StyledButton>
       </Stack>
     </form>
