@@ -1,8 +1,29 @@
 import { Field } from "formik";
 
-import { gender } from "./style";
-
 export default function GenderSelect({ value, id, icon, label, formikValue }) {
+  const gender = {
+    content: {
+      width: "100%",
+      maxWidht: "178px",
+      height: "48px",
+      textTransform: "capitalize",
+      fontWeight: "500",
+      fontSize: "14px",
+      position: "relative",
+      overflow: "hidden",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "2px",
+      borderRadius: "1.5rem",
+      border: "1px solid  grey",
+    },
+    field: {
+      position: "absolute",
+      left: "0",
+      top: "-2rem",
+    },
+  };
   return (
     <label
       htmlFor={id}
