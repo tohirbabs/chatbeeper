@@ -19,6 +19,7 @@ import {
   SmsIcon,
   TourIcon,
 } from "../icons";
+import { Divider } from "@mui/material";
 
 function refreshMessages() {
   const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
@@ -55,6 +56,7 @@ export default function Footer() {
       sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
       elevation={3}
     >
+      <Divider />
       <BottomNavigation
         showLabels
         value={value}
