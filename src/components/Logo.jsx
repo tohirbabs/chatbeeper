@@ -1,13 +1,13 @@
 import { Box } from "@mui/material";
 import { Logo } from "../assets/logo";
-export default function ChatBeeperLogo() {
+export default function ChatBeeperLogo({ size = 60 }) {
   return (
     <Box
       component="img"
       alt="chatbeeper logo"
       src={Logo}
-      width={60}
-      height={60}
+      width={size}
+      height={size}
     />
   );
 }
