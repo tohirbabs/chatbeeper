@@ -1,18 +1,18 @@
 import React from "react";
-import "./style.css";
+// import "./style.css";
 
 import avatar from "../../assets/mark-avatar.png";
 import chatbeeper from "../../assets/chatbeeper.png";
 import { SmsIcon } from "../../assets/icons/nav/SmsIcon";
 
 import { Logo } from "../../assets/logo";
-import { HomeIcon } from "../../assets/icons/nav/HomeIcon";
 import { TourIcon } from "../../assets/icons/nav/TourIcon";
-import { BeepIcon } from "../../assets/icons/nav/BeepIcon";
 import { NotificationIcon } from "../../assets/icons/nav/NotificationIcon";
 
 import { NavLink, useNavigate } from "react-router-dom";
 import { HiSearch } from "react-icons/hi";
+import { HomeIcon, BeepIcon } from "../icons";
+import { Typography } from "@mui/material";
 
 export const Header = ({ nav, sidebar, setSidebar, setAddBeep }) => {
   const location = useNavigate();
@@ -67,10 +67,11 @@ export const Header = ({ nav, sidebar, setSidebar, setAddBeep }) => {
             <HomeIcon active={nav === "/home" ? true : false} />
             <p>Home</p>
           </NavLink>
-          <a>
+          <NavLink to="/home" activeClassName="active">
             <TourIcon />
-            <p>Tour</p>
-          </a>
+            <Typography variant="body">Tour</Typography>
+          </NavLink>
+
           <a
             onClick={() => {
               setAddBeep(true);
