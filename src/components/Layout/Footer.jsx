@@ -29,7 +29,7 @@ function refreshMessages() {
   );
 }
 
-export default function Footer() {
+export default function Footer({ setAddBeep }) {
   const [value, setValue] = React.useState(0);
   const ref = React.useRef(null);
   const [messages, setMessages] = React.useState(() => refreshMessages());
@@ -66,7 +66,12 @@ export default function Footer() {
       >
         <BottomNavigationAction icon={<HomeIcon />} />
         <BottomNavigationAction icon={<TourIcon />} />
-        <BottomNavigationAction icon={<BeepIcon />} />
+        <BottomNavigationAction
+          onClick={() => {
+            setAddBeep(true);
+          }}
+          icon={<BeepIcon />}
+        />
         <BottomNavigationAction icon={<NotificationIcon />} />
         <BottomNavigationAction icon={<SmsIcon />} />
       </BottomNavigation>

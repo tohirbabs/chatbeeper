@@ -43,7 +43,10 @@ export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
         margin: "auto",
       }}
     >
-      <HeaderBar handleDrawerToggle={handleDrawerToggle} />
+      <HeaderBar
+        handleDrawerToggle={handleDrawerToggle}
+        setAddBeep={setAddBeep}
+      />
       <SideDrawer
         handleDrawerToggle={handleDrawerToggle}
         mobileOpen={mobileOpen}
@@ -65,8 +68,8 @@ export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
         setAddBeep={setAddBeep}
         overlay={overlay}
       /> */}
-      <Footer />
-      {/* <BeepPrompt open={addBeep} setAddBeep={setAddBeep} /> */}
+      <Footer setAddBeep={setAddBeep} />
+      <BeepPrompt open={addBeep} setAddBeep={setAddBeep} />
     </Box>
   );
 };

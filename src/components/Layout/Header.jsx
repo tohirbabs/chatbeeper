@@ -73,7 +73,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function HeaderBar({ handleDrawerToggle }) {
+export default function HeaderBar({ handleDrawerToggle, setAddBeep }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -221,7 +221,14 @@ export default function HeaderBar({ handleDrawerToggle }) {
               </IconButton>
             </Tooltip>
             <Tooltip title="Beep">
-              <IconButton size="large" aria-label="Beep" color="inherit">
+              <IconButton
+                onClick={() => {
+                  setAddBeep(true);
+                }}
+                size="large"
+                aria-label="Beep"
+                color="inherit"
+              >
                 <BeepIcon />
               </IconButton>
             </Tooltip>

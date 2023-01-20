@@ -50,7 +50,8 @@
 
 @media (max-width: 750px) {
   .beep_prompt {
-    background-color: white;
+    background-color: #0a151e;
+
     padding: 1rem;
     border-radius: 0.5rem;
   }
