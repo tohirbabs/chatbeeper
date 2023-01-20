@@ -9,57 +9,64 @@ import { useLocation } from "react-router-dom";
 import { useStore } from "../../store";
 
 import { AddBeep } from "../AddBeep/AddBeep";
+import HeaderBar from "./Header";
+import Footer from "./Footer";
+import SideDrawer from "./Sidebar";
+import { Box, Toolbar } from "@mui/material";
 
 export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
   const [sidebar, setSidebar] = useState("");
   const [overlay, setOverlay] = useState("");
   const [addBeep, setAddBeep] = useState(false);
-  console.log(addBeep);
+
   const userInfo = useStore((state) => state.userReg.auth);
 
   const location = useLocation();
   if (!userInfo) {
     location("/ceate-account");
   }
+  const drawerWidth = 260;
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  console.log(mobileOpen);
 
   return (
-    <div className="layout">
-      {overlay ? (
-        <Overlay>
-          {overlay === "beepPrompt" ? (
-            <BeepPrompt
-              setHomeFeedData={setHomeFeedData}
-              homeFeedData={homeFeedData}
-            />
-          ) : null}
-        </Overlay>
-      ) : null}
+    <Box
+      sx={{
+        display: "flex",
+        position: "relative",
+        width: { lg: "1200px" },
+        margin: "auto",
+      }}
+    >
+      <HeaderBar handleDrawerToggle={handleDrawerToggle} />
+      <SideDrawer
+        handleDrawerToggle={handleDrawerToggle}
+        mobileOpen={mobileOpen}
+      />
 
-      <Header
-        nav={location.pathname}
-        sidebar={sidebar}
-        setSidebar={setSidebar}
-        setAddBeep={setAddBeep}
-        overlay={overlay}
-      />
-      <main
-        className={
-          sidebar === "open"
-            ? "activateSidebar"
-            : sidebar === "close"
-            ? "deactivateSidebar"
-            : ""
-        }
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+        }}
       >
-        <Sidebar />
-        <section>{children}</section>
-      </main>
-      <FooterMenu
+        <Toolbar />
+        {children}
+      </Box>
+      {/* <FooterMenu
         nav={location.pathname}
         setAddBeep={setAddBeep}
         overlay={overlay}
-      />
-      <BeepPrompt open={addBeep} setAddBeep={setAddBeep} />
-    </div>
+      /> */}
+      <Footer />
+      {/* <BeepPrompt open={addBeep} setAddBeep={setAddBeep} /> */}
+    </Box>
   );
 };
