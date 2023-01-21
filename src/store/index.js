@@ -29,7 +29,7 @@ let store = (set) => ({
   feeds: [],
   addToFeed: (beep) =>
     set((state) => ({
-      feeds: [...state.feeds, beep],
+      feeds: [beep, ...state.feeds],
     })),
 
   comments: [],
