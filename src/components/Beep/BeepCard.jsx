@@ -16,6 +16,14 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import bikiniGirl from "../../assets/display_imgs/bikini_girl.png";
+import {
+  DislikeIcon,
+  ExportIcon,
+  LikeIcon,
+  MessageIcon,
+  RebeepIcon,
+} from "../icons";
+import { Badge, Chip } from "@mui/material";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -28,6 +36,15 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    right: -7,
+    top: 13,
+    border: `1px solid ${theme.palette.background.paper}`,
+    padding: "0 6px",
+  },
+}));
+
 export default function BeepCard() {
   const [expanded, setExpanded] = React.useState(false);
 
@@ -36,10 +53,10 @@ export default function BeepCard() {
   };
 
   return (
-    <Card sx={{ maxWidth: "95%", margin: "auto", mt: 1 }}>
+    <Card sx={{ maxWidth: "95%", margin: "auto", mt: 1, borderRadius: "1rem" }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+          <Avatar sx={{ bgcolor: "primary" }} aria-label="recipe">
             R
           </Avatar>
         }
@@ -59,17 +76,38 @@ export default function BeepCard() {
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+          This is a test beep.
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          To see if the component works as expected.
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          #BEEPTEST
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+      <CardActions disableSpacing sx={{ gap: "2rem" }}>
+        <IconButton size="small" aria-label="reply beep" mr="1rem">
+          <StyledBadge badgeContent={2} color="primary">
+            <MessageIcon />
+          </StyledBadge>
         </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
+        <IconButton aria-label="rebeep">
+          <StyledBadge badgeContent={44} color="primary">
+            <RebeepIcon />
+          </StyledBadge>
+        </IconButton>
+        <IconButton aria-label="like beep">
+          <StyledBadge badgeContent={44} color="primary">
+            <LikeIcon />
+          </StyledBadge>
+        </IconButton>
+        <IconButton aria-label="dislike beep">
+          <StyledBadge badgeContent={2} color="error">
+            <DislikeIcon />
+          </StyledBadge>
+        </IconButton>
+        <IconButton aria-label="share beep">
+          <ExportIcon />
         </IconButton>
         <ExpandMore
           expand={expanded}
