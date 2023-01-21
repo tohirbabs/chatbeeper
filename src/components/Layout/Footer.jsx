@@ -53,7 +53,13 @@ export default function Footer({ setAddBeep }) {
     //     ))}
     //   </List> */}
     <Paper
-      sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+      sx={{
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        display: { md: "none" },
+      }}
       elevation={3}
     >
       <Divider />
@@ -63,6 +69,7 @@ export default function Footer({ setAddBeep }) {
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
+        sx={{ pb: 2, height: "66px" }}
       >
         <BottomNavigationAction icon={<HomeIcon />} />
         <BottomNavigationAction icon={<TourIcon />} />
