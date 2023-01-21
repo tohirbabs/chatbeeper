@@ -18,7 +18,7 @@ import toast from "react-hot-toast";
 
 export default function LoginForm() {
   const initialValues = useStore((state) => state.userReg.data);
-  const userInfo = useStore((state) => state.userReg.auth);
+  const userInfo = useStore((state) => state.auth);
 
   const authenticate = useStore((state) => state.authenticateUser);
 
@@ -56,9 +56,18 @@ export default function LoginForm() {
         // .then((res) => console.log(res))
 
         .catch((err) => console.log("error:", err))
-        .finally(() => setloading(false));
+        .finally(() => {
+          setloading(false);
+          navigateHome();
+        });
     },
   });
+
+  function navigateHome(params) {
+    if (userInfo) {
+      navigate("/home");
+    }
+  }
 
   return (
     <form onSubmit={formik.handleSubmit} method="post">
