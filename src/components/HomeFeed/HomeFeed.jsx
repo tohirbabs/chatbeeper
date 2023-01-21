@@ -5,6 +5,7 @@ import beepImg1 from "../../assets/display-img.png";
 import beepImg2 from "../../assets/beep-img.png";
 import { useStore } from "../../store";
 import { Box, Typography } from "@mui/material";
+import BeepCard from "../Beep/BeepCard";
 
 export const HomeFeed = () => {
   const feed = useStore((state) => state.feeds);
@@ -51,7 +52,12 @@ export const HomeFeed = () => {
     },
   ];
   return feed ? (
-    feed.map((data, i) => <Beep data={data} key={i} />)
+    <>
+      <BeepCard />
+      {feed.map((data, i) => (
+        <Beep data={data} key={i} />
+      ))}
+    </>
   ) : (
     <Box
       sx={{
