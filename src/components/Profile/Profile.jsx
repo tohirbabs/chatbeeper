@@ -17,9 +17,10 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { ProfileFeed } from "../ProfileFeed/ProfileFeed";
 import { useStore } from "../../store";
+import { HomeFeed } from "../HomeFeed/HomeFeed";
 
 export const Profile = () => {
-  const userInfo = useStore((state) => state.userReg.data);
+  const userInfo = useStore((state) => state.userData);
   const location = useNavigate();
 
   // if (!cookies.userData.firstname) {
@@ -31,7 +32,11 @@ export const Profile = () => {
       <div className="profile__wrapper">
         <div className="profile__display-imgs">
           <img src={banner} className="profile__banner" alt="chatbeeper logo" />
-          <img src={avatar} alt="user dp" className="profile__dp" />
+          <img
+            src={`https://api.dicebear.com/5.x/adventurer/svg?seed=${userInfo?.username}`}
+            alt="user dp"
+            className="profile__dp"
+          />
         </div>
 
         <div className="profile__info">
@@ -82,7 +87,7 @@ export const Profile = () => {
         </div>
         <div className="profile__feed"></div>
       </div>
-      <ProfileFeed />
+      <HomeFeed />
     </div>
   );
 };
