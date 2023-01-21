@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function DislikeIcon({ active }) {
-  console.log(active);
   return (
     <svg
       width="18"
