@@ -45,7 +45,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-export default function BeepCard() {
+export default function BeepCard({ data }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -65,34 +65,31 @@ export default function BeepCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="lanre kola @kol_lan"
-        subheader="1 hour ago"
+        title={data.userName}
+        subheader={data.beepAge}
       />
-      <CardMedia
-        component="img"
-        // height=""
-        image={bikiniGirl}
-        alt="Paella dish"
-      />
+      {data.beepImg ? (
+        <CardMedia
+          component="img"
+          // height=""
+          image={data.beepImg}
+          alt="Paella dish"
+        />
+      ) : null}
+
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          This is a test beep.
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          To see if the component works as expected.
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          #BEEPTEST
+          {data.beepText}
         </Typography>
       </CardContent>
       <CardActions disableSpacing sx={{ gap: "2rem" }}>
         <IconButton size="small" aria-label="reply beep" mr="1rem">
-          <StyledBadge badgeContent={2} color="primary">
+          <StyledBadge badgeContent={data.replies} color="primary">
             <MessageIcon />
           </StyledBadge>
         </IconButton>
         <IconButton aria-label="rebeep">
-          <StyledBadge badgeContent={44} color="primary">
+          <StyledBadge badgeContent={data.rebeeps} color="primary">
             <RebeepIcon />
           </StyledBadge>
         </IconButton>
