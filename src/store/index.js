@@ -15,16 +15,26 @@ let store = (set) => ({
       gender: "",
       password: "",
     },
-    auth: null,
   },
+  userData: {},
+  auth: null,
+  userAvatar: "",
 
   updateRegValues: (data) =>
     set((state) => ({
       userReg: { ...state.userReg.data, data },
     })),
+  updateUserData: (data) =>
+    set((state) => ({
+      userData: data,
+    })),
   authenticateUser: (auth) =>
     set((state) => ({
-      userReg: { ...state.userReg.auth, auth },
+      auth: { ...state.auth, auth },
+    })),
+  updateAvatar: (avatar) =>
+    set((state) => ({
+      userAvatar: avatar,
     })),
   feeds: [],
   addToFeed: (beep) =>
