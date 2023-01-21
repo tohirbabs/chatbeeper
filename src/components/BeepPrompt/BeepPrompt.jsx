@@ -5,7 +5,7 @@ import lock from "../../assets/lock-slash.png";
 import "./style.css";
 
 import { useState } from "react";
-import { Fab, Modal } from "@mui/material";
+import { Avatar, Fab, Modal } from "@mui/material";
 import toast from "react-hot-toast";
 import { POST } from "../../utils/request";
 import { useStore } from "../../store";
@@ -16,6 +16,8 @@ export const BeepPrompt = ({
   open,
   setAddBeep,
 }) => {
+  const userInfo = useStore((state) => state.userData);
+
   const [beepText, setBeepText] = useState("");
   const feed = useStore((state) => state.feeds);
   const addToFeed = useStore((state) => state.addToFeed);
@@ -27,16 +29,16 @@ export const BeepPrompt = ({
 
   const handleSubmitBeep = () => {
     addToFeed({
-      userDp: avatar,
-      userName: "Jason Bourne",
-      userHandle: "@jb",
+      userDp: `https://api.dicebear.com/5.x/adventurer/svg?seed=${userInfo?.username}`,
+      userName: userInfo?.username,
+      userHandle: `@${userInfo?.username}`,
       beepAge: "1 hour ago",
       beepImg: false,
       beepText: beepText,
-      replies: "10",
-      rebeeps: "2",
-      dislikes: "1",
-      likes: "25",
+      replies: 2,
+      rebeeps: 10,
+      dislikes: 0,
+      likes: 5,
     });
     setAddBeep(false);
     // let body = new FormData();
@@ -64,7 +66,11 @@ export const BeepPrompt = ({
         // style={{ backgroundColor: "backgound.default" }}
       >
         <header>
-          <img src={avatar} width={"35px"} />
+          <Avatar
+            aria-label="recipe"
+            src={`https://api.dicebear.com/5.x/adventurer/svg?seed=${userInfo?.username}`}
+            alt="user dp"
+          />
         </header>
         <textarea
           name=""

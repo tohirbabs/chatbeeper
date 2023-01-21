@@ -24,6 +24,7 @@ import {
   RebeepIcon,
 } from "../icons";
 import { Badge, Chip } from "@mui/material";
+import { useStore } from "../../store";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -51,14 +52,17 @@ export default function BeepCard({ data }) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  const userInfo = useStore((state) => state.userData);
 
   return (
     <Card sx={{ maxWidth: "95%", margin: "auto", mt: 1, borderRadius: "1rem" }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: "primary" }} aria-label="recipe">
-            R
-          </Avatar>
+          <Avatar
+            aria-label="recipe"
+            src={`https://api.dicebear.com/5.x/adventurer/svg?seed=${userInfo?.username}`}
+            alt="user dp"
+          />
         }
         action={
           <IconButton aria-label="settings">
