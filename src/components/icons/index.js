@@ -10,3 +10,8 @@ export { default as BookmarkIcon } from "./BookmarkIcon";
 export { default as SmsIcon } from "./SmsIcon";
 export { default as LogoutIcon } from "./LogoutIcon";
 export { default as SponsoredIcon } from "./SponsoredIcon";
+export { default as LikeIcon } from "./LikeIcon";
+export { default as ExportIcon } from "./ExportIcon";
+export { default as DislikeIcon } from "./DislikeIcon";
+export { default as RebeepIcon } from "./RebeepIcon";
+export { default as MessageIcon } from "./MessageIcon";
