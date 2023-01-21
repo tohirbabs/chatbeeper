@@ -53,9 +53,8 @@ export const HomeFeed = () => {
   ];
   return feed ? (
     <>
-      <BeepCard />
       {feed.map((data, i) => (
-        <Beep data={data} key={i} />
+        <BeepCard data={data} key={i} />
       ))}
     </>
   ) : (
