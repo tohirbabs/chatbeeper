@@ -33,7 +33,9 @@ export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
   const userData = useStore((state) => state.userData);
   const userAvatar = useStore((state) => state.userAvatar);
 
-  console.log(userData);
+  const userInfo = useStore((state) => state.auth);
+  const navigate = useNavigate();
+  console.log(userInfo);
 
   useEffect(() => {
     GET("user", userInfo.jwt)
@@ -45,13 +47,12 @@ export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
       )
       .catch((err) => console.log("error:", err))
       .finally(() => setloading(false));
+
+    if (!userInfo) {
+      navigate("/ceate-account");
+    }
   }, []);
 
-  const userInfo = useStore((state) => state.userReg.auth);
-  const location = useLocation();
-  if (!userInfo) {
-    location("/ceate-account");
-  }
   const drawerWidth = 260;
   const [mobileOpen, setMobileOpen] = useState(false);
 

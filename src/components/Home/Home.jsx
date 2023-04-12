@@ -23,7 +23,7 @@ import { useStore } from "../../store";
 
 export const Home = () => {
   const [loading, setloading] = useState(true);
-  const userInfo = useStore((state) => state.userReg.auth);
+  const userInfo = useStore((state) => state.auth);
   const feed = useStore((state) => state.feeds);
 
   const location = useNavigate();

@@ -29,7 +29,7 @@ import getDesignTokens from "./utils/muitheme";
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme:dark)");
-  const token = useStore((state) => state.userReg.auth);
+  const token = useStore((state) => state.auth);
 
   const [mode, setMode] = React.useState("dark");
   // const [mode, setMode] = React.useState(prefersDarkMode ? "dark" : "light");
@@ -62,20 +62,21 @@ function App() {
     "/verify",
     "/create-business-account",
   ];
+  // console.log(token);
 
-  if (!token) {
-    return (
-      <QueryClientProvider client={client}>
-        <ThemeProvider theme={muitheme}>
-          <CssBaseline />
-          <Toaster />
-          <AnimatePresence mode="wait">
-            <Login />
-          </AnimatePresence>
-        </ThemeProvider>
-      </QueryClientProvider>
-    );
-  }
+  // if (!token) {
+  //   return (
+  //     <QueryClientProvider client={client}>
+  //       <ThemeProvider theme={muitheme}>
+  //         <CssBaseline />
+  //         <Toaster />
+  //         <AnimatePresence mode="wait">
+  //           <Login />
+  //         </AnimatePresence>
+  //       </ThemeProvider>
+  //     </QueryClientProvider>
+  //   );
+  // }
 
   return (
     <CookiesProvider>

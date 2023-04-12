@@ -20,7 +20,7 @@ export const BeepIcon = ({ active }) => {
         d="M18.5835 14.5H10.4168"
         stroke="#9E9E9E"
         stroke-width="1.5"
-        stroke-miterlimit="10"
+        strokeMiterlimit="10"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
@@ -28,7 +28,7 @@ export const BeepIcon = ({ active }) => {
         d="M14.5 18.5834V10.4167"
         stroke="#9E9E9E"
         stroke-width="1.5"
-        stroke-miterlimit="10"
+        strokeMiterlimit="10"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
