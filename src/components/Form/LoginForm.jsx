@@ -58,12 +58,14 @@ export default function LoginForm() {
         .catch((err) => console.log("error:", err))
         .finally(() => {
           setloading(false);
+          console.log("nav to home");
           navigateHome();
         });
     },
   });
 
   function navigateHome(params) {
+    console.log("go to home");
     if (userInfo) {
       navigate("/home");
     }
