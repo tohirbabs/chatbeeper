@@ -49,7 +49,7 @@ export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
         .catch((err) => console.log("error:", err))
         .finally(() => setloading(false));
     } else {
-      navigate("/ceate-account");
+      navigate("/create-account");
     }
   }, []);
 
