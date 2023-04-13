@@ -17,7 +17,9 @@ let store = (set) => ({
     },
   },
   userData: {},
-  auth: null,
+  auth: {
+    jwt: "",
+  },
   userAvatar: "",
 
   updateRegValues: (data) =>

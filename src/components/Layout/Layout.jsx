@@ -38,17 +38,17 @@ export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
   console.log(userInfo);
 
   useEffect(() => {
-    GET("user", userInfo.jwt)
-      .then((res) => res.json())
-      .then(
-        (res) =>
-          (res._id && updateUserData(res)) ||
-          (res.message && toast(res.message))
-      )
-      .catch((err) => console.log("error:", err))
-      .finally(() => setloading(false));
-
-    if (!userInfo) {
+    if (userInfo) {
+      GET("user", userInfo.jwt)
+        .then((res) => res.json())
+        .then(
+          (res) =>
+            (res._id && updateUserData(res)) ||
+            (res.message && toast(res.message))
+        )
+        .catch((err) => console.log("error:", err))
+        .finally(() => setloading(false));
+    } else {
       navigate("/ceate-account");
     }
   }, []);
