@@ -2,6 +2,7 @@ import React from "react";
 import { useStore } from "../../store";
 import { Box, Typography } from "@mui/material";
 import BeepCard from "../Beep/BeepCard";
+import Beep from "../Beep/Beep";
 
 export const HomeFeed = () => {
   const feed = useStore((state) => state.feeds);
@@ -9,7 +10,7 @@ export const HomeFeed = () => {
   return feed ? (
     <>
       {feed.map((data, i) => (
-        <BeepCard data={data} key={i} />
+        <Beep data={data} key={i} />
       ))}
     </>
   ) : (

@@ -22,21 +22,21 @@ import { GET } from "../../utils/request";
 import { useStore } from "../../store";
 
 export const Home = () => {
-  const [loading, setloading] = useState(true);
+  const [loading, setloading] = useState(false);
   const userInfo = useStore((state) => state.auth);
   const feed = useStore((state) => state.feeds);
 
   const location = useNavigate();
 
-  useEffect(() => {
-    GET("feed", userInfo.jwt)
-      .then((res) => res.json())
-      .then((res) => console.log(res))
-      // .then((res) => console.log(res))
+  // useEffect(() => {
+  //   GET("feed", userInfo.jwt)
+  //     .then((res) => res.json())
+  //     .then((res) => console.log(res))
+  //     // .then((res) => console.log(res))
 
-      .catch((err) => console.log("error:", err))
-      .finally(() => setloading(false));
-  }, []);
+  //     .catch((err) => console.log("error:", err))
+  //     .finally(() => setloading(false));
+  // }, []);
 
   return (
     <div className="home">
