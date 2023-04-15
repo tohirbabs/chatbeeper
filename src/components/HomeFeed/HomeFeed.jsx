@@ -6,7 +6,7 @@ import Beep from "../Beep/Beep";
 
 export const HomeFeed = () => {
   const feed = useStore((state) => state.feeds);
-
+  console.log(feed);
   return feed ? (
     <>
       {feed.map((data, i) => (

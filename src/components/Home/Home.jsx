@@ -23,8 +23,6 @@ import { useStore } from "../../store";
 
 export const Home = () => {
   const [loading, setloading] = useState(false);
-  const userInfo = useStore((state) => state.auth);
-  const feed = useStore((state) => state.feeds);
 
   const location = useNavigate();
 
@@ -37,6 +35,7 @@ export const Home = () => {
   //     .catch((err) => console.log("error:", err))
   //     .finally(() => setloading(false));
   // }, []);
+  console.log(loading);
 
   return (
     <div className="home">

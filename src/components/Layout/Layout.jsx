@@ -26,7 +26,7 @@ export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
   const [overlay, setOverlay] = useState("");
   const [addBeep, setAddBeep] = useState(false);
 
-  const [loading, setloading] = useState(true);
+  const [loading, setloading] = useState(false);
 
   const updateUserData = useStore((state) => state.updateUserData);
   const updateAvatar = useStore((state) => state.updateAvatar);
@@ -37,21 +37,21 @@ export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
   const navigate = useNavigate();
   console.log(userInfo);
 
-  useEffect(() => {
-    if (userInfo) {
-      GET("user", userInfo.jwt)
-        .then((res) => res.json())
-        .then(
-          (res) =>
-            (res._id && updateUserData(res)) ||
-            (res.message && toast(res.message))
-        )
-        .catch((err) => console.log("error:", err))
-        .finally(() => setloading(false));
-    } else {
-      // navigate("/create-account");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (userInfo) {
+  //     GET("user", userInfo.jwt)
+  //       .then((res) => res.json())
+  //       .then(
+  //         (res) =>
+  //           (res._id && updateUserData(res)) ||
+  //           (res.message && toast(res.message))
+  //       )
+  //       .catch((err) => console.log("error:", err))
+  //       .finally(() => setloading(false));
+  //   } else {
+  //     // navigate("/create-account");
+  //   }
+  // }, []);
 
   const drawerWidth = 260;
   const [mobileOpen, setMobileOpen] = useState(false);

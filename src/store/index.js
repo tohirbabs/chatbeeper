@@ -16,7 +16,16 @@ let store = (set) => ({
       password: "",
     },
   },
-  userData: {},
+  userData: {
+    firstname: "test",
+    lastname: "user",
+    username: "user_name",
+    phone: "0123456789",
+    email: "test@user.com",
+    dob: new Date().now,
+    gender: "male",
+    password: "test",
+  },
   auth: {
     jwt: "",
   },
