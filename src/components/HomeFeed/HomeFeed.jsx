@@ -22,7 +22,9 @@ export const HomeFeed = () => {
         padding: "2rem 0",
       }}
     >
-      <Typography sx={{ fontSize: "1rem" }}>No Feeds Yet</Typography>
+      <Typography sx={{ fontSize: "1rem" }}>
+        No Feeds Yet, Add beeps to your feed
+      </Typography>
     </Box>
   );
 };
