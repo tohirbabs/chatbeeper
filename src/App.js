@@ -24,7 +24,7 @@ import UserFeed from "./Pages/UserFeed/UserFeed";
 import UserProfile from "./Pages/UserProfile/UserProfile";
 
 // Utility Imports
-import { useStore } from "./store";
+import { useStore } from "./utils/store";
 import getDesignTokens from "./utils/muitheme";
 
 function App() {
@@ -62,21 +62,27 @@ function App() {
     "/verify",
     "/create-business-account",
   ];
-  // console.log(token);
+  console.log(token);
 
-  // if (!token) {
-  //   return (
-  //     <QueryClientProvider client={client}>
-  //       <ThemeProvider theme={muitheme}>
-  //         <CssBaseline />
-  //         <Toaster />
-  //         <AnimatePresence mode="wait">
-  //           <Login />
-  //         </AnimatePresence>
-  //       </ThemeProvider>
-  //     </QueryClientProvider>
-  //   );
-  // }
+  if (!token.jwt) {
+    return (
+      <QueryClientProvider client={client}>
+        <ThemeProvider theme={muitheme}>
+          <CssBaseline />
+          <Toaster />
+          <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
+              <Route exact path="/" element={<Login />} />
+              <Route exact path="/welcome" element={<GetStarted />} />
+              <Route exact path="/create-account" element={<SignUp />} />
+              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/verify" element={<Verify />} />
+            </Routes>
+          </AnimatePresence>
+        </ThemeProvider>
+      </QueryClientProvider>
+    );
+  }
 
   return (
     <CookiesProvider>

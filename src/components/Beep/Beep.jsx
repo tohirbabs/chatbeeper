@@ -3,7 +3,6 @@ import Container from "@mui/material/Container";
 import { HiDotsHorizontal, HiDotsVertical } from "react-icons/hi";
 
 import { motion } from "framer-motion";
-import { pageAnimation } from "../../animations";
 
 import checkmark from "../../assets/checkmark.png";
 import reply from "../../assets/reply-icon.png";
@@ -12,6 +11,7 @@ import dislike from "../../assets/dislike-icon.png";
 import like from "../../assets/like-icon.png";
 import share from "../../assets/share-icon.png";
 import { useState } from "react";
+import { pageAnimation } from "../../utilities/animations";
 
 export default function Beep({ data }) {
   const [liked, setliked] = useState(false);

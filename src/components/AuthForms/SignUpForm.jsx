@@ -6,7 +6,6 @@ import "yup-phone";
 
 import { MuiTelInput } from "mui-tel-input";
 
-import { useStore } from "../../store";
 import { useNavigate } from "react-router-dom";
 import {
   FormControl,
@@ -17,22 +16,22 @@ import {
   TextField,
   Box,
   CircularProgress,
+  InputLabel,
 } from "@mui/material";
 import { StyledButton } from "../StyledButton";
-import { AiOutlineArrowRight } from "react-icons/ai";
 import { FiAtSign } from "react-icons/fi";
 import PasswordInput from "./PasswordInput";
 import GenderSelect from "./GenderSelect";
 
 import { ManIcon, WomanIcon } from "../../assets/icons";
 import DateInput from "./DateInput";
-import { POST } from "../../utils/request";
+import { POST } from "../../utilities/request";
 
 import toast from "react-hot-toast";
+import { useBeeperStore } from "../../utilities/store";
 
 export default function SignUpForm({ setCurrentForm, currentForm }) {
-  const initialValues = useStore((state) => state.userReg.data);
-  const updateValues = useStore((state) => state.updateRegValues);
+  const updateUserData = useBeeperStore((state) => state.updateUserData);
 
   const [loading, setloading] = useState(false);
   const [nextPage, setNextPage] = useState(false);
@@ -72,10 +71,13 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
     onSubmit: (values) => {
       setloading(true);
 
-      updateValues({ ...values });
       POST("user", JSON.stringify(values))
         .then((res) => res.json())
-        .then((res) => (res.message ? toast(res.message) : navigate("/verify")))
+        .then(
+          (res) =>
+            res.message ? toast(res.message) : () => updateUserData(res),
+          navigate("verifymail")
+        )
         .catch((err) => console.log("error:", err))
         .finally(() => setloading(false));
       // registerUser.mutate();
@@ -118,7 +120,6 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
               value={formik.values.lastname}
               onChange={formik.handleChange}
             />
-            {/* <InputLabel htmlFor="username">Username</InputLabel> */}
             <FormControl fullWidth variant="contained">
               <OutlinedInput
                 id="username"
@@ -170,7 +171,7 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
               onClick={() => setNextPage(true)}
               disabled={page1Error ? true : false}
             >
-              Continue <AiOutlineArrowRight />
+              Continue
             </StyledButton>
           </Stack>
         ) : (

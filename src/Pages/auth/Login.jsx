@@ -2,9 +2,9 @@ import { Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 
 import { Link } from "react-router-dom";
-import { LoginForm } from "../../components/Form";
+import { LoginForm } from "../../components/AuthForms";
 import ChatBeeperLogo from "../../components/Logo";
-import { pageAnimation } from "../../utils/animations";
+import { pageAnimation } from "../../utilities/animations";
 
 export default function Login() {
   return (
@@ -17,7 +17,6 @@ export default function Login() {
     >
       <Stack width="100vw" mt={5} alignItems="center">
         <ChatBeeperLogo />
-
         <Typography variant="h1" my={2}>
           Login to your account
         </Typography>
@@ -26,7 +25,7 @@ export default function Login() {
 
         <Typography variant="body1" my={2}>
           Don't have a beeper account?{" "}
-          <Link to="/welcome">
+          <Link to="/auth/signup">
             <Typography variant="link">Sign up</Typography>
           </Link>
         </Typography>

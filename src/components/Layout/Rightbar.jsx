@@ -1,4 +1,3 @@
-import "./style.css";
 import docicon from "../../assets/docicon.png";
 import moonrider from "../../assets/moonrider.png";
 import wakanda from "../../assets/wakanda-img.png";

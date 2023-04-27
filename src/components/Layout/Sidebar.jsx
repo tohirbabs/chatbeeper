@@ -19,6 +19,7 @@ import Typography from "@mui/material/Typography";
 import ChatBeeperLogo from "../Logo";
 import { SwipeableDrawer } from "@mui/material";
 import {
+  BeepIcon,
   BookmarkIcon,
   BriefcaseIcon,
   FollowersIcon,
@@ -35,6 +36,13 @@ function ResponsiveDrawer(props) {
   const { window } = props;
 
   const navItems = [
+    {
+      text: "Create Beep",
+      icon: <BeepIcon />,
+      action: () => {
+        props.setAddBeep(true);
+      },
+    },
     { text: "Messages", icon: <SmsIcon /> },
     { text: "Trending", icon: <TrendIcon /> },
     { text: "Follower Requests", icon: <FollowersIcon /> },
@@ -56,7 +64,7 @@ function ResponsiveDrawer(props) {
       <List>
         {navItems.map((navItem, index) => (
           <ListItem key={index} disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={navItem.action}>
               <ListItemIcon sx={{ minWidth: "40px" }}>
                 {navItem.icon}
               </ListItemIcon>

@@ -3,16 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import Container from "@mui/material/Container";
-import { pageAnimation } from "../../animations";
-import { Logo } from "../../assets/logo";
 
 import { container } from "./style";
 import { Box } from "@mui/material";
+import { pageAnimation } from "../../utilities/animations";
+import { Logo } from "../../assets/logo";
 export default function Index() {
   const history = useNavigate();
 
   useEffect(() => {
-    setTimeout(() => history("/home"), 3000);
+    setTimeout(() => history("/"), 3000);
   }, []);
 
   return (

@@ -1,15 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import { ReactQueryDevtools } from "react-query/devtools";
+import AppT from "./AppT";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
-      {/* <ReactQueryDevtools initialIsOpen /> */}
+      <AppT />
     </BrowserRouter>
   </React.StrictMode>
 );

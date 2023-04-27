@@ -7,8 +7,8 @@ import "./style.css";
 import { useState } from "react";
 import { Avatar, Fab, Modal } from "@mui/material";
 import toast from "react-hot-toast";
-import { POST } from "../../utils/request";
-import { useStore } from "../../store";
+import { useBeeperStore } from "../../utilities/store";
+// import { POST } from "../../utils/request";
 
 export const BeepPrompt = ({
   setHomeFeedData,
@@ -16,11 +16,11 @@ export const BeepPrompt = ({
   open,
   setAddBeep,
 }) => {
-  const userInfo = useStore((state) => state.userData);
+  const userInfo = useBeeperStore((state) => state.userData);
 
   const [beepText, setBeepText] = useState("");
-  const feed = useStore((state) => state.feeds);
-  const addToFeed = useStore((state) => state.addToFeed);
+  const feed = useBeeperStore((state) => state.feeds);
+  const addToFeed = useBeeperStore((state) => state.addToFeed);
 
   const handleBeepText = (event) => {
     setBeepText(event.target.value);

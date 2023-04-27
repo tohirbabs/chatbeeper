@@ -9,18 +9,18 @@ import PasswordInput from "./PasswordInput";
 import { CircularProgress, Stack, TextField } from "@mui/material";
 
 import { StyledButton } from "../StyledButton";
-import { POST } from "../../utils/request";
-import { useStore } from "../../store";
+import { POST } from "../../utilities/request";
 
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useBeeperStore } from "../../utilities/store";
 
 export default function LoginForm() {
-  const initialValues = useStore((state) => state.userReg.data);
-  const userInfo = useStore((state) => state.auth);
+  const initialValues = useBeeperStore((state) => state.userData);
+  const userInfo = useBeeperStore((state) => state.auth);
 
-  const authenticate = useStore((state) => state.authenticateUser);
+  const authenticate = useBeeperStore((state) => state.authenticateUser);
 
   const navigate = useNavigate();
 
@@ -50,7 +50,7 @@ export default function LoginForm() {
         // .then((res) => setToken(res))
         .then(
           (res) =>
-            (res.jwt && authenticate(res)) ||
+            (res.data && authenticate(res.data)) ||
             (res.message && toast(res.message))
         )
         // .then((res) => console.log(res))
@@ -59,11 +59,10 @@ export default function LoginForm() {
         .finally(() => {
           setloading(false);
           console.log("nav to home");
-          navigateHome();
+          // navigateHome();
         });
     },
   });
-
   function navigateHome(params) {
     console.log("go to home");
     if (userInfo) {

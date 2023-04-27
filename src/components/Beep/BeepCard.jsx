@@ -24,7 +24,7 @@ import {
   RebeepIcon,
 } from "../icons";
 import { Badge, Chip } from "@mui/material";
-import { useStore } from "../../store";
+import { useBeeperStore } from "../../utilities/store";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -52,7 +52,7 @@ export default function BeepCard({ data }) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  const userInfo = useStore((state) => state.userData);
+  const userInfo = useBeeperStore((state) => state.userData);
 
   return (
     <Card sx={{ maxWidth: "95%", margin: "auto", mt: 1, borderRadius: "1rem" }}>

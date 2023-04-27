@@ -5,26 +5,25 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import Logo from "../assets/verify.png";
+import Logo from "../../assets/verify.png";
 import { motion } from "framer-motion";
 
-import { container, footing, heading, mainBox } from "./style";
-import { pageAnimation } from "../animations";
+import { container, footing, heading, mainBox } from "../style";
 import VerificationInput from "react-verification-input";
-import { StyledButton } from "../components/StyledButton";
+import { StyledButton } from "../../components/StyledButton";
 import { useState } from "react";
-import { PATCH, POST } from "../utils/request";
+import { PATCH, POST } from "../../utilities/request";
 import toast from "react-hot-toast";
-import { useStore } from "../store";
 import { useNavigate } from "react-router-dom";
+import { pageAnimation } from "../../utilities/animations";
+import { useBeeperStore } from "../../utilities/store";
 
 export const Verify = () => {
   const [code, setcode] = useState("");
   const [loading, setloading] = useState(false);
-  const user = useStore((state) => state.userReg.data);
+  const user = useBeeperStore((state) => state.userData);
   const navigate = useNavigate();
 
-  console.log(code);
   return (
     <motion.div
       variants={pageAnimation}
@@ -37,9 +36,7 @@ export const Verify = () => {
       <Stack sx={mainBox}>
         <Box component="img" alt="chatbeeper logo" src={Logo} />
 
-        <Typography variant="h1" sx={heading}>
-          Verification
-        </Typography>
+        <Typography variant="h1">Verification</Typography>
         <Typography variant="p">
           Please enter the 6 digit verification code sent to {user.email}
         </Typography>
@@ -59,14 +56,11 @@ export const Verify = () => {
               username: user.username,
               email: user.email,
               token: code,
-              // username: "dev_panda",
-              // email: "tohirbabs@gmail.com",
-              // token: code,
             };
             PATCH("auth/verify-token/email", JSON.stringify(body))
               .then((res) => res.json())
               .then((res) =>
-                res.message ? toast(res.message) : navigate("/login")
+                res.message ? toast(res.message) : navigate("/auth/login")
               )
               .catch((err) => console.log("error:", err))
               .finally(() => setloading(false));

@@ -2,6 +2,10 @@
   width: max-content;
   margin: auto;
 }
+
+.home {
+  position: relative;
+}
 @media (max-width: 750px) {
   .home {
     width: 100vw;

@@ -4,7 +4,7 @@ const getDesignTokens = (mode) => ({
     h1: {
       fontFamily: "Nunito",
       fontWeight: 500,
-      fontSize: "25px",
+      fontSize: "1.5rem",
     },
     link: {
       textDecoration: "none",
@@ -28,7 +28,7 @@ const getDesignTokens = (mode) => ({
         },
         root: {
           "& fieldset": {
-            borderRadius: "0.9rem",
+            borderRadius: "0.5rem",
             borderColor: "#505558",
           },
           fontFamily: "Montserrat",

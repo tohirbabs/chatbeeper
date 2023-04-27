@@ -16,7 +16,7 @@ import { FooterMenu } from "../../components/FooterMenu/FooterMenu";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { ProfileFeed } from "../ProfileFeed/ProfileFeed";
-import { useStore } from "../../store";
+import { useStore } from "../../utilities/store";
 import { HomeFeed } from "../HomeFeed/HomeFeed";
 
 export const Profile = () => {

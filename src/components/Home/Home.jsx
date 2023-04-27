@@ -19,7 +19,7 @@ import { ProfileFeed } from "../ProfileFeed/ProfileFeed";
 import { HomeFeed } from "../HomeFeed/HomeFeed";
 import { useEffect, useState } from "react";
 import { GET } from "../../utils/request";
-import { useStore } from "../../store";
+import { useStore } from "../../utils/store";
 
 export const Home = () => {
   const [loading, setloading] = useState(false);

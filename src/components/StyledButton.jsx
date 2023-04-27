@@ -4,8 +4,8 @@ export const StyledButton = styled(Button)({
   fontFamily: "Nunito",
   width: "100%",
   textTransform: "capitalize",
-  padding: "1rem",
-  fontSize: "16px",
+  padding: "0.8rem",
+  fontSize: "1rem",
   fontWeight: "500",
-  borderRadius: "0.9rem",
+  borderRadius: "0.5rem",
 });

@@ -4,14 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import Container from "@mui/material/Container";
-import { pageAnimation } from "../../animations";
 import { Logo } from "../../assets/logo";
 import "./style.css";
 import { FooterMenu } from "../FooterMenu/FooterMenu";
 import { Overlay } from "../Overlay/Overlay";
 import { BeepPrompt } from "../BeepPrompt/BeepPrompt";
 import { useLocation } from "react-router-dom";
-import { useStore } from "../../store";
 
 import { AddBeep } from "../AddBeep/AddBeep";
 import HeaderBar from "./Header";
@@ -19,21 +17,21 @@ import Footer from "./Footer";
 import SideDrawer from "./Sidebar";
 import { Box, Toolbar } from "@mui/material";
 import toast from "react-hot-toast";
-import { GET } from "../../utils/request";
+import { useBeeperStore } from "../../utilities/store";
+import { pageAnimation } from "../../utilities/animations";
+import { Rightbar } from "./Rightbar";
 
 export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
-  const [sidebar, setSidebar] = useState("");
-  const [overlay, setOverlay] = useState("");
   const [addBeep, setAddBeep] = useState(false);
 
   const [loading, setloading] = useState(false);
 
-  const updateUserData = useStore((state) => state.updateUserData);
-  const updateAvatar = useStore((state) => state.updateAvatar);
-  const userData = useStore((state) => state.userData);
-  const userAvatar = useStore((state) => state.userAvatar);
+  const updateUserData = useBeeperStore((state) => state.updateUserData);
+  const updateAvatar = useBeeperStore((state) => state.updateAvatar);
+  const userData = useBeeperStore((state) => state.userData);
+  const userAvatar = useBeeperStore((state) => state.userAvatar);
 
-  const userInfo = useStore((state) => state.auth);
+  const userInfo = useBeeperStore((state) => state.auth);
   const navigate = useNavigate();
   console.log(userInfo);
 
@@ -59,8 +57,6 @@ export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
-  console.log(mobileOpen);
 
   return (
     <>
@@ -93,7 +89,7 @@ export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
           sx={{
             display: "flex",
             position: "relative",
-            width: { lg: "1200px" },
+            width: { lg: "1180px" },
             margin: "auto",
           }}
         >
@@ -103,6 +99,7 @@ export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
           />
           <SideDrawer
             handleDrawerToggle={handleDrawerToggle}
+            setAddBeep={setAddBeep}
             mobileOpen={mobileOpen}
           />
 
@@ -110,12 +107,19 @@ export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
             component="main"
             sx={{
               flexGrow: 1,
-
               width: { sm: `calc(100% - ${drawerWidth}px)` },
             }}
           >
             <Toolbar />
-            {children}
+            <Box
+              sx={{
+                display: { xs: "block", sm: "grid" },
+                gridTemplateColumns: "8fr 5fr",
+              }}
+            >
+              {children}
+              <Rightbar />
+            </Box>
           </Box>
           {/* <FooterMenu
         nav={location.pathname}

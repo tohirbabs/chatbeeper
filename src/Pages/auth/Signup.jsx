@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { SignUpForm } from "../../components/Form";
+import { SignUpForm } from "../../components/AuthForms";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import { Stack, Typography } from "@mui/material";
 import ChatBeeperLogo from "../../components/Logo";
-import { pageAnimation } from "../../utils/animations";
+import { pageAnimation } from "../../utilities/animations";
 
 export default function CreateAccount() {
   return (
@@ -28,7 +28,7 @@ export default function CreateAccount() {
         <SignUpForm />
         <Typography variant="body" my={2}>
           Already have a beeper account?{" "}
-          <Link to="/login">
+          <Link to="/auth/login">
             <Typography variant="link">Log in</Typography>
           </Link>
         </Typography>
