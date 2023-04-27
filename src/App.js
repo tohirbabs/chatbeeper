@@ -1,10 +1,7 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import React from "react";
 
-import { CookiesProvider } from "react-cookie";
 import { Toaster } from "react-hot-toast";
-
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // MUI Imports
 import {
@@ -16,25 +13,25 @@ import {
 import { AnimatePresence } from "framer-motion";
 
 // Pages
-import { Home, Login, SignUp, GetStarted } from "./Pages/index";
-
-import { Verify } from "./Pages/Verify";
-import { Layout } from "./components/Layout/Layout";
-import UserFeed from "./Pages/UserFeed/UserFeed";
-import UserProfile from "./Pages/UserProfile/UserProfile";
+import { Login, SignUp, GetStarted } from "./Pages/index";
+import { Verify } from "./Pages/auth/Verify";
 
 // Utility Imports
-import { useStore } from "./utils/store";
-import getDesignTokens from "./utils/muitheme";
+import getDesignTokens from "./utilities/muitheme";
+import { useBeeperStore } from "./utilities/store";
+import { Auth } from "./Pages/auth";
+import { AppLayout } from "./Pages/Private";
+import { HomeFeed } from "./Pages/Private/HomeFeed";
+import Profile from "./Pages/Private/Profile";
 
-function App() {
+export default function App() {
+  const token = useBeeperStore((state) => state.auth);
+
+  // Theme settings
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme:dark)");
-  const token = useStore((state) => state.auth);
 
-  const [mode, setMode] = React.useState("dark");
-  // const [mode, setMode] = React.useState(prefersDarkMode ? "dark" : "light");
-
-  const client = new QueryClient();
+  // const [mode, setMode] = React.useState("dark");
+  const [mode, setMode] = React.useState(prefersDarkMode ? "dark" : "light");
 
   const colorMode = React.useMemo(
     () => ({
@@ -45,89 +42,31 @@ function App() {
     }),
     []
   );
-
   //  Update the theme only if the mode changes
   const muitheme = React.useMemo(
     () => createTheme(getDesignTokens(mode)),
     [prefersDarkMode]
   );
 
-  const location = useLocation();
-
-  const onBoardRoutes = [
-    "/",
-    "/welcome",
-    "/login",
-    "/create-account",
-    "/verify",
-    "/create-business-account",
-  ];
-  console.log(token);
-
-  if (!token.jwt) {
-    return (
-      <QueryClientProvider client={client}>
-        <ThemeProvider theme={muitheme}>
-          <CssBaseline />
-          <Toaster />
-          <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
-              <Route exact path="/" element={<Login />} />
-              <Route exact path="/welcome" element={<GetStarted />} />
-              <Route exact path="/create-account" element={<SignUp />} />
-              <Route exact path="/login" element={<Login />} />
-              <Route exact path="/verify" element={<Verify />} />
-            </Routes>
-          </AnimatePresence>
-        </ThemeProvider>
-      </QueryClientProvider>
-    );
-  }
-
   return (
-    <CookiesProvider>
-      <QueryClientProvider client={client}>
-        <ThemeProvider theme={muitheme}>
-          <CssBaseline />
-          <Toaster />
-          <AnimatePresence mode="wait">
-            {!onBoardRoutes.includes(location.pathname) ? (
-              <Routes location={location} key={location.pathname}>
-                <Route
-                  exact
-                  path="/profile"
-                  element={
-                    <Layout>
-                      <UserProfile />
-                    </Layout>
-                  }
-                />
-                <Route
-                  exact
-                  path="/home"
-                  element={
-                    <Layout>
-                      <UserFeed />
-                    </Layout>
-                  }
-                />
-
-                <Route path="*" element={<p>Page not found</p>} />
-              </Routes>
-            ) : (
-              <Routes location={location} key={location.pathname}>
-                <Route exact path="/" element={<Home />} />
-                <Route exact path="/welcome" element={<GetStarted />} />
-                <Route exact path="/create-account" element={<SignUp />} />
-                <Route exact path="/login" element={<Login />} />
-                <Route exact path="/verify" element={<Verify />} />
-              </Routes>
-            )}
-          </AnimatePresence>
-        </ThemeProvider>
-      </QueryClientProvider>
-    </CookiesProvider>
+    <ThemeProvider theme={muitheme}>
+      <CssBaseline />
+      <Toaster />
+      <AnimatePresence mode="wait">
+        <Routes>
+          <Route index element={<GetStarted />} />
+          <Route path="auth" element={<Auth />}>
+            <Route path="signup" element={<SignUp />} />
+            <Route path="verifymail" element={<Verify />} />
+            <Route path="login" element={<Login />} />
+          </Route>
+          <Route path=":username" element={<AppLayout />}>
+            <Route path="home" element={<HomeFeed />} />
+            <Route path="profile" element={<Profile />} />
+          </Route>
+          <Route path="*" element={<p>Page not found</p>} />
+        </Routes>
+      </AnimatePresence>
+    </ThemeProvider>
   );
 }
-
-export default App;

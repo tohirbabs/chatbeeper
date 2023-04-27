@@ -6,20 +6,16 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
-import MoreIcon from "@mui/icons-material/MoreVert";
-import useScrollTrigger from "@mui/material/useScrollTrigger";
-import ChatBeeperLogo from "../Logo";
 import { BeepIcon, HomeIcon, NotificationIcon, TourIcon } from "../icons";
-import { Avatar, Divider, Tooltip } from "@mui/material";
+import { Divider, Tooltip } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 const drawerWidth = 260;
 
 const ChatbeeperText = styled("div")(({ theme }) => ({
@@ -74,6 +70,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function HeaderBar({ handleDrawerToggle, setAddBeep }) {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -211,7 +208,14 @@ export default function HeaderBar({ handleDrawerToggle, setAddBeep }) {
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Tooltip title="Home">
-              <IconButton size="large" aria-label="Home" color="inherit">
+              <IconButton
+                onClick={() => {
+                  navigate("/:username/home");
+                }}
+                size="large"
+                aria-label="Home"
+                color="inherit"
+              >
                 <HomeIcon />
               </IconButton>
             </Tooltip>
@@ -244,7 +248,14 @@ export default function HeaderBar({ handleDrawerToggle, setAddBeep }) {
               </IconButton>
             </Tooltip>
             <Tooltip title="Profile">
-              <IconButton size="large" aria-label="Profile" color="inherit">
+              <IconButton
+                onClick={() => {
+                  navigate("/:username/profile");
+                }}
+                size="large"
+                aria-label="Profile"
+                color="inherit"
+              >
                 <AccountCircle />
 
                 {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}

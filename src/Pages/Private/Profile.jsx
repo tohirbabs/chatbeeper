@@ -1,40 +1,32 @@
-import "./style.css";
-
+import { useNavigate } from "react-router-dom";
+import { HomeFeed } from "./HomeFeed";
 import { FiEdit } from "react-icons/fi";
-import { RiLinksFill } from "react-icons/ri";
 import { HiOutlineLocationMarker } from "react-icons/hi";
+import { RiLinksFill } from "react-icons/ri";
 
 import banner from "../../assets/banner.png";
-import sms from "../../assets/sms-icon.png";
 import checkmark from "../../assets/checkmark.png";
-import { useNavigate } from "react-router-dom";
-import { useStore } from "../../utilities/store";
-import { HomeFeed } from "../HomeFeed/HomeFeed";
 
-export const Profile = () => {
-  const userInfo = useStore((state) => state.userData);
+import "./style.css";
+
+export default function Profile() {
   const location = useNavigate();
-
-  // if (!cookies.userData.firstname) {
-  //   location("/ceate-account");
-  // }
-
   return (
     <div className="profile">
       <div className="profile__wrapper">
         <div className="profile__display-imgs">
           <img src={banner} className="profile__banner" alt="chatbeeper logo" />
           <img
-            src={`https://api.dicebear.com/5.x/adventurer/svg?seed=${userInfo?.username}`}
+            src={`https://api.dicebear.com/5.x/adventurer/svg?seed=name`}
             alt="user dp"
             className="profile__dp"
           />
         </div>
 
         <div className="profile__info">
-          <h1>{`${userInfo.firstname} ${userInfo.lastname}`}</h1>
+          <h1>New User</h1>
           <h2>
-            <p>{`@${userInfo.username}`}</p>
+            <p>@user_name</p>
 
             <img src={checkmark} className="checkmark" alt="checkmark" />
           </h2>
@@ -82,4 +74,4 @@ export const Profile = () => {
       <HomeFeed />
     </div>
   );
-};
+}
