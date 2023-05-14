@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Beep from "../../components/Beep/Beep";
 import { useBeeperStore } from "../../utilities/store";
+import BeepCard from "../../components/Beep/BeepCard";
 
 export const HomeFeed = () => {
   const feed = useBeeperStore((state) => state.feeds);
@@ -41,7 +42,7 @@ export const HomeFeed = () => {
       ) : feed.length ? (
         <Box position="relative">
           {feed.map((data, i) => (
-            <Beep data={data} key={i} />
+            <BeepCard data={data} key={i} />
           ))}
         </Box>
       ) : (

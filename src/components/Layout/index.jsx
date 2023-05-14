@@ -1,22 +1,16 @@
 import { useState } from "react";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import Container from "@mui/material/Container";
 import { Logo } from "../../assets/logo";
 import "./style.css";
-import { FooterMenu } from "../FooterMenu/FooterMenu";
-import { Overlay } from "../Overlay/Overlay";
 import { BeepPrompt } from "../BeepPrompt/BeepPrompt";
-import { useLocation } from "react-router-dom";
 
-import { AddBeep } from "../AddBeep/AddBeep";
 import HeaderBar from "./Header";
 import Footer from "./Footer";
 import SideDrawer from "./Sidebar";
 import { Box, Toolbar } from "@mui/material";
-import toast from "react-hot-toast";
 import { useBeeperStore } from "../../utilities/store";
 import { pageAnimation } from "../../utilities/animations";
 import { Rightbar } from "./Rightbar";

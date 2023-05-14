@@ -23,7 +23,7 @@ import {
   MessageIcon,
   RebeepIcon,
 } from "../icons";
-import { Badge, Chip } from "@mui/material";
+import { Badge, Chip, Divider } from "@mui/material";
 import { useBeeperStore } from "../../utilities/store";
 
 const ExpandMore = styled((props) => {
@@ -48,14 +48,17 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 export default function BeepCard({ data }) {
   const [expanded, setExpanded] = React.useState(false);
-
+  console.log(data);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
   const userInfo = useBeeperStore((state) => state.userData);
 
   return (
-    <Card sx={{ maxWidth: "95%", margin: "auto", mt: 1, borderRadius: "1rem" }}>
+    <Card
+      variant="outlined"
+      sx={{ maxWidth: "95%", margin: "auto", mt: 1, borderRadius: "1rem" }}
+    >
       <CardHeader
         avatar={
           <Avatar
@@ -86,8 +89,15 @@ export default function BeepCard({ data }) {
           {data.beepText}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing sx={{ gap: "2rem" }}>
-        <IconButton size="small" aria-label="reply beep" mr="1rem">
+      <Divider />
+      <CardActions disableSpacing sx={{ gap: { xs: "2rem", sm: "3rem" } }}>
+        <IconButton
+          size="small"
+          aria-label="reply beep"
+          expand={expanded}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+        >
           <StyledBadge badgeContent={data.replies} color="primary">
             <MessageIcon />
           </StyledBadge>
@@ -107,17 +117,17 @@ export default function BeepCard({ data }) {
             <DislikeIcon />
           </StyledBadge>
         </IconButton>
-        <IconButton aria-label="share beep">
+        <IconButton aria-label="share beep" sx={{ marginLeft: "auto" }}>
           <ExportIcon />
         </IconButton>
-        <ExpandMore
+        {/* <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
         >
           <ExpandMoreIcon />
-        </ExpandMore>
+        </ExpandMore> */}
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>

@@ -11,8 +11,8 @@ import { StyledButton } from "../components/StyledButton";
 import { GetStartedIllustration } from "../components/Get-started-illustration";
 import { pageAnimation } from "../utilities/animations";
 
-import { container } from "./Home/style";
 import { Logo } from "../assets/logo";
+import { container } from "./style";
 
 export default function GetStarted() {
   const [loadIn, setLoadIn] = React.useState(true);
