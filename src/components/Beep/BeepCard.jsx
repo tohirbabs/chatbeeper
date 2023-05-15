@@ -47,7 +47,23 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 export default function BeepCard({ data }) {
+  const feed = useBeeperStore((state) => state.feeds);
+
   const [expanded, setExpanded] = React.useState(false);
+  const [liked, setliked] = React.useState(false);
+  const [likes, setlikes] = React.useState(parseInt(data.likes));
+  const [disliked, setdisliked] = React.useState(false);
+  const [dislikes, setdislikes] = React.useState(parseInt(data.dislikes));
+
+  function likeBeep() {
+    setliked(!liked);
+    liked ? setlikes(likes - 1) : setlikes(likes + 1);
+  }
+
+  function dislikeBeep() {
+    setdisliked(!disliked);
+    disliked ? setdislikes(dislikes - 1) : setdislikes(dislikes + 1);
+  }
   console.log(data);
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -107,13 +123,13 @@ export default function BeepCard({ data }) {
             <RebeepIcon />
           </StyledBadge>
         </IconButton>
-        <IconButton aria-label="like beep">
-          <StyledBadge badgeContent={44} color="primary">
+        <IconButton aria-label="like beep" onClick={() => likeBeep()}>
+          <StyledBadge badgeContent={likes} color="primary">
             <LikeIcon />
           </StyledBadge>
         </IconButton>
-        <IconButton aria-label="dislike beep">
-          <StyledBadge badgeContent={2} color="error">
+        <IconButton aria-label="dislike beep" onClick={() => dislikeBeep()}>
+          <StyledBadge badgeContent={dislikes} color="error">
             <DislikeIcon />
           </StyledBadge>
         </IconButton>
@@ -129,36 +145,11 @@ export default function BeepCard({ data }) {
           <ExpandMoreIcon />
         </ExpandMore> */}
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and
-            set aside for 10 minutes.
-          </Typography>
-          <Typography paragraph>
-            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet
-            over medium-high heat. Add chicken, shrimp and chorizo, and cook,
-            stirring occasionally until lightly browned, 6 to 8 minutes.
-            Transfer shrimp to a large plate and set aside, leaving chicken and
-            chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes,
-            onion, salt and pepper, and cook, stirring often until thickened and
-            fragrant, about 10 minutes. Add saffron broth and remaining 4 1/2
-            cups chicken broth; bring to a boil.
-          </Typography>
-          <Typography paragraph>
-            Add rice and stir very gently to distribute. Top with artichokes and
-            peppers, and cook without stirring, until most of the liquid is
-            absorbed, 15 to 18 minutes. Reduce heat to medium-low, add reserved
-            shrimp and mussels, tucking them down into the rice, and cook again
-            without stirring, until mussels have opened and rice is just tender,
-            5 to 7 minutes more. (Discard any mussels that don&apos;t open.)
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then
-            serve.
-          </Typography>
-        </CardContent>
+      <Collapse in={expanded} timeout="auto" unmountOnExit sx={{ pb: 2 }}>
+        <Divider />
+        {feed.map((data, i) => (
+          <BeepCard data={data} key={i} />
+        ))}
       </Collapse>
     </Card>
   );

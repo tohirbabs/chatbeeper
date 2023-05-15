@@ -60,10 +60,10 @@ export const BeepPrompt = ({
       beepAge: "1 hour ago",
       beepImg: imgUpload || false,
       beepText: beepText,
-      replies: 2,
-      rebeeps: 10,
+      replies: 0,
+      rebeeps: 0,
       dislikes: 0,
-      likes: 5,
+      likes: 0,
     });
     setAddBeep(false);
     // let body = new FormData();
