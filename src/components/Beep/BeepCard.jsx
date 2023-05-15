@@ -132,6 +132,8 @@ export default function BeepCard({ data }) {
         likes: 0,
       },
     ]);
+    setImgUpload(null);
+    setReplyText("");
     // let body = new FormData();
     // body.append("text", beepText);
     // body.append("file", null);
@@ -261,14 +263,14 @@ export default function BeepCard({ data }) {
             />
           </header>
           <textarea
-            name=""
-            id=""
+            name="reply"
+            value={replyText}
             class="autoExpand"
             rows="3"
             data-min-rows="3"
             autoFocus
             autosize
-            placeholder="What's going on?"
+            placeholder="Beep your Reply"
             onChange={handleReplyText}
           ></textarea>
           {/* <span

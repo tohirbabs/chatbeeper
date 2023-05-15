@@ -66,6 +66,7 @@ export const BeepPrompt = ({
       likes: 0,
     });
     setAddBeep(false);
+    setImgUpload(null);
     // let body = new FormData();
     // body.append("text", beepText);
     // body.append("file", null);
