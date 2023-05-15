@@ -60,7 +60,7 @@ export const BeepPrompt = ({
       beepAge: "1 hour ago",
       beepImg: imgUpload || false,
       beepText: beepText,
-      replies: 0,
+      replies: [],
       rebeeps: 0,
       dislikes: 0,
       likes: 0,
