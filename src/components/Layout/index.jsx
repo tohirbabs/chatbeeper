@@ -114,6 +114,7 @@ export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
               {children}
               <Rightbar />
             </Box>
+            <Toolbar sx={{ mt: 3 }} />
           </Box>
           {/* <FooterMenu
         nav={location.pathname}

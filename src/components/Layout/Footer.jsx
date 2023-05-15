@@ -59,6 +59,7 @@ export default function Footer({ setAddBeep }) {
         left: 0,
         right: 0,
         display: { md: "none" },
+        zIndex: 1000,
       }}
       elevation={3}
     >
