@@ -34,12 +34,7 @@ function onExpandableTextareaInput({ target: elm }) {
 // global delegated event listener
 document.addEventListener("input", onExpandableTextareaInput);
 
-export const BeepPrompt = ({
-  setHomeFeedData,
-  homeFeedData,
-  open,
-  setAddBeep,
-}) => {
+export const BeepPrompt = ({ open, setAddBeep }) => {
   const userInfo = useBeeperStore((state) => state.userData);
 
   const [beepText, setBeepText] = useState("");
