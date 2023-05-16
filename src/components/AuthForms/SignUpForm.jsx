@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import React from "react";
 import { FormikProvider, useFormik } from "formik";
 import * as Yup from "yup";
 import "yup-phone";
@@ -29,14 +29,29 @@ import { POST } from "../../utilities/request";
 
 import toast from "react-hot-toast";
 import { useBeeperStore } from "../../utilities/store";
+import { Link, useHistory } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, registerWithEmailAndPassword } from "../../utilities/firebase";
 
 export default function SignUpForm({ setCurrentForm, currentForm }) {
   const updateUserData = useBeeperStore((state) => state.updateUserData);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
 
-  const [loading, setloading] = useState(false);
+  const register = (name, email, password) => {
+    if (!name) alert("Please enter name");
+    registerWithEmailAndPassword(name, email, password);
+  };
+  React.useEffect(() => {
+    if (loading) return;
+    if (user) navigate("/username/home");
+  }, [user, loading]);
+
   const [nextPage, setNextPage] = useState(false);
 
-  const navigate = useNavigate();
   const [fieldValue, setFieldValue] = useState("");
 
   const formik = useFormik({
@@ -69,18 +84,19 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
         .required("Confirm Password"),
     }),
     onSubmit: (values) => {
-      setloading(true);
+      // setloading(true);
 
-      POST("user", JSON.stringify(values))
-        .then((res) => res.json())
-        .then(
-          (res) =>
-            res.message ? toast(res.message) : () => updateUserData(res),
-          navigate("verifymail")
-        )
-        .catch((err) => console.log("error:", err))
-        .finally(() => setloading(false));
+      // POST("user", JSON.stringify(values))
+      //   .then((res) => res.json())
+      //   .then(
+      //     (res) =>
+      //       res.message ? toast(res.message) : () => updateUserData(res),
+      //     navigate("verifymail")
+      //   )
+      //   .catch((err) => console.log("error:", err))
+      //   .finally(() => setloading(false));
       // registerUser.mutate();
+      register(values.username, values.email, values.password);
     },
   });
 
