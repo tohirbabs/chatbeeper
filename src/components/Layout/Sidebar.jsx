@@ -29,6 +29,7 @@ import {
   SponsoredIcon,
   TrendIcon,
 } from "../icons";
+import { logout } from "../../utilities/firebase";
 
 const drawerWidth = 260;
 
@@ -52,7 +53,14 @@ function ResponsiveDrawer(props) {
   const navItems2 = [
     { text: "Business Account", icon: <BriefcaseIcon /> },
     { text: "Sponsored Beeps", icon: <SponsoredIcon /> },
-    { text: "Logout", icon: <LogoutIcon /> },
+    {
+      text: "Logout",
+      icon: <LogoutIcon />,
+      action: () => {
+        console.log("clicked");
+        logout();
+      },
+    },
   ];
 
   const drawer = (
@@ -77,7 +85,7 @@ function ResponsiveDrawer(props) {
       <List>
         {navItems2.map((navItem, index) => (
           <ListItem key={index} disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={navItem.action}>
               <ListItemIcon sx={{ minWidth: "40px" }}>
                 {navItem.icon}
               </ListItemIcon>

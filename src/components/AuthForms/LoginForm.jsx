@@ -22,20 +22,14 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, logInWithEmailAndPassword } from "../../utilities/firebase";
 
 export default function LoginForm() {
-  const initialValues = useBeeperStore((state) => state.userData);
   const userInfo = useBeeperStore((state) => state.auth);
 
   const authenticate = useBeeperStore((state) => state.authenticateUser);
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
-  console.log(initialValues);
   console.log(userInfo);
   React.useEffect(() => {
-    if (loading) {
-      // maybe trigger a loading screen
-      return;
-    }
     if (user) navigate("/username/home");
   }, [user, loading]);
 

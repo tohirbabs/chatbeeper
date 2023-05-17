@@ -41,9 +41,9 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
-  const register = (name, email, password) => {
-    if (!name) alert("Please enter name");
-    registerWithEmailAndPassword(name, email, password);
+  const register = (values) => {
+    if (!values.username) alert("Please enter name");
+    registerWithEmailAndPassword(values);
   };
   React.useEffect(() => {
     if (loading) return;
@@ -96,7 +96,7 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
       //   .catch((err) => console.log("error:", err))
       //   .finally(() => setloading(false));
       // registerUser.mutate();
-      register(values.username, values.email, values.password);
+      register(values);
     },
   });
 
