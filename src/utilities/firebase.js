@@ -64,8 +64,8 @@ const registerWithEmailAndPassword = async (values) => {
     await addDoc(collection(db, "users"), {
       uid: user.uid,
       firstname: values.firstname,
-      // lastname: values.lastname,
-      // username: values.username,
+      lastname: values.lastname,
+      username: values.username,
       // phone: values.phone,
       // email: values.email,
       // gender: values.gender,
