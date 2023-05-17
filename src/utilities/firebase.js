@@ -66,9 +66,9 @@ const registerWithEmailAndPassword = async (values) => {
       firstname: values.firstname,
       lastname: values.lastname,
       username: values.username,
-      // phone: values.phone,
-      // email: values.email,
-      // gender: values.gender,
+      phone: values.phone,
+      email: values.email,
+      gender: values.gender,
     });
   } catch (err) {
     console.error(err);
