@@ -69,6 +69,7 @@ const registerWithEmailAndPassword = async (values) => {
       phone: values.phone,
       email: values.email,
       gender: values.gender,
+      // dob: values.dob.tostring(),
     });
   } catch (err) {
     console.error(err);
