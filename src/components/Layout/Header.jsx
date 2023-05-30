@@ -170,15 +170,7 @@ export default function HeaderBar({ handleDrawerToggle, setAddBeep }) {
 
   return (
     <Box>
-      <AppBar
-        position="fixed"
-        sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px  - 100vw + 1200px )` },
-          ml: { sm: `calc(${drawerWidth}px + 50vw - 600px)` },
-          mr: { sm: `calc(50vw - 600px)` },
-        }}
-        elevation={0}
-      >
+      <AppBar position="fixed" elevation={0}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -189,22 +181,7 @@ export default function HeaderBar({ handleDrawerToggle, setAddBeep }) {
           >
             <AccountCircle />
           </IconButton>
-          <ChatbeeperText>
-            <Box component="img" src={chatbeeper} sx={{ width: "60%" }} />
-          </ChatbeeperText>
 
-          <Search
-            sx={{ borderRadius: "1rem", display: { xs: "none", md: "block" } }}
-          >
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-              sx={{ width: { md: "350px" } }}
-            />
-          </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Tooltip title="Home">
