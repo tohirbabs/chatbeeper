@@ -15,7 +15,7 @@ export default function GenderSelect({ value, id, icon, label, formikValue }) {
       alignItems: "center",
       justifyContent: "center",
       gap: "2px",
-      borderRadius: "1.5rem",
+      borderRadius: "0.5rem",
       border: "1px solid  grey",
     },
     field: {

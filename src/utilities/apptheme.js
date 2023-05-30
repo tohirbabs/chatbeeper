@@ -24,7 +24,6 @@ const getDesignTokens = (mode) => ({
             "-webkit-box-shadow": "0 0 0 100px #0A151E  inset",
             "-webkit-text-fill-color": "#fff",
           },
-          fontSize: "0.9rem",
         },
         root: {
           "& fieldset": {
@@ -32,7 +31,6 @@ const getDesignTokens = (mode) => ({
             borderColor: "#505558",
           },
           fontFamily: "Montserrat",
-          fontSize: "0.9rem",
         },
       },
     },

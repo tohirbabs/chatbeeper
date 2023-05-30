@@ -3,8 +3,8 @@ import React from "react";
 export default function NotificationIcon({ active }) {
   return (
     <svg
-      width="25"
-      height="25"
+      width="30"
+      height="30"
       viewBox="0 0 29 29"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

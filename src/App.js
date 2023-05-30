@@ -17,15 +17,21 @@ import { Login, SignUp, GetStarted } from "./Pages/index";
 import { Verify } from "./Pages/auth/Verify";
 
 // Utility Imports
-import getDesignTokens from "./utilities/muitheme";
+import getDesignTokens from "./utilities/apptheme";
 import { useBeeperStore } from "./utilities/store";
 import { Auth } from "./Pages/auth";
 import { AppLayout } from "./Pages/Private";
 import { HomeFeed } from "./Pages/Private/HomeFeed";
 import Profile from "./Pages/Private/Profile";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./utilities/firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function App() {
   const token = useBeeperStore((state) => state.auth);
+
+  const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
 
   // Theme settings
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme:dark)");
@@ -43,28 +49,31 @@ export default function App() {
     []
   );
   //  Update the theme only if the mode changes
-  const muitheme = React.useMemo(
+  const apptheme = React.useMemo(
     () => createTheme(getDesignTokens(mode)),
     [prefersDarkMode]
   );
 
+  React.useEffect(() => {
+    navigate("/app/home");
+  }, [user]);
   return (
-    <ThemeProvider theme={muitheme}>
+    <ThemeProvider theme={apptheme}>
       <CssBaseline />
       <Toaster />
       <AnimatePresence mode="wait">
         <Routes>
-          <Route index element={<GetStarted />} />
+          <Route path="app" element={<AppLayout />}>
+            <Route path="home" element={<HomeFeed />} />
+            <Route path="profile" element={<Profile />} />
+          </Route>
+          <Route path="*" element={<p>Page not found</p>} />
+          <Route index element={<Login />} />
           <Route path="auth" element={<Auth />}>
             <Route path="signup" element={<SignUp />} />
             <Route path="verifymail" element={<Verify />} />
             <Route path="login" element={<Login />} />
           </Route>
-          <Route path=":username" element={<AppLayout />}>
-            <Route path="home" element={<HomeFeed />} />
-            <Route path="profile" element={<Profile />} />
-          </Route>
-          <Route path="*" element={<p>Page not found</p>} />
         </Routes>
       </AnimatePresence>
     </ThemeProvider>

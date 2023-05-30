@@ -79,14 +79,7 @@ export const Layout = ({ children, setHomeFeedData, homeFeedData }) => {
           </Container>
         </motion.div>
       ) : (
-        <Box
-          sx={{
-            display: "flex",
-            position: "relative",
-            width: { lg: "1180px" },
-            margin: "auto",
-          }}
-        >
+        <Box>
           <HeaderBar
             handleDrawerToggle={handleDrawerToggle}
             setAddBeep={setAddBeep}

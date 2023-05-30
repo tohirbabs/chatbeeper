@@ -15,15 +15,13 @@ export default function Login() {
       exit="exit"
       transition={pageAnimation.transition}
     >
-      <Stack width="100vw" mt={5} alignItems="center">
+      <Stack width="100vw" spacing={5} mt={5} alignItems="center">
         <ChatBeeperLogo />
-        <Typography variant="h1" my={2}>
-          Login to your account
-        </Typography>
+        <Typography variant="h1">Login to your account</Typography>
 
         <LoginForm />
 
-        <Typography variant="body1" my={2}>
+        <Typography variant="body1">
           Don't have a beeper account?{" "}
           <Link to="/auth/signup">
             <Typography variant="link">Sign up</Typography>

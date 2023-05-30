@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Stack, Typography } from "@mui/material";
 import ChatBeeperLogo from "../../components/Logo";
 import { pageAnimation } from "../../utilities/animations";
+import CreateAccountForm from "../../components/AuthForms/CreateAccountForm";
 
 export default function CreateAccount() {
   return (
@@ -23,9 +24,9 @@ export default function CreateAccount() {
           Create an account
         </Typography>
 
-        {/* <MultiStep currentForm={currentForm} setCurrentForm={setCurrentForm} /> */}
+        <CreateAccountForm />
+        {/* <SignUpForm /> */}
 
-        <SignUpForm />
         <Typography variant="body" my={2}>
           Already have a beeper account?{" "}
           <Link to="/auth/login">

@@ -23,12 +23,12 @@ import { auth, logInWithEmailAndPassword } from "../../utilities/firebase";
 
 export default function LoginForm() {
   const userInfo = useBeeperStore((state) => state.auth);
-
+  const [isLoading, setIsLoading] = useState(false);
   const authenticate = useBeeperStore((state) => state.authenticateUser);
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
-  console.log(userInfo);
+  console.log(loading);
   React.useEffect(() => {
     if (user) navigate("/username/home");
   }, [user, loading]);
@@ -48,25 +48,16 @@ export default function LoginForm() {
       email: Yup.string().email("Email address not valid").required("Required"),
     }),
 
-    onSubmit: (values) => {
-      // setloading(true);
-      // POST("auth/login", JSON.stringify(values))
-      //   .then((res) => res.json())
-      //   // .then((res) => setToken(res))
-      //   .then(
-      //     (res) =>
-      //       (res.data && authenticate(res.data)) ||
-      //       (res.message && toast(res.message))
-      //   )
-      //   // .then((res) => console.log(res))
+    onSubmit: async (values) => {
+      setIsLoading(true);
 
-      //   .catch((err) => console.log("error:", err))
-      //   .finally(() => {
-      //     setloading(false);
-      //     console.log("nav to home");
-      //     // navigateHome();
-      //   });
-      logInWithEmailAndPassword(values.email, values.password);
+      try {
+        await signInWithEmailAndPassword(auth, values.email, values.password);
+        setIsLoading(false);
+      } catch (err) {
+        setIsLoading(false);
+        toast(err.message);
+      }
     },
   });
   function navigateHome(params) {
@@ -75,10 +66,10 @@ export default function LoginForm() {
       navigate("/home");
     }
   }
-
+  console.log(isLoading);
   return (
     <form onSubmit={formik.handleSubmit} method="post">
-      <Stack spacing={3} width="90vw" maxWidth="375px">
+      <Stack spacing={4} width="90vw" maxWidth="375px">
         <TextField
           onBlur={formik.handleBlur}
           label="Email"
@@ -109,7 +100,11 @@ export default function LoginForm() {
               : false
           }
         >
-          {loading ? <CircularProgress size={30} color="secondary" /> : "Login"}
+          {isLoading ? (
+            <CircularProgress size={30} color="secondary" />
+          ) : (
+            "Login"
+          )}
         </StyledButton>
       </Stack>
     </form>

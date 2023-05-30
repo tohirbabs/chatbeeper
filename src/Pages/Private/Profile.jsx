@@ -8,9 +8,50 @@ import banner from "../../assets/banner.png";
 import checkmark from "../../assets/checkmark.png";
 
 import "./style.css";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+// import { auth, db, logout } from "./firebase";
+import { query, collection, getDocs, where } from "firebase/firestore";
+import { auth, db } from "../../utilities/firebase";
+import { getAuth } from "firebase/auth";
 
 export default function Profile() {
   const location = useNavigate();
+  const [user, loading, error] = useAuthState(auth);
+  console.log(user.uid);
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const navigate = useNavigate();
+  const fetchUserName = async () => {
+    try {
+      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+
+      const doc = await getDocs(q);
+      // const data = doc.docs[0].data();
+      console.log(doc.data());
+      // setName(data.firstname + " " + data.lastname);
+      // setUsername(data.username);
+    } catch (err) {
+      console.error(err);
+      alert("An error occured while fetching user data");
+    }
+  };
+  useEffect(() => {
+    if (loading) return;
+    if (!user) return navigate("/");
+    fetchUserName();
+  }, [user, loading]);
+
+  getAuth()
+    .getUser(user?.uid)
+    .then((userRecord) => {
+      // See the UserRecord reference doc for the contents of userRecord.
+      console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
+    })
+    .catch((error) => {
+      console.log("Error fetching user data:", error);
+    });
+
   return (
     <div className="profile">
       <div className="profile__wrapper">
@@ -24,9 +65,9 @@ export default function Profile() {
         </div>
 
         <div className="profile__info">
-          <h1>New User</h1>
+          <h1>{name}</h1>
           <h2>
-            <p>@user_name</p>
+            <p>@{username}</p>
 
             <img src={checkmark} className="checkmark" alt="checkmark" />
           </h2>
@@ -36,12 +77,12 @@ export default function Profile() {
           </p>
           <div className="user_info">
             <div className="info">
-              <p>8,200</p>
+              <p>0</p>
               <p>Following</p>
             </div>
             <div className="divider"></div>
             <div className="info">
-              <p>800</p>
+              <p>0</p>
               <p>Followers</p>
             </div>
             <div className="divider"></div>

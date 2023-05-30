@@ -64,22 +64,6 @@ export const Rightbar = () => {
             <p>1 week ago</p>
           </div>
         </div>
-        <div className="activity">
-          <img src={docicon} alt="" />
-          <div className="activity-text">
-            <h3>How to let go of your past</h3>
-            <p>beeped by you</p>
-            <p>1 week ago</p>
-          </div>
-        </div>
-        <div className="activity">
-          <img src={docicon} alt="" />
-          <div className="activity-text">
-            <h3>How to let go of your past</h3>
-            <p>beeped by you</p>
-            <p>1 week ago</p>
-          </div>
-        </div>
       </div>
     </div>
   );

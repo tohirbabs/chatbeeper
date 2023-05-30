@@ -133,7 +133,6 @@ function ResponsiveDrawer(props) {
             boxSizing: "border-box",
             width: drawerWidth,
             position: "fixed",
-            ml: "calc(50vw - 600px)",
           },
         }}
         open

@@ -111,31 +111,36 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
     <form onSubmit={formik.handleSubmit} method="post">
       <FormikProvider value={formik}>
         {!nextPage ? (
-          <Stack spacing={2} width="90vw" maxWidth="375px">
-            <TextField
-              onBlur={formik.handleBlur}
-              label={"First Name"}
-              name="firstname"
-              id="firstname"
-              type="text"
-              value={formik.values.firstname}
-              error={
-                formik.touched.firstname && formik.errors.firstname && true
-              }
-              helperText={formik.touched.firstname && formik.errors.firstname}
-              onChange={formik.handleChange}
-            />
-            <TextField
-              onBlur={formik.handleBlur}
-              label="Last Name"
-              name="lastname"
-              id="lastname"
-              type="text"
-              error={formik.touched.lastname && formik.errors.lastname && true}
-              helperText={formik.touched.lastname && formik.errors.lastname}
-              value={formik.values.lastname}
-              onChange={formik.handleChange}
-            />
+          <Stack spacing={3} width="96vw" maxWidth="375px">
+            <Box display="flex" gap={1}>
+              <TextField
+                onBlur={formik.handleBlur}
+                label={"First Name"}
+                name="firstname"
+                id="firstname"
+                type="text"
+                value={formik.values.firstname}
+                error={
+                  formik.touched.firstname && formik.errors.firstname && true
+                }
+                helperText={formik.touched.firstname && formik.errors.firstname}
+                onChange={formik.handleChange}
+              />
+              <TextField
+                onBlur={formik.handleBlur}
+                label="Last Name"
+                name="lastname"
+                id="lastname"
+                type="text"
+                error={
+                  formik.touched.lastname && formik.errors.lastname && true
+                }
+                helperText={formik.touched.lastname && formik.errors.lastname}
+                value={formik.values.lastname}
+                onChange={formik.handleChange}
+              />
+            </Box>
+
             <FormControl fullWidth variant="contained">
               <OutlinedInput
                 id="username"
@@ -158,30 +163,33 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
                 </FormHelperText>
               )}
             </FormControl>
-            <TextField
-              onBlur={formik.handleBlur}
-              label="Email"
-              name="email"
-              id="email"
-              type="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              error={formik.touched.email && formik.errors.email && true}
-              helperText={formik.touched.email && formik.errors.email}
-            />
+            <Box display="flex" gap={1}>
+              <TextField
+                onBlur={formik.handleBlur}
+                label="Email"
+                name="email"
+                id="email"
+                type="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                error={formik.touched.email && formik.errors.email && true}
+                helperText={formik.touched.email && formik.errors.email}
+              />
 
-            <MuiTelInput
-              value={formik.values.phone}
-              id="phone"
-              label="Phone"
-              defaultCountry="NG"
-              onChange={(value, i) => {
-                formik.setFieldValue("phone", value);
-              }}
-              onBlur={formik.handleBlur}
-              error={formik.touched.phone && formik.errors.phone && true}
-              helperText={formik.touched.phone && formik.errors.phone}
-            />
+              <MuiTelInput
+                value={formik.values.phone}
+                id="phone"
+                label="Phone"
+                defaultCountry="NG"
+                onChange={(value, i) => {
+                  formik.setFieldValue("phone", value);
+                }}
+                onBlur={formik.handleBlur}
+                error={formik.touched.phone && formik.errors.phone && true}
+                helperText={formik.touched.phone && formik.errors.phone}
+              />
+            </Box>
+
             <StyledButton
               variant="contained"
               onClick={() => setNextPage(true)}
