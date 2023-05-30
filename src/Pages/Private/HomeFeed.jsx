@@ -1,16 +1,40 @@
-import { Box, CircularProgress, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Stack,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import React, { useState } from "react";
 import Beep from "../../components/Beep/Beep";
 import { useBeeperStore } from "../../utilities/store";
 import BeepCard from "../../components/Beep/BeepCard";
+import { getBeeps } from "../../utilities/firebase";
+import { FeedTwoTone } from "@mui/icons-material";
 
 export const HomeFeed = () => {
-  const feed = useBeeperStore((state) => state.feeds);
+  // const feed = useBeeperStore((state) => state.feeds);
+  const addToFeed = useBeeperStore((state) => state.addToFeed);
+
   const [loading, setloading] = useState(false);
+  const [feed, setFeed] = useState([]);
 
   const location = useNavigate();
+
+  const fetchData = async () => {
+    setloading(true);
+
+    const res = await getBeeps();
+
+    setFeed(res);
+    setloading(false);
+  };
+
+  React.useEffect(() => {
+    fetchData();
+  }, []);
 
   // useEffect(() => {
   //   GET("feed", userInfo.jwt)
@@ -23,7 +47,7 @@ export const HomeFeed = () => {
   // }, []);
 
   return (
-    <Stack>
+    <Stack alignItems="center" width="100%">
       {loading ? (
         <Box
           sx={{
@@ -40,10 +64,19 @@ export const HomeFeed = () => {
           <Typography sx={{ fontSize: "1rem" }}>Getting Feed...</Typography>
         </Box>
       ) : feed.length ? (
-        <Box position="relative">
+        <Box
+          position="relative"
+          sx={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           {feed.map((data, i) => (
             <BeepCard data={data} key={i} />
           ))}
+          <Toolbar />
         </Box>
       ) : (
         <Box

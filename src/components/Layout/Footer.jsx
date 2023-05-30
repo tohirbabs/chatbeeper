@@ -2,16 +2,23 @@ import * as React from "react";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Paper from "@mui/material/Paper";
-import { BeepIcon, HomeIcon, NotificationIcon, TourIcon } from "../icons";
+import {
+  BeepIcon,
+  HomeIcon,
+  NotificationIcon,
+  SmsIcon,
+  TourIcon,
+} from "../icons";
 import { Divider } from "@mui/material";
-import { AccountCircleOutlined } from "@mui/icons-material";
+import { AccountCircleOutlined, Search } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import SearchIcon from "../icons/SearchIcon";
 
 export default function Footer({ setAddBeep }) {
   const [value, setValue] = React.useState(0);
   const ref = React.useRef(null);
   const navigate = useNavigate();
-
+  console.log(value);
   return (
     <Paper
       sx={{
@@ -22,32 +29,28 @@ export default function Footer({ setAddBeep }) {
         display: { md: "none" },
         zIndex: 1000,
       }}
-      elevation={3}
+      // elevation={3}
     >
       <Divider />
       <BottomNavigation
-        showLabels
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
-        sx={{ pb: 2, height: "66px" }}
+        // sx={{ pb: 2, height: "66px" }}
       >
-        <BottomNavigationAction icon={<HomeIcon />} />
-        <BottomNavigationAction icon={<TourIcon />} />
-        <BottomNavigationAction
+        <BottomNavigationAction icon={<HomeIcon active={value == 0} />} />
+        <BottomNavigationAction icon={<SearchIcon active={value == 1} />} />
+        {/* <BottomNavigationAction
           onClick={() => {
             setAddBeep(true);
           }}
           icon={<BeepIcon />}
-        />
-        <BottomNavigationAction icon={<NotificationIcon />} />
+        /> */}
         <BottomNavigationAction
-          icon={<AccountCircleOutlined />}
-          onClick={() => {
-            navigate("/:username/profile");
-          }}
+          icon={<NotificationIcon active={value == 2} />}
         />
+        <BottomNavigationAction icon={<SmsIcon active={value == 3} />} />
       </BottomNavigation>
     </Paper>
     // </Box>

@@ -93,6 +93,24 @@ export default function BeepCard({ data }) {
   const [disliked, setdisliked] = React.useState(false);
   const [dislikes, setdislikes] = React.useState(parseInt(data.dislikes));
 
+  const currentTime = Math.floor(Date.now() / 1000);
+
+  const elapsedSecs = currentTime - data.beepAge;
+  console.log(currentTime);
+  console.log(elapsedSecs);
+  let beepAge = "";
+  if (elapsedSecs < 60) {
+    beepAge = elapsedSecs + "second";
+  } else if (elapsedSecs < 60 * 60) {
+    beepAge = Math.floor(elapsedSecs / 60) + "minute";
+  } else if (elapsedSecs < 60 * 60 * 24) {
+    beepAge = Math.floor(elapsedSecs / (60 * 60)) + "hour";
+  } else if (elapsedSecs < 60 * 60 * 24 * 30) {
+    beepAge = Math.floor(elapsedSecs / (60 * 24 * 60)) + "day";
+  } else if (elapsedSecs < 60 * 60 * 24 * 30 * 12) {
+    beepAge = Math.floor(elapsedSecs / (60 * 24 * 30 * 60)) + "month";
+  }
+
   function likeBeep() {
     setliked(!liked);
     liked ? setlikes(likes - 1) : setlikes(likes + 1);
@@ -151,6 +169,7 @@ export default function BeepCard({ data }) {
     // .catch((err) => console.log("error:", err));
     // .finally(() => setloading(false));}
   };
+  console.log(beepAge);
 
   const handleUploadClick = (event) => {
     console.log("upload clicked");
@@ -171,30 +190,24 @@ export default function BeepCard({ data }) {
   return (
     <Card
       variant="outlined"
-      sx={{ maxWidth: "95%", margin: "auto", mt: 1, borderRadius: "1rem" }}
+      sx={{ width: "95%", margin: "auto", mt: 1, borderRadius: "1rem" }}
     >
       <CardHeader
-        avatar={
-          <Avatar
-            aria-label="recipe"
-            src={`https://api.dicebear.com/5.x/adventurer/svg?seed=${userInfo?.username}`}
-            alt="user dp"
-          />
-        }
+        avatar={<Avatar aria-label="recipe" src={data.userDp} alt="user dp" />}
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        title={data.userName}
-        subheader={data.beepAge}
+        title={"@" + data.userName}
+        subheader={beepAge[0] == "1" ? beepAge + " ago" : beepAge + "s ago"}
       />
       {data.beepImg ? (
         <CardMedia
           component="img"
-          // height=""
+          sx={{ backgroundColor: "black" }}
           image={data.beepImg}
-          alt="Paella dish"
+          alt=""
         />
       ) : null}
 
@@ -212,9 +225,9 @@ export default function BeepCard({ data }) {
           onClick={handleExpandClick}
           aria-expanded={expanded}
         >
-          <StyledBadge badgeContent={data.replies.length} color="primary">
-            <MessageIcon />
-          </StyledBadge>
+          {/* <StyledBadge badgeContent={data.replies.length} color="primary"> */}
+          <MessageIcon />
+          {/* </StyledBadge> */}
         </IconButton>
         <IconButton aria-label="rebeep">
           <StyledBadge badgeContent={data.rebeeps} color="primary">

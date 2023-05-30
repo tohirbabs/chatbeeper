@@ -95,6 +95,21 @@ const sendPasswordReset = async (email) => {
 const logout = () => {
   signOut(auth);
 };
+const collection_name = "feed";
+
+export const getBeeps = async () => {
+  const doc_refs = await getDocs(collection(db, collection_name));
+  const res = [];
+
+  doc_refs.forEach((beep) => {
+    res.push({
+      id: beep.id,
+      ...beep.data(),
+    });
+  });
+
+  return res;
+};
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional

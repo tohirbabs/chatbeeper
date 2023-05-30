@@ -17,8 +17,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Rightbar } from "./Rightbar";
 import { logout } from "../../utilities/firebase";
-import AccountCircle from "@mui/icons-material/AccountCircleOutlined";
-import SearchIcon from "@mui/icons-material/Search";
+import AccountCircle from "@mui/icons-material/AccountCircleRounded";
+import MoreVertIcon from "@mui/icons-material/MoreHorizOutlined";
 
 import {
   BeepIcon,
@@ -45,6 +45,8 @@ import Badge from "@mui/material/Badge";
 import Logo from "../../assets/chatbeeper.png";
 import ChatBeeperLogo from "../Logo";
 import { InputBase, alpha, styled } from "@mui/material";
+import Footer from "./Footer";
+import SearchIcon from "../icons/SearchIcon";
 
 const drawerWidth = 300;
 
@@ -66,7 +68,7 @@ const Search = styled("div")(({ theme }) => ({
 }));
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
+  padding: theme.spacing(0, 1),
   height: "100%",
   position: "absolute",
   pointerEvents: "none",
@@ -78,7 +80,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
+    padding: theme.spacing(1),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
@@ -101,7 +103,7 @@ export default function PageLayout({ children }) {
 
   const navItems = [
     { text: "Home", icon: <HomeIcon /> },
-    { text: "Profile", icon: <AccountCircle /> },
+    { text: "Profile", icon: <AccountCircle fontSize="large" /> },
     {
       text: "Notifications",
       icon: (
@@ -140,7 +142,6 @@ export default function PageLayout({ children }) {
   const drawer = (
     <div>
       <Toolbar />
-      <Divider />
       <List sx={{ ml: { md: "20%" }, mr: { md: "1rem" } }}>
         {navItems.map((navItem, index) => (
           <ListItem key={index}>
@@ -173,11 +174,20 @@ export default function PageLayout({ children }) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" sx={{ alignItems: "center" }}>
+      <AppBar
+        position="fixed"
+        sx={{
+          alignItems: "center",
+          background: "rgba(10, 21, 30, 0.2)",
+
+          backdropFilter: "blur(5px)",
+          WebkitBackdropFilter: "blur(5px)",
+        }}
+      >
         <Toolbar
           sx={{
             justifyContent: "space-between",
-            width: "90%",
+            width: { xs: "100%", md: "90%" },
             paddingRight: { md: "7vw" },
             maxWidth: "1450px",
           }}
@@ -189,7 +199,7 @@ export default function PageLayout({ children }) {
             onClick={handleDrawerToggle}
             sx={{ display: { sm: "none" } }}
           >
-            <ChatBeeperLogo size={35} />
+            <AccountCircle fontSize="large" />
           </IconButton>
           <Box
             display="flex"
@@ -216,6 +226,7 @@ export default function PageLayout({ children }) {
           >
             Home
           </Typography>
+
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -223,7 +234,7 @@ export default function PageLayout({ children }) {
             onClick={handleDrawerToggle}
             sx={{ display: { sm: "none" } }}
           >
-            <ChatBeeperLogo size={35} />
+            <MoreVertIcon />
           </IconButton>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Search>
@@ -281,7 +292,10 @@ export default function PageLayout({ children }) {
       <Box
         component="main"
         sx={{
-          width: { sm: `calc(100% - 60vw)` },
+          width: { xs: "100%", sm: `calc(100% - 60vw)` },
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         <Toolbar />
@@ -367,6 +381,9 @@ export default function PageLayout({ children }) {
           </div>
         </Drawer>
       </Box>
+
+      <Footer />
+      {/* <BeepPrompt open={addBeep} setAddBeep={setAddBeep} /> */}
     </Box>
   );
 }
