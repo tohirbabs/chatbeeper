@@ -1,58 +1,47 @@
 import * as React from "react";
-import PropTypes from "prop-types";
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
-import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import ChatBeeperLogo from "../Logo";
-import { SwipeableDrawer } from "@mui/material";
+import AccountCircle from "@mui/icons-material/AccountCircleRounded";
+import { Badge } from "@mui/material";
 import {
-  BeepIcon,
   BookmarkIcon,
-  BriefcaseIcon,
-  FollowersIcon,
   LogoutIcon,
   SettingsIcon,
   SmsIcon,
-  SponsoredIcon,
-  TrendIcon,
+  NotificationIcon,
+  HomeIcon,
 } from "../icons";
 import { logout } from "../../utilities/firebase";
+import { NavLink } from "react-router-dom";
 
-const drawerWidth = 260;
-
-function ResponsiveDrawer(props) {
-  const { window } = props;
-
+function SideNav(props) {
   const navItems = [
+    { text: "Home", icon: <HomeIcon /> },
+    { text: "Profile", icon: <AccountCircle fontSize="large" /> },
     {
-      text: "Create Beep",
-      icon: <BeepIcon />,
-      action: () => {
-        props.setAddBeep(true);
-      },
+      text: "Notifications",
+      icon: (
+        <Badge badgeContent={4} color="error">
+          <NotificationIcon />
+        </Badge>
+      ),
     },
-    { text: "Messages", icon: <SmsIcon /> },
-    { text: "Trending", icon: <TrendIcon /> },
-    { text: "Follower Requests", icon: <FollowersIcon /> },
-    { text: "Settings", icon: <SettingsIcon /> },
+
     { text: "Saved Beeps", icon: <BookmarkIcon /> },
-  ];
-  const navItems2 = [
-    { text: "Business Account", icon: <BriefcaseIcon /> },
-    { text: "Sponsored Beeps", icon: <SponsoredIcon /> },
+    {
+      text: "Messages",
+      icon: <SmsIcon />,
+    },
+
+    { text: "Settings", icon: <SettingsIcon /> },
+
     {
       text: "Logout",
       icon: <LogoutIcon />,
@@ -65,74 +54,61 @@ function ResponsiveDrawer(props) {
 
   const drawer = (
     <div>
-      <Toolbar>
-        <ChatBeeperLogo size={35} />
-      </Toolbar>
-      <Divider />
-      <List>
+      <Toolbar />
+      <List sx={{ ml: { md: "20%" }, mr: { md: "1rem" } }}>
         {navItems.map((navItem, index) => (
-          <ListItem key={index} disablePadding>
-            <ListItemButton onClick={navItem.action}>
-              <ListItemIcon sx={{ minWidth: "40px" }}>
-                {navItem.icon}
-              </ListItemIcon>
-              <ListItemText primary={navItem.text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {navItems2.map((navItem, index) => (
-          <ListItem key={index} disablePadding>
-            <ListItemButton onClick={navItem.action}>
-              <ListItemIcon sx={{ minWidth: "40px" }}>
-                {navItem.icon}
-              </ListItemIcon>
-              <ListItemText primary={navItem.text} />
-            </ListItemButton>
-          </ListItem>
+          <NavLink
+            to={navItem.text.toLowerCase()}
+            style={{ textDecoration: "none" }}
+          >
+            {({ isActive, isPending }) => (
+              <ListItem key={index}>
+                <ListItemButton
+                  onClick={navItem.action}
+                  sx={{
+                    borderRadius: "1rem",
+                    background: isActive ? "rgb(56 111 164/ 0.5)" : "",
+                  }}
+                >
+                  <ListItemIcon>{navItem.icon}</ListItemIcon>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography
+                        variant="body"
+                        style={{
+                          fontSize: "1rem",
+                          fontFamily: "Mentimun",
+                          color: "white",
+                        }}
+                      >
+                        {navItem.text}
+                      </Typography>
+                    }
+                  />
+                </ListItemButton>
+              </ListItem>
+            )}
+          </NavLink>
         ))}
       </List>
     </div>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
-  console.log(props.mobileOpen);
   return (
     <Box
       component="nav"
-      sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+      sx={{ width: { sm: "25vw" }, flexShrink: { sm: 0 } }}
       aria-label="mailbox folders"
     >
-      {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-      <SwipeableDrawer
-        container={container}
-        variant="temporary"
-        open={props.mobileOpen}
-        onClose={props.handleDrawerToggle}
-        ModalProps={{
-          keepMounted: true, // Better open performance on mobile.
-        }}
-        sx={{
-          display: { xs: "block", sm: "none" },
-          "& .MuiDrawer-paper": {
-            boxSizing: "border-box",
-            width: drawerWidth,
-          },
-        }}
-      >
-        {drawer}
-      </SwipeableDrawer>
       <Drawer
         variant="permanent"
         sx={{
           display: { xs: "none", sm: "block" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
-            width: drawerWidth,
-            position: "fixed",
+            width: "25vw",
+            zIndex: 1000,
           },
         }}
         open
@@ -143,4 +119,4 @@ function ResponsiveDrawer(props) {
   );
 }
 
-export default ResponsiveDrawer;
+export default SideNav;

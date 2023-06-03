@@ -1,6 +1,6 @@
 const getDesignTokens = (mode) => ({
   typography: {
-    fontFamily: "Montserrat",
+    fontFamily: "Qucksand Book",
     h1: {
       fontFamily: "Nunito",
       fontWeight: 500,

@@ -28,6 +28,7 @@ export default function Footer({ setAddBeep }) {
         right: 0,
         display: { md: "none" },
         zIndex: 1000,
+        background: "transparent",
       }}
       // elevation={3}
     >
@@ -37,7 +38,12 @@ export default function Footer({ setAddBeep }) {
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
-        // sx={{ pb: 2, height: "66px" }}
+        sx={{
+          background: "rgba(10, 21, 30, 0.2)",
+
+          backdropFilter: "blur(5px)",
+          WebkitBackdropFilter: "blur(5px)",
+        }}
       >
         <BottomNavigationAction icon={<HomeIcon active={value == 0} />} />
         <BottomNavigationAction icon={<SearchIcon active={value == 1} />} />
