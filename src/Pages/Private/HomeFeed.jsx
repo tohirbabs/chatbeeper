@@ -11,30 +11,39 @@ import React, { useState } from "react";
 import Beep from "../../components/Beep/Beep";
 import { useBeeperStore } from "../../utilities/store";
 import BeepCard from "../../components/Beep/BeepCard";
-import { getBeeps } from "../../utilities/firebase";
+import { auth, getBeeps } from "../../utilities/firebase";
 import { FeedTwoTone } from "@mui/icons-material";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export const HomeFeed = () => {
+  const navigate = useNavigate();
+
   // const feed = useBeeperStore((state) => state.feeds);
   const addToFeed = useBeeperStore((state) => state.addToFeed);
+  const [user, loading, error] = useAuthState(auth);
 
-  const [loading, setloading] = useState(false);
+  const [isLoading, setisLoading] = useState(false);
   const [feed, setFeed] = useState([]);
 
   const location = useNavigate();
 
   const fetchData = async () => {
-    setloading(true);
+    setisLoading(true);
 
     const res = await getBeeps();
 
     setFeed(res);
-    setloading(false);
+    setisLoading(false);
   };
 
   React.useEffect(() => {
     fetchData();
   }, []);
+
+  console.log(loading);
+  React.useEffect(() => {
+    if (user) navigate("/username/explore");
+  }, [user, loading]);
 
   // useEffect(() => {
   //   GET("feed", userInfo.jwt)

@@ -55,7 +55,7 @@ export default function App() {
   );
 
   React.useEffect(() => {
-    navigate("/app/home");
+    navigate("/app/explore");
   }, [user]);
   return (
     <ThemeProvider theme={apptheme}>
@@ -63,11 +63,12 @@ export default function App() {
       <Toaster />
       <AnimatePresence mode="wait">
         <Routes>
-          <Route path="app" element={<AppLayout />}>
-            <Route path="home" element={<HomeFeed />} />
+          <Route path=":username" element={<AppLayout />}>
+            <Route path="explore" element={<HomeFeed />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="*" element={<p>Page in development</p>} />
           </Route>
-          <Route path="*" element={<p>Page not found</p>} />
+          {/* <Route path="*" element={<p>This Page does not exist</p>} /> */}
           <Route index element={<Login />} />
           <Route path="auth" element={<Auth />}>
             <Route path="signup" element={<SignUp />} />

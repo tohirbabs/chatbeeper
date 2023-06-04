@@ -7,13 +7,20 @@ import Footer from "./Footer";
 import HeaderBar from "./Header";
 import SideNav from "./Sidebar";
 import { Rightbar } from "./Rightbar";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../utilities/firebase";
+import { LoginForm, SignUpForm } from "../AuthForms";
 
 export default function PageLayout({ children }) {
+  const [user, loading, error] = useAuthState(auth);
+  const [openLogin, setOpenLogin] = React.useState(false);
+  const [openSignup, setOpenSignup] = React.useState(false);
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <HeaderBar />
-      <SideNav />
+      <SideNav active={user} />
       <Box
         component="main"
         sx={{
@@ -27,10 +34,16 @@ export default function PageLayout({ children }) {
 
         {children}
       </Box>
-      <Rightbar />
+      <Rightbar active={user} />
 
-      <Footer />
+      <Footer
+        openLogin={() => setOpenLogin(true)}
+        openSignup={() => setOpenSignup(true)}
+        active={user}
+      />
       {/* <BeepPrompt open={addBeep} setAddBeep={setAddBeep} /> */}
+      <LoginForm open={openLogin} handleClose={() => setOpenLogin(false)} />
+      <SignUpForm open={openSignup} handleClose={() => setOpenSignup(false)} />
     </Box>
   );
 }

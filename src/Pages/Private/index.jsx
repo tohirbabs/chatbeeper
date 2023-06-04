@@ -1,7 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import PageLayout, { Layout } from "../../components/Layout";
-import { Box } from "@mui/material";
+import PageLayout from "../../components/Layout";
 
 export const AppLayout = () => {
   return (

@@ -108,9 +108,9 @@ export default function CreateAccountForm({ setCurrentForm, currentForm }) {
     formik.errors.phone;
 
   return (
-    <form onSubmit={formik.handleSubmit} method="post">
+    <form onSubmit={formik.handleSubmit} method="post" style={{ width: "96%" }}>
       <FormikProvider value={formik}>
-        <Stack spacing={3} width="96vw" maxWidth="375px">
+        <Stack spacing={3} width="100%" maxWidth="500px">
           <FormControl fullWidth variant="contained">
             <OutlinedInput
               id="username"

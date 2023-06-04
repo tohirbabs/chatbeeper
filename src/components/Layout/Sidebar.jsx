@@ -20,9 +20,10 @@ import {
 } from "../icons";
 import { logout } from "../../utilities/firebase";
 import { NavLink } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
 
-function SideNav(props) {
-  const navItems = [
+function SideNav({ active }) {
+  const activeNavItems = [
     { text: "Home", icon: <HomeIcon /> },
     { text: "Profile", icon: <AccountCircle fontSize="large" /> },
     {
@@ -51,6 +52,54 @@ function SideNav(props) {
       },
     },
   ];
+  const navItems = [
+    { text: "Explore", icon: <HomeIcon /> },
+
+    { text: "Settings", icon: <SettingsIcon /> },
+  ];
+
+  const activeDrawer = (
+    <div>
+      <Toolbar />
+      <List sx={{ ml: { md: "20%" }, mr: { md: "1rem" } }}>
+        {activeNavItems.map((navItem, index) => (
+          <NavLink
+            to={navItem.text.toLowerCase()}
+            style={{ textDecoration: "none" }}
+          >
+            {({ isActive, isPending }) => (
+              <ListItem key={index}>
+                <ListItemButton
+                  onClick={navItem.action}
+                  sx={{
+                    borderRadius: "1rem",
+                    background: isActive ? "rgb(56 111 164/ 0.5)" : "",
+                  }}
+                >
+                  <ListItemIcon>{navItem.icon}</ListItemIcon>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography
+                        variant="body"
+                        style={{
+                          fontSize: "1rem",
+                          fontFamily: "Mentimun",
+                          color: "white",
+                        }}
+                      >
+                        {navItem.text}
+                      </Typography>
+                    }
+                  />
+                </ListItemButton>
+              </ListItem>
+            )}
+          </NavLink>
+        ))}
+      </List>
+    </div>
+  );
 
   const drawer = (
     <div>
@@ -94,7 +143,7 @@ function SideNav(props) {
       </List>
     </div>
   );
-
+  console.log(active);
   return (
     <Box
       component="nav"
@@ -113,7 +162,7 @@ function SideNav(props) {
         }}
         open
       >
-        {drawer}
+        {active ? activeDrawer : drawer}
       </Drawer>
     </Box>
   );

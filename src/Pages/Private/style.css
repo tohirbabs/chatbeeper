@@ -1,13 +1,13 @@
 .profile {
   position: relative;
-  bottom: 40px;
+  /* bottom: 40px; */
 }
 
 .profile-content {
   border-left: #9e9e9e 2px solid;
 }
 .profile__wrapper {
-  width: 550px;
+  /* width: 550px; */
   margin: auto;
 }
 

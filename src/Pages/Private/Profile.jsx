@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { HomeFeed } from "./HomeFeed";
+
 import { FiEdit } from "react-icons/fi";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { RiLinksFill } from "react-icons/ri";
@@ -14,105 +14,124 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { auth, db } from "../../utilities/firebase";
 import { getAuth } from "firebase/auth";
+import { ProfileHeader } from "../../components/Profile/ProfileHeader";
+
+import {
+  Box,
+  CircularProgress,
+  Stack,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+
+import Beep from "../../components/Beep/Beep";
+import { useBeeperStore } from "../../utilities/store";
+import BeepCard from "../../components/Beep/BeepCard";
+import { getBeeps } from "../../utilities/firebase";
+import { FeedTwoTone } from "@mui/icons-material";
 
 export default function Profile() {
   const location = useNavigate();
-  const [user, loading, error] = useAuthState(auth);
-  console.log(user.uid);
+  // const [user, loading, error] = useAuthState(auth);
+  // console.log(user.uid);
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
-  const fetchUserName = async () => {
-    try {
-      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+  // const fetchUserName = async () => {
+  //   try {
+  //     const q = query(collection(db, "users"), where("uid", "==", user?.uid));
 
-      const doc = await getDocs(q);
-      // const data = doc.docs[0].data();
-      console.log(doc.data());
-      // setName(data.firstname + " " + data.lastname);
-      // setUsername(data.username);
-    } catch (err) {
-      console.error(err);
-      alert("An error occured while fetching user data");
-    }
+  //     const doc = await getDocs(q);
+  //     // const data = doc.docs[0].data();
+  //     console.log(doc.data());
+  //     // setName(data.firstname + " " + data.lastname);
+  //     // setUsername(data.username);
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert("An error occured while fetching user data");
+  //   }
+  // };
+  // useEffect(() => {
+  //   if (loading) return;
+  //   if (!user) return navigate("/");
+  //   fetchUserName();
+  // }, [user, loading]);
+
+  // getAuth()
+  //   .getUser(user?.uid)
+  //   .then((userRecord) => {
+  //     // See the UserRecord reference doc for the contents of userRecord.
+  //     console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
+  //   })
+  //   .catch((error) => {
+  //     console.log("Error fetching user data:", error);
+  //   });
+
+  const [loading, setloading] = useState(false);
+  const [feed, setFeed] = useState([]);
+
+  const fetchData = async () => {
+    setloading(true);
+
+    const res = await getBeeps();
+
+    setFeed(res);
+    setloading(false);
   };
-  useEffect(() => {
-    if (loading) return;
-    if (!user) return navigate("/");
-    fetchUserName();
-  }, [user, loading]);
 
-  getAuth()
-    .getUser(user?.uid)
-    .then((userRecord) => {
-      // See the UserRecord reference doc for the contents of userRecord.
-      console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
-    })
-    .catch((error) => {
-      console.log("Error fetching user data:", error);
-    });
+  React.useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="profile">
-      <div className="profile__wrapper">
-        <div className="profile__display-imgs">
-          <img src={banner} className="profile__banner" alt="chatbeeper logo" />
-          <img
-            src={`https://api.dicebear.com/5.x/adventurer/svg?seed=name`}
-            alt="user dp"
-            className="profile__dp"
-          />
-        </div>
-
-        <div className="profile__info">
-          <h1>{name}</h1>
-          <h2>
-            <p>@{username}</p>
-
-            <img src={checkmark} className="checkmark" alt="checkmark" />
-          </h2>
-          <p>
-            Hi there, I'm a product design who loves solving real life problems
-            with my superpower 😁
-          </p>
-          <div className="user_info">
-            <div className="info">
-              <p>0</p>
-              <p>Following</p>
-            </div>
-            <div className="divider"></div>
-            <div className="info">
-              <p>0</p>
-              <p>Followers</p>
-            </div>
-            <div className="divider"></div>
-            <div className="info">
-              <p>
-                <HiOutlineLocationMarker />
-              </p>
-              <p>Lagos, Nigeria</p>
-            </div>
-          </div>
-          <p className="link">
-            <RiLinksFill />
-            <a href="/">https://behance.net/janedoe</a>
-          </p>
-          <div className="user_action">
-            <div className="action">
-              <p>Edit profile</p>
-              <FiEdit />
-            </div>
-            {/* <img src={sms} className="msg" alt="chatbeeper logo" /> */}
-          </div>
-          <div className="sections">
-            <div className="section active_section">Beeps</div>
-            <div className="section">Pictures</div>
-            <div className="section">Videos</div>
-          </div>
-        </div>
-        <div className="profile__feed"></div>
-      </div>
-      <HomeFeed />
+      <ProfileHeader />
+      <Stack alignItems="center" width="100%">
+        {loading ? (
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 4,
+              justifyContent: "center",
+              padding: "2rem 0",
+            }}
+          >
+            <CircularProgress />
+            <Typography sx={{ fontSize: "1rem" }}>Getting Feed...</Typography>
+          </Box>
+        ) : feed.length ? (
+          <Box
+            position="relative"
+            sx={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            {feed.map((data, i) => (
+              <BeepCard data={data} key={i} />
+            ))}
+            <Toolbar />
+          </Box>
+        ) : (
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              padding: "2rem 0",
+            }}
+          >
+            <Typography sx={{ fontSize: "1rem" }}>
+              No Feeds Yet, Add beeps to your feed
+            </Typography>
+          </Box>
+        )}
+      </Stack>
     </div>
   );
 }

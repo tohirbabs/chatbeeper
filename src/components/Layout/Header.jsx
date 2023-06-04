@@ -1,48 +1,16 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
-import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import ViewStreamIcon from "@mui/icons-material/ViewStream";
-import { logout } from "../../utilities/firebase";
 import AccountCircle from "@mui/icons-material/AccountCircleRounded";
-import MoreVertIcon from "@mui/icons-material/MoreHorizOutlined";
 
-import {
-  BeepIcon,
-  BookmarkIcon,
-  BriefcaseIcon,
-  FollowersIcon,
-  LogoutIcon,
-  SettingsIcon,
-  SmsIcon,
-  SponsoredIcon,
-  TrendIcon,
-  NotificationIcon,
-  HomeIcon,
-} from "../icons";
-import docicon from "../../assets/docicon.png";
-import moonrider from "../../assets/moonrider.png";
-import wakanda from "../../assets/wakanda-img.png";
-import playboy from "../../assets/playboy-img.png";
-import minaj from "../../assets/minaj-img.png";
-import depp from "../../assets/depp-img.png";
-import church from "../../assets/church-img.png";
-import Badge from "@mui/material/Badge";
-import smsIcon from "../icons/sms.png";
-import Logo from "../../assets/chatbeeper.png";
+import { LogoutIcon, SettingsIcon } from "../icons";
 import ChatBeeperLogo from "../Logo";
 import {
   InputBase,
@@ -52,8 +20,8 @@ import {
   alpha,
   styled,
 } from "@mui/material";
-import Footer from "./Footer";
 import SearchIcon from "../icons/SearchIcon";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const drawerWidth = 300;
 
@@ -102,52 +70,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function HeaderBar({ handleDrawerToggle, setAddBeep }) {
-  // const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
-
-  const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
-
+  const navigate = useNavigate();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -164,32 +88,42 @@ export default function HeaderBar({ handleDrawerToggle, setAddBeep }) {
           alignItems: "center",
           background: "rgba(10, 21, 30, 0.2)",
 
-          backdropFilter: "blur(5px)",
-          WebkitBackdropFilter: "blur(5px)",
+          backdropFilter: "blur(6px)",
+          WebkitBackdropFilter: "blur(6px)",
         }}
       >
         <Toolbar
           sx={{
             justifyContent: "space-between",
-            width: { xs: "100%", md: "90%" },
+            width: { xs: "100%", md: "95%" },
             paddingRight: { md: "7vw" },
             maxWidth: "1450px",
           }}
         >
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ display: { sm: "none" } }}
-          >
-            <AccountCircle fontSize="large" />
-          </IconButton>
+          <Box display={{ sm: "none" }}>
+            <NavLink to="profile" style={{ textDecoration: "none" }}>
+              {({ isActive, isPending }) => (
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  edge="start"
+                  sx={{
+                    color: isActive ? "#386fa4" : "white",
+                  }}
+                >
+                  <AccountCircle fontSize="large" />
+                </IconButton>
+              )}
+            </NavLink>
+          </Box>
+
           <Box
             display="flex"
             alignItems="center"
             gap={1}
-            // sx={{ position: { xs: "absolute", sm: "relative" } }}
+            onClick={() => {
+              navigate("explore");
+            }}
           >
             <ChatBeeperLogo size={35} />
 
@@ -291,7 +225,7 @@ export default function HeaderBar({ handleDrawerToggle, setAddBeep }) {
             </Search>
           </Box>
         </Toolbar>
-        <Divider />
+        <Divider width="100%" />
       </AppBar>
     </Box>
   );

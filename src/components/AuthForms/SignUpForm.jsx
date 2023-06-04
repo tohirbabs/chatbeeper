@@ -17,23 +17,36 @@ import {
   Box,
   CircularProgress,
   InputLabel,
+  Modal,
+  Typography,
 } from "@mui/material";
-import { StyledButton } from "../StyledButton";
-import { FiAtSign } from "react-icons/fi";
 import PasswordInput from "./PasswordInput";
+
+import { StyledButton } from "../StyledButton";
+import { POST } from "../../utilities/request";
+
+import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useBeeperStore } from "../../utilities/store";
+// import { auth, signInWithEmailAndPassword, signInWithGoogle } from "./firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import ChatBeeperLogo from "../../components/Logo";
+import { FiAtSign } from "react-icons/fi";
+
 import GenderSelect from "./GenderSelect";
 
 import { ManIcon, WomanIcon } from "../../assets/icons";
 import DateInput from "./DateInput";
-import { POST } from "../../utilities/request";
 
-import toast from "react-hot-toast";
-import { useBeeperStore } from "../../utilities/store";
-import { Link, useHistory } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, registerWithEmailAndPassword } from "../../utilities/firebase";
+import CreateAccountForm from "./CreateAccountForm";
 
-export default function SignUpForm({ setCurrentForm, currentForm }) {
+export default function SignUpForm({
+  setCurrentForm,
+  currentForm,
+  open,
+  handleClose,
+}) {
   const updateUserData = useBeeperStore((state) => state.updateUserData);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,7 +60,7 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
   };
   React.useEffect(() => {
     if (loading) return;
-    if (user) navigate("/username/home");
+    if (user) navigate("/username/explore");
   }, [user, loading]);
 
   const [nextPage, setNextPage] = useState(false);
@@ -108,175 +121,35 @@ export default function SignUpForm({ setCurrentForm, currentForm }) {
     formik.errors.phone;
 
   return (
-    <form onSubmit={formik.handleSubmit} method="post">
-      <FormikProvider value={formik}>
-        {!nextPage ? (
-          <Stack spacing={3} width="96vw" maxWidth="375px">
-            <Box display="flex" gap={1}>
-              <TextField
-                onBlur={formik.handleBlur}
-                label={"First Name"}
-                name="firstname"
-                id="firstname"
-                type="text"
-                value={formik.values.firstname}
-                error={
-                  formik.touched.firstname && formik.errors.firstname && true
-                }
-                helperText={formik.touched.firstname && formik.errors.firstname}
-                onChange={formik.handleChange}
-              />
-              <TextField
-                onBlur={formik.handleBlur}
-                label="Last Name"
-                name="lastname"
-                id="lastname"
-                type="text"
-                error={
-                  formik.touched.lastname && formik.errors.lastname && true
-                }
-                helperText={formik.touched.lastname && formik.errors.lastname}
-                value={formik.values.lastname}
-                onChange={formik.handleChange}
-              />
-            </Box>
+    <Modal open={open} onClose={handleClose}>
+      <Stack
+        width="95vw"
+        maxWidth="500px"
+        spacing={3}
+        py={3}
+        alignItems="center"
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          background: "#0A151E",
+          borderRadius: "1.5rem",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+        }}
+      >
+        <ChatBeeperLogo />
 
-            <FormControl fullWidth variant="contained">
-              <OutlinedInput
-                id="username"
-                error={
-                  formik.touched.lastname && formik.errors.username && true
-                }
-                value={formik.values.username}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                startAdornment={
-                  <InputAdornment position="start">
-                    <FiAtSign />
-                  </InputAdornment>
-                }
-                placeholder="Username"
-              />
-              {formik.touched.username && formik.errors.username && (
-                <FormHelperText error id="username">
-                  {formik.touched.username && formik.errors.username}
-                </FormHelperText>
-              )}
-            </FormControl>
-            <Box display="flex" gap={1}>
-              <TextField
-                onBlur={formik.handleBlur}
-                label="Email"
-                name="email"
-                id="email"
-                type="email"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                error={formik.touched.email && formik.errors.email && true}
-                helperText={formik.touched.email && formik.errors.email}
-              />
+        <CreateAccountForm />
+        {/* <SignUpForm /> */}
 
-              <MuiTelInput
-                value={formik.values.phone}
-                id="phone"
-                label="Phone"
-                defaultCountry="NG"
-                onChange={(value, i) => {
-                  formik.setFieldValue("phone", value);
-                }}
-                onBlur={formik.handleBlur}
-                error={formik.touched.phone && formik.errors.phone && true}
-                helperText={formik.touched.phone && formik.errors.phone}
-              />
-            </Box>
-
-            <StyledButton
-              variant="contained"
-              onClick={() => setNextPage(true)}
-              disabled={page1Error ? true : false}
-            >
-              Continue
-            </StyledButton>
-          </Stack>
-        ) : (
-          <Stack spacing={2} width="90vw" maxWidth="375px">
-            <DateInput
-              error={formik.touched.dob && formik.errors.dob && true}
-              helperText={formik.touched.dob && formik.errors.dob}
-              name="dob"
-              label="Date of Birth"
-              value={formik.values.dob}
-              onChange={(value) => formik.setFieldValue("dob", value, true)}
-            />
-
-            <Box>
-              <Stack direction="row" gap={1} width="100%">
-                <GenderSelect
-                  icon={ManIcon}
-                  value="male"
-                  id="male"
-                  label="Male"
-                  formikValue={formik.values.gender}
-                  setFieldValue={setFieldValue}
-                  fieldValue={fieldValue}
-                />
-                <GenderSelect
-                  formikValue={formik.values.gender}
-                  icon={WomanIcon}
-                  value="female"
-                  id="female"
-                  label="Female"
-                />
-              </Stack>
-              {formik.errors.gender && (
-                <FormHelperText error id="gender">
-                  {" "}
-                  {formik.errors.gender}
-                </FormHelperText>
-              )}
-            </Box>
-
-            <PasswordInput
-              label="Password"
-              id="password"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              helperText={formik.touched.password && formik.errors.password}
-              error={formik.touched.password && formik.errors.password && true}
-            />
-            <PasswordInput
-              label="Confirm Password"
-              id="confirmPassword"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={
-                formik.touched.confirmPassword &&
-                formik.errors.confirmPassword &&
-                true
-              }
-              helperText={
-                formik.touched.confirmPassword && formik.errors.confirmPassword
-              }
-            />
-            <StyledButton
-              variant="contained"
-              type="submit"
-              disabled={
-                Object.values(formik.errors).length !== 0 &&
-                Object.values(formik.values).length !== 0
-                  ? true
-                  : false
-              }
-            >
-              {loading ? (
-                <CircularProgress color="secondary" />
-              ) : (
-                "Create Account"
-              )}
-            </StyledButton>
-          </Stack>
-        )}
-      </FormikProvider>
-    </form>
+        <Typography variant="body" my={2}>
+          Already have a beeper account?{" "}
+          <Link to="/auth/login">
+            <Typography variant="link">Log in</Typography>
+          </Link>
+        </Typography>
+      </Stack>
+    </Modal>
   );
 }

@@ -2,7 +2,7 @@
   border-left: #9e9e9e 2px solid;
 }
 .profile__wrapper {
-  width: 586px;
+  /* width: 586px; */
   margin: auto;
 }
 
@@ -16,18 +16,19 @@
 .profile__dp {
   position: relative;
   width: 5rem;
-  bottom: 30px;
+  /* bottom: 30px; */
 }
 
 .profile__banner {
-  width: 584px;
+  width: 100%;
+  min-height: 230px;
 }
 
 .profile__info {
   display: flex;
   flex-direction: column;
   position: relative;
-  bottom: 26px;
+  /* bottom: 26px; */
   align-items: center;
   padding: 0.8rem 0;
   text-align: center;
@@ -177,6 +178,7 @@
   }
   .profile__banner {
     width: 100vw;
+    min-height: 126px;
   }
 
   .link {
