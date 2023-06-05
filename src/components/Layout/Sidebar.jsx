@@ -24,7 +24,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 function SideNav({ active }) {
   const activeNavItems = [
-    { text: "Home", icon: <HomeIcon /> },
+    { text: "Explore", icon: <HomeIcon /> },
     { text: "Profile", icon: <AccountCircle fontSize="large" /> },
     {
       text: "Notifications",

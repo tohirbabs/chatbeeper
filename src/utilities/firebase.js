@@ -59,23 +59,23 @@ const registerWithEmailAndPassword = async (values) => {
       auth,
       values.email,
       values.password
-    ).then(function (result) {
-      return result.user.updateProfile({
-        displayName: values.username,
-        phoneNumber: values.phone,
-      });
-    });
-    const user = res.user;
-    await addDoc(collection(db, "users"), {
-      uid: user.uid,
-      firstname: values.firstname,
-      lastname: values.lastname,
-      username: values.username,
-      phone: values.phone,
-      email: values.email,
-      gender: values.gender,
-      // dob: values.dob.tostring(),
-    });
+    );
+    //   .then(function (result) {
+    //   return result.user.updateProfile({
+    //     displayName: values.username,
+    //   });
+    // });
+    // const user = res.user;
+    // await addDoc(collection(db, "users"), {
+    //   uid: user.uid,
+    //   firstname: values.firstname,
+    //   lastname: values.lastname,
+    //   username: values.username,
+    //   phone: values.phone,
+    //   email: values.email,
+    //   gender: values.gender,
+    //   // dob: values.dob.tostring(),
+    // });
   } catch (err) {
     console.error(err);
     alert(err.message);

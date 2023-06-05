@@ -10,10 +10,12 @@ import checkmark from "../../assets/checkmark.png";
 import { useNavigate } from "react-router-dom";
 // import { useStore } from "../../utilities/store";
 import { useBeeperStore } from "../../utilities/store";
+import { auth } from "../../utilities/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export const ProfileHeader = () => {
   const userInfo = useBeeperStore((state) => state.userData);
-  // const location = useNavigate();
+  const [user, loading, error] = useAuthState(auth);
 
   // if (!cookies.userData.firstname) {
   //   location("/ceate-account");
@@ -33,7 +35,7 @@ export const ProfileHeader = () => {
       <div className="profile__info">
         <h1>{`${userInfo.firstname} ${userInfo.lastname}`}</h1>
         <h2>
-          <p>{`@${userInfo.username}`}</p>
+          <p>{`@${user.displayName}`}</p>
 
           <img src={checkmark} className="checkmark" alt="checkmark" />
         </h2>

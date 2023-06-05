@@ -80,13 +80,7 @@ export default function Footer({ setAddBeep, active, openLogin, openSignup }) {
     >
       <Divider />
       <BottomNavigation
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
         sx={{
-          background: "#386fa4",
-
           height: { xs: "4rem", md: "5rem" },
           width: "100%",
           backdropFilter: "blur(5px)",
@@ -132,8 +126,6 @@ export default function Footer({ setAddBeep, active, openLogin, openSignup }) {
           >
             <Button
               sx={{
-                background: "#fff",
-                color: "#386fa4",
                 fontSize: { xs: "0.8rem", sm: "1rem" },
                 fontFamily: "Mentimun",
                 borderRadius: "0.8rem",

@@ -37,7 +37,7 @@ export default function LoginForm({ open, handleClose }) {
 
   console.log(user);
   React.useEffect(() => {
-    if (user) navigate(`/${user.username}/explore`);
+    if (user) navigate(`/${user.displayName}/explore`);
   }, [user, loading]);
 
   const formik = useFormik({

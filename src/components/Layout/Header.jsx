@@ -21,7 +21,8 @@ import {
   styled,
 } from "@mui/material";
 import SearchIcon from "../icons/SearchIcon";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { logout } from "../../utilities/firebase";
 
 const drawerWidth = 300;
 
@@ -69,7 +70,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function HeaderBar({ handleDrawerToggle, setAddBeep }) {
+export default function HeaderBar({ active, setAddBeep, openSignup }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
@@ -78,7 +79,14 @@ export default function HeaderBar({ handleDrawerToggle, setAddBeep }) {
   };
   const handleClose = () => {
     setAnchorEl(null);
+    logout();
   };
+
+  const location = useLocation();
+
+  console.log(location.pathname);
+  const lastSlashIndex = location.pathname.lastIndexOf("/");
+  const title = location.pathname.substring(lastSlashIndex + 1);
 
   return (
     <Box>
@@ -101,20 +109,14 @@ export default function HeaderBar({ handleDrawerToggle, setAddBeep }) {
           }}
         >
           <Box display={{ sm: "none" }}>
-            <NavLink to="profile" style={{ textDecoration: "none" }}>
-              {({ isActive, isPending }) => (
-                <IconButton
-                  color="inherit"
-                  aria-label="open drawer"
-                  edge="start"
-                  sx={{
-                    color: isActive ? "#386fa4" : "white",
-                  }}
-                >
-                  <AccountCircle fontSize="large" />
-                </IconButton>
-              )}
-            </NavLink>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={() => (active ? openSignup() : navigate("profile"))}
+            >
+              <AccountCircle fontSize="large" />
+            </IconButton>
           </Box>
 
           <Box
@@ -142,7 +144,7 @@ export default function HeaderBar({ handleDrawerToggle, setAddBeep }) {
             width={400}
             sx={{ fontFamily: "Mentimun", display: { xs: "none", md: "flex" } }}
           >
-            Home
+            {title}
           </Typography>
 
           <div>

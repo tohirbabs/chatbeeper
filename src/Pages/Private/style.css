@@ -197,3 +197,118 @@
     font-size: 0.7rem;
   }
 }
+
+.beep_prompt {
+  background-color: #0a151e;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.beep_prompt textarea {
+  margin: 1rem 0;
+  border: none;
+  width: 30rem;
+  background-color: #0a151e;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.beep_prompt textarea:focus {
+  outline: none;
+}
+
+.prompt_actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.prompt_extras {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.prompt_extras img {
+  cursor: pointer;
+}
+
+.prompt_actions button {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  background: #386fa4;
+  border: none;
+  border-radius: 3rem;
+  color: white;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+}
+
+.textarea {
+  border: 1px solid #ccc;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 1px 6px;
+}
+
+.textarea {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  resize: both;
+  min-height: 40px;
+  line-height: 20px;
+}
+
+.textarea[contenteditable]:empty::before {
+  content: "Placeholder still possible";
+  color: gray;
+}
+
+@media (max-width: 750px) {
+  .beep_prompt {
+    background-color: #0a151e;
+
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .beep_prompt textarea {
+    margin: 1rem 0;
+    border: none;
+    width: 80vw;
+  }
+
+  .prompt_actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .prompt_extras {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .prompt_extras img {
+    cursor: pointer;
+  }
+
+  .prompt_actions button {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    background: #386fa4;
+    border: none;
+    border-radius: 3rem;
+    color: white;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+  }
+}

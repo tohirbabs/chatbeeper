@@ -37,17 +37,19 @@ export default function CreateAccountForm({ setCurrentForm, currentForm }) {
   const updateUserData = useBeeperStore((state) => state.updateUserData);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState("");
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
   const register = (values) => {
     if (!values.username) alert("Please enter name");
+    console.log("registering");
     registerWithEmailAndPassword(values);
   };
   React.useEffect(() => {
     if (loading) return;
-    if (user) navigate("/username/home");
+    if (user) navigate(`/${user.displayName}/explore`);
   }, [user, loading]);
 
   const [nextPage, setNextPage] = useState(false);
@@ -56,23 +58,16 @@ export default function CreateAccountForm({ setCurrentForm, currentForm }) {
 
   const formik = useFormik({
     initialValues: {
-      firstname: "",
-      lastname: "",
       username: "",
-      phone: "",
+
       email: "",
-      dob: new Date().now,
-      gender: "",
+
       password: "",
     },
     validationSchema: Yup.object({
-      firstname: Yup.string().required("Required"),
-      lastname: Yup.string().required("Required"),
       username: Yup.string().required("Required"),
       email: Yup.string().email("Email address not valid").required("Required"),
-      phone: Yup.string().phone("Phone number not valid").required("Required"),
-      gender: Yup.string().required("Required"),
-      dob: Yup.date("Date is invalid").required("Required"),
+
       password: Yup.string()
         .required("Required")
         .matches(
@@ -83,20 +78,16 @@ export default function CreateAccountForm({ setCurrentForm, currentForm }) {
         .oneOf([Yup.ref("password"), null], "Passwords must match")
         .required("Confirm Password"),
     }),
-    onSubmit: (values) => {
-      // setloading(true);
+    onSubmit: async (values) => {
+      setIsLoading(true);
 
-      // POST("user", JSON.stringify(values))
-      //   .then((res) => res.json())
-      //   .then(
-      //     (res) =>
-      //       res.message ? toast(res.message) : () => updateUserData(res),
-      //     navigate("verifymail")
-      //   )
-      //   .catch((err) => console.log("error:", err))
-      //   .finally(() => setloading(false));
-      // registerUser.mutate();
-      register(values);
+      try {
+        register(values);
+        setIsLoading(false);
+      } catch (err) {
+        setIsLoading(false);
+        toast(err.message);
+      }
     },
   });
 
@@ -109,80 +100,78 @@ export default function CreateAccountForm({ setCurrentForm, currentForm }) {
 
   return (
     <form onSubmit={formik.handleSubmit} method="post" style={{ width: "96%" }}>
-      <FormikProvider value={formik}>
-        <Stack spacing={3} width="100%" maxWidth="500px">
-          <FormControl fullWidth variant="contained">
-            <OutlinedInput
-              id="username"
-              error={formik.touched.lastname && formik.errors.username && true}
-              value={formik.values.username}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              startAdornment={
-                <InputAdornment position="start">
-                  <FiAtSign />
-                </InputAdornment>
-              }
-              placeholder="Username"
-            />
-            {formik.touched.username && formik.errors.username && (
-              <FormHelperText error id="username">
-                {formik.touched.username && formik.errors.username}
-              </FormHelperText>
-            )}
-          </FormControl>
-          <TextField
-            onBlur={formik.handleBlur}
-            label="Email"
-            name="email"
-            id="email"
-            type="email"
-            value={formik.values.email}
+      <Stack spacing={3} width="100%" maxWidth="500px">
+        <FormControl fullWidth variant="contained">
+          <OutlinedInput
+            id="username"
+            error={formik.touched.lastname && formik.errors.username && true}
+            value={formik.values.username}
             onChange={formik.handleChange}
-            error={formik.touched.email && formik.errors.email && true}
-            helperText={formik.touched.email && formik.errors.email}
+            onBlur={formik.handleBlur}
+            startAdornment={
+              <InputAdornment position="start">
+                <FiAtSign />
+              </InputAdornment>
+            }
+            placeholder="Username"
           />
+          {formik.touched.username && formik.errors.username && (
+            <FormHelperText error id="username">
+              {formik.touched.username && formik.errors.username}
+            </FormHelperText>
+          )}
+        </FormControl>
+        <TextField
+          onBlur={formik.handleBlur}
+          label="Email"
+          name="email"
+          id="email"
+          type="email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          error={formik.touched.email && formik.errors.email && true}
+          helperText={formik.touched.email && formik.errors.email}
+        />
 
-          <PasswordInput
-            label="Password"
-            id="password"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            helperText={formik.touched.password && formik.errors.password}
-            error={formik.touched.password && formik.errors.password && true}
-          />
-          <PasswordInput
-            label="Confirm Password"
-            id="confirmPassword"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={
-              formik.touched.confirmPassword &&
-              formik.errors.confirmPassword &&
-              true
-            }
-            helperText={
-              formik.touched.confirmPassword && formik.errors.confirmPassword
-            }
-          />
-          <StyledButton
-            variant="contained"
-            type="submit"
-            disabled={
-              Object.values(formik.errors).length !== 0 &&
-              Object.values(formik.values).length !== 0
-                ? true
-                : false
-            }
-          >
-            {loading ? (
-              <CircularProgress color="secondary" />
-            ) : (
-              "Create Account"
-            )}
-          </StyledButton>
-        </Stack>
-      </FormikProvider>
+        <PasswordInput
+          label="Password"
+          id="password"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          helperText={formik.touched.password && formik.errors.password}
+          error={formik.touched.password && formik.errors.password && true}
+        />
+        <PasswordInput
+          label="Confirm Password"
+          id="confirmPassword"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={
+            formik.touched.confirmPassword &&
+            formik.errors.confirmPassword &&
+            true
+          }
+          helperText={
+            formik.touched.confirmPassword && formik.errors.confirmPassword
+          }
+        />
+        <StyledButton
+          variant="contained"
+          type="submit"
+          // disabled={
+          //   Object.values(formik.errors).length !== 0 &&
+          //   Object.values(formik.values).length !== 0
+          //     ? true
+          //     : false
+          // }
+        >
+          {isLoading ? (
+            <CircularProgress size={30} color="secondary" />
+          ) : (
+            "Create account"
+          )}
+        </StyledButton>
+      </Stack>
     </form>
   );
 }
